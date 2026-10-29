@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>arisplrhmn - Personal Workspace</title>
+    <title>Personal Workspace</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -80,7 +80,7 @@
                         <h1 class="text-xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-300 to-purple-400">
                             arisplrhmn
                         </h1>
-                        <p class="text-xs text-gray-400">Personal Dashboard & Activity Log</p>
+                        <p class="text-xs text-gray-400">Personal</p>
                     </div>
                 </div>
             </div>
@@ -142,11 +142,6 @@
 
         <!-- ================= HOME / DASHBOARD TAB ================= -->
         <section id="sec-home" class="space-y-6">
-            <div class="glass-card rounded-2xl p-6 border border-cyan-500/20 bg-gradient-to-r from-cyan-950/20 to-purple-950/20">
-                <h2 class="text-2xl font-bold text-white mb-1">Selamat Datang, arisplrhmn 👋</h2>
-                <p class="text-sm text-gray-400">Ringkasan aktivitas, catatan keuangan, dan kondisi kendaraan kamu hari ini.</p>
-            </div>
-
             <!-- COUNTDOWN UTAMA DI DASHBOARD -->
             <div class="glass-card rounded-2xl p-6 border border-pink-500/30 bg-gradient-to-br from-pink-950/30 to-purple-950/30 space-y-4">
                 <div class="flex items-center justify-between">
@@ -241,10 +236,10 @@
                 <div class="flex items-center gap-2">
                     <span class="text-xs font-bold text-gray-300">Filter Rekap:</span>
                     <select id="cashflowFilterPeriod" onchange="renderCashflow()" class="bg-gray-900 border border-gray-800 rounded-xl px-3 py-1.5 text-xs text-white">
-                        <option value="harian">Harian (Hari Ini)</option>
-                        <option value="mingguan">Mingguan (7 Hari Terakhir)</option>
-                        <option value="bulanan" selected>Bulanan (Bulan Ini)</option>
-                        <option value="tahunan">Tahunan (Tahun Ini)</option>
+                        <option value="harian">Harian</option>
+                        <option value="mingguan">Mingguan</option>
+                        <option value="bulanan" selected>Bulanan</option>
+                        <option value="tahunan">Tahunan</option>
                         <option value="semua">Semua Waktu</option>
                     </select>
                 </div>
@@ -318,7 +313,7 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-gray-800">
                     <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
-                        <span class="text-xs text-gray-400">Sisa Bulan Belum Terbayar:</span>
+                        <span class="text-xs text-gray-400">Sisa Bulan:</span>
                         <span class="text-sm font-bold text-amber-400" id="sisaBulanText">21 Bulan</span>
                     </div>
                     <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
@@ -334,7 +329,7 @@
                         <div class="flex items-center gap-2">
                             <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400"><i data-lucide="fuel" class="w-5 h-5"></i></div>
                             <div>
-                                <h3 class="text-sm font-bold text-white">Isi Bensin Pertalite</h3>
+                                <h3 class="text-sm font-bold text-white">Isi Bensin</h3>
                                 <p class="text-xs text-gray-400">Sudah <span id="bensinCount" class="text-amber-400 font-bold">0</span>x isi</p>
                             </div>
                         </div>
@@ -437,14 +432,14 @@
         <section id="sec-bca" class="hidden space-y-6">
             <div class="glass-card rounded-2xl p-6 border border-blue-500/20 flex items-center justify-between">
                 <div>
-                    <h2 class="text-xl font-bold text-white">Admin Bank BCA</h2>
-                    <p class="text-xs text-gray-400">Biaya Administrasi Rp 10.000 / bulan</p>
+                    <h2 class="text-xl font-bold text-white">Admin Bulanan Bank BCA</h2>
+                    <p class="text-xs text-gray-400">Biaya Administrasi Rp 10.000 /bulan</p>
                     <p class="text-xs text-blue-400 font-semibold mt-1">Total Terpotong: <span id="bcaTotalRp">Rp 0</span></p>
                 </div>
                 <button onclick="addBcaPayment()" class="px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center gap-2">+ Bayar Bulan Ini (+1)</button>
             </div>
             <div class="glass-card rounded-2xl p-5">
-                <h3 class="text-sm font-bold text-white mb-3">Riwayat Potongan Admin BCA</h3>
+                <h3 class="text-sm font-bold text-white mb-3">Riwayat Admin Bulanan BCA</h3>
                 <div id="bcaLog" class="space-y-2"></div>
             </div>
         </section>
