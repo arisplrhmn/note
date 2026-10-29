@@ -87,6 +87,15 @@
             background: #1f2937;
             border-radius: 4px;
         }
+        
+        /* Smooth Scroll Horizontal */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col pb-24">
@@ -132,7 +141,7 @@
                     <i data-lucide="bike" class="w-4 h-4"></i> Kendaraan
                 </button>
                 <button onclick="switchTab('bca')" id="tab-bca" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
-                    <i data-lucide="landmark" class="w-4 h-4"></i> Admin BCA
+                    <i data-lucide="landmark" class="w-4 h-4"></i> BCA
                 </button>
                 <button onclick="switchTab('token')" id="tab-token" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="zap" class="w-4 h-4"></i> Token Listrik
@@ -182,38 +191,17 @@
                 </div>
             </div>
 
-            <!-- COUNTDOWN UTAMA DI DASHBOARD -->
-            <div class="glass-card rounded-2xl p-6 border border-pink-500/30 bg-gradient-to-br from-pink-950/30 to-purple-950/30 space-y-4">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <div class="p-2 rounded-xl bg-pink-500/20 text-pink-400">
-                            <i data-lucide="timer" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <span class="text-xs font-bold text-pink-400 uppercase tracking-wider">Hitung Mundur Acara</span>
-                            <h3 id="home-cd-title" class="text-lg font-bold text-white">Memuat Acara...</h3>
-                        </div>
-                    </div>
-                    <span id="home-cd-date" class="text-xs font-mono text-gray-400 bg-gray-900/80 px-3 py-1 rounded-lg border border-gray-800">-</span>
+            <!-- CAROUSEL COUNTDOWN DI DASHBOARD (Horizontal Scroll) -->
+            <div class="space-y-2">
+                <div class="flex items-center justify-between px-1">
+                    <span class="text-xs font-bold text-pink-400 uppercase tracking-wider flex items-center gap-1.5">
+                        <i data-lucide="timer" class="w-4 h-4"></i> Hitung Mundur Acara
+                    </span>
+                    <button onclick="switchTab('countdown')" class="text-xs text-pink-400 hover:underline">Kelola Acara &rarr;</button>
                 </div>
-
-                <div class="grid grid-cols-4 gap-3 text-center">
-                    <div class="bg-gray-900/80 p-3 rounded-xl border border-gray-800">
-                        <span id="cd-days" class="text-2xl md:text-3xl font-black text-pink-400">0</span>
-                        <span class="text-[10px] md:text-xs text-gray-400 block mt-0.5">Hari</span>
-                    </div>
-                    <div class="bg-gray-900/80 p-3 rounded-xl border border-gray-800">
-                        <span id="cd-hours" class="text-2xl md:text-3xl font-black text-white">0</span>
-                        <span class="text-[10px] md:text-xs text-gray-400 block mt-0.5">Jam</span>
-                    </div>
-                    <div class="bg-gray-900/80 p-3 rounded-xl border border-gray-800">
-                        <span id="cd-minutes" class="text-2xl md:text-3xl font-black text-white">0</span>
-                        <span class="text-[10px] md:text-xs text-gray-400 block mt-0.5">Menit</span>
-                    </div>
-                    <div class="bg-gray-900/80 p-3 rounded-xl border border-gray-800">
-                        <span id="cd-seconds" class="text-2xl md:text-3xl font-black text-pink-300">0</span>
-                        <span class="text-[10px] md:text-xs text-gray-400 block mt-0.5">Detik</span>
-                    </div>
+                <!-- Container Horizontal Scroll -->
+                <div id="homeCountdownContainer" class="flex gap-4 overflow-x-auto pb-3 pt-1 snap-x snap-mandatory">
+                    <!-- Dynamic Items via JS -->
                 </div>
             </div>
 
@@ -582,7 +570,7 @@
                 <button onclick="addBcaPayment()" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs flex items-center gap-2 shadow-lg shadow-blue-600/20">+ Bayar Bulan Ini (+1)</button>
             </div>
             <div class="glass-card rounded-2xl p-5">
-                <h3 class="text-sm font-bold text-white mb-3">Riwayat Admin Bulanan BCA</h3>
+                <h3 class="text-sm font-bold text-white mb-3">Riwayat</h3>
                 <div id="bcaLog" class="space-y-2"></div>
             </div>
         </section>
@@ -592,13 +580,13 @@
             <div class="glass-card rounded-2xl p-6 border border-yellow-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl font-bold text-white">Token Listrik PLN</h2>
-                    <p class="text-xs text-gray-400">Riwayat pengisian stroom/token listrik rumah</p>
+                    <p class="text-xs text-gray-400">Riwayat pengisian</p>
                     <p class="text-xs text-yellow-400 font-bold mt-1">Sudah <span id="tokenCount" class="text-amber-300">0</span>x isi token</p>
                 </div>
                 <button onclick="openModal('modalToken')" class="px-4 py-2.5 rounded-xl bg-yellow-600 hover:bg-yellow-500 text-white font-semibold text-xs shadow-lg shadow-yellow-600/20">+ Catat Isi Token</button>
             </div>
             <div class="glass-card rounded-2xl p-5">
-                <h3 class="text-sm font-bold text-white mb-3">Riwayat Isi Token</h3>
+                <h3 class="text-sm font-bold text-white mb-3">Riwayat</h3>
                 <div id="tokenLog" class="space-y-2"></div>
             </div>
         </section>
@@ -699,7 +687,7 @@
             </button>
             <button onclick="switchTab('job')" id="bottom-tab-job" class="bottom-nav-btn">
                 <i data-lucide="briefcase" class="w-4 h-4 mb-0.5"></i>
-                <span>Cari Kerja</span>
+                <span>Work</span>
             </button>
             <button onclick="switchTab('vehicle')" id="bottom-tab-vehicle" class="bottom-nav-btn">
                 <i data-lucide="bike" class="w-4 h-4 mb-0.5"></i>
@@ -707,7 +695,7 @@
             </button>
             <button onclick="switchTab('bca')" id="bottom-tab-bca" class="bottom-nav-btn">
                 <i data-lucide="landmark" class="w-4 h-4 mb-0.5"></i>
-                <span>Admin BCA</span>
+                <span>BCA</span>
             </button>
             <button onclick="switchTab('token')" id="bottom-tab-token" class="bottom-nav-btn">
                 <i data-lucide="zap" class="w-4 h-4 mb-0.5"></i>
@@ -845,7 +833,7 @@
         </div>
     </div>
 
-    <!-- Modal Countdown -->
+    <!-- Modal Countdown Tambah -->
     <div id="modalCountdown" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
             <h3 class="text-lg font-bold text-white">Tambah Hitung Mundur Acara</h3>
@@ -855,6 +843,28 @@
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
                     <button type="button" onclick="closeModal('modalCountdown')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Batal</button>
                     <button type="submit" class="px-4 py-2 rounded-xl bg-pink-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Edit Countdown -->
+    <div id="modalEditCountdown" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
+            <h3 class="text-lg font-bold text-white">Edit Hitung Mundur Acara</h3>
+            <form onsubmit="handleEditCountdownSubmit(event)" class="space-y-3">
+                <input type="hidden" id="editCdId">
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Nama Acara</label>
+                    <input type="text" id="editCdTitle" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white focus:border-pink-500">
+                </div>
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Tanggal Acara</label>
+                    <input type="date" id="editCdDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white focus:border-pink-500">
+                </div>
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalEditCountdown')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Batal</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-pink-600 hover:bg-pink-500 text-white text-xs font-semibold">Simpan Perubahan</button>
                 </div>
             </form>
         </div>
@@ -1379,70 +1389,117 @@
             }
 
             container.innerHTML = state.countdowns.map(cd => {
-                const diff = new Date(cd.date) - new Date();
+                const diff = new Date(cd.date + "T00:00:00") - new Date();
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 return `
                     <div class="glass-card rounded-2xl p-5 border border-pink-500/20 space-y-3">
                         <div class="flex justify-between items-start">
-                            <h3 class="text-sm font-bold text-white">${cd.title}</h3>
-                            <button onclick="deleteLog('countdowns', '${cd.id}')" class="text-gray-500 hover:text-rose-400">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
-                            </button>
+                            <div>
+                                <h3 class="text-sm font-bold text-white">${cd.title}</h3>
+                                <span class="text-[10px] text-gray-400 font-mono">${cd.date}</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <button onclick="openEditCountdownModal('${cd.id}')" class="text-gray-400 hover:text-pink-400 p-1 transition" title="Edit Countdown">
+                                    <i data-lucide="edit-3" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="deleteLog('countdowns', '${cd.id}')" class="text-gray-400 hover:text-rose-400 p-1 transition" title="Hapus Countdown">
+                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="flex items-baseline gap-2">
                             <span class="text-3xl font-black text-pink-400">${days >= 0 ? days : 0}</span>
-                            <span class="text-xs text-gray-400">Hari tersisa (${cd.date})</span>
+                            <span class="text-xs text-gray-400">Hari tersisa</span>
                         </div>
                     </div>
                 `;
             }).join('');
         }
 
-        function updateHomeCountdown() {
-            const titleEl = document.getElementById('home-cd-title');
-            const dateEl = document.getElementById('home-cd-date');
-            const dEl = document.getElementById('cd-days');
-            const hEl = document.getElementById('cd-hours');
-            const mEl = document.getElementById('cd-minutes');
-            const sEl = document.getElementById('cd-seconds');
+        function openEditCountdownModal(id) {
+            const cd = state.countdowns.find(x => x.id === id);
+            if (!cd) return;
+            document.getElementById('editCdId').value = cd.id;
+            document.getElementById('editCdTitle').value = cd.title;
+            document.getElementById('editCdDate').value = cd.date;
+            openModal('modalEditCountdown');
+        }
 
-            if(!titleEl || !dEl) return;
+        function handleEditCountdownSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('editCdId').value;
+            const cd = state.countdowns.find(x => x.id === id);
+            if (cd) {
+                cd.title = document.getElementById('editCdTitle').value;
+                cd.date = document.getElementById('editCdDate').value;
+                closeModal('modalEditCountdown');
+                saveState();
+            }
+        }
+
+        function renderHomeCountdownCarousel() {
+            const container = document.getElementById('homeCountdownContainer');
+            if(!container) return;
 
             if(!state.countdowns || state.countdowns.length === 0) {
-                titleEl.innerText = "Belum ada acara aktif";
-                dateEl.innerText = "-";
-                dEl.innerText = "0";
-                hEl.innerText = "0";
-                mEl.innerText = "0";
-                sEl.innerText = "0";
+                container.innerHTML = `
+                    <div class="w-full glass-card rounded-2xl p-5 border border-pink-500/20 text-center py-6">
+                        <p class="text-xs text-gray-400 italic">Belum ada acara hitung mundur. Tambahkan di menu Countdown.</p>
+                    </div>
+                `;
                 return;
             }
 
-            const targetCd = state.countdowns[0];
-            titleEl.innerText = targetCd.title;
-            dateEl.innerText = targetCd.date;
-
-            const targetTime = new Date(targetCd.date + "T00:00:00").getTime();
             const now = new Date().getTime();
-            const diff = targetTime - now;
 
-            if (diff <= 0) {
-                dEl.innerText = "0";
-                hEl.innerText = "0";
-                mEl.innerText = "0";
-                sEl.innerText = "0";
-                return;
-            }
+            container.innerHTML = state.countdowns.map(cd => {
+                const targetTime = new Date(cd.date + "T00:00:00").getTime();
+                const diff = targetTime - now;
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                let days = 0, hours = 0, minutes = 0, seconds = 0;
 
-            dEl.innerText = days;
-            hEl.innerText = hours;
-            mEl.innerText = minutes;
-            sEl.innerText = seconds;
+                if (diff > 0) {
+                    days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                }
+
+                return `
+                    <div class="glass-card rounded-2xl p-5 border border-pink-500/30 bg-gradient-to-br from-pink-950/30 to-purple-950/30 min-w-[290px] sm:min-w-[340px] max-w-[360px] flex-shrink-0 snap-align-start space-y-3">
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-2 truncate">
+                                <div class="p-1.5 rounded-lg bg-pink-500/20 text-pink-400 flex-shrink-0">
+                                    <i data-lucide="timer" class="w-4 h-4"></i>
+                                </div>
+                                <h3 class="text-sm font-bold text-white truncate" title="${cd.title}">${cd.title}</h3>
+                            </div>
+                            <span class="text-[10px] font-mono text-gray-400 bg-gray-900/80 px-2 py-0.5 rounded border border-gray-800 flex-shrink-0">${cd.date}</span>
+                        </div>
+
+                        <div class="grid grid-cols-4 gap-2 text-center">
+                            <div class="bg-gray-900/80 p-2 rounded-xl border border-gray-800">
+                                <span class="text-xl md:text-2xl font-black text-pink-400 block">${days}</span>
+                                <span class="text-[9px] text-gray-400 block">Hari</span>
+                            </div>
+                            <div class="bg-gray-900/80 p-2 rounded-xl border border-gray-800">
+                                <span class="text-xl md:text-2xl font-black text-white block">${hours}</span>
+                                <span class="text-[9px] text-gray-400 block">Jam</span>
+                            </div>
+                            <div class="bg-gray-900/80 p-2 rounded-xl border border-gray-800">
+                                <span class="text-xl md:text-2xl font-black text-white block">${minutes}</span>
+                                <span class="text-[9px] text-gray-400 block">Menit</span>
+                            </div>
+                            <div class="bg-gray-900/80 p-2 rounded-xl border border-gray-800">
+                                <span class="text-xl md:text-2xl font-black text-pink-300 block">${seconds}</span>
+                                <span class="text-[9px] text-gray-400 block">Detik</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
         }
 
         function renderNotes() {
@@ -1904,6 +1961,9 @@
             if(homeQuickNote) {
                 homeQuickNote.innerText = state.generalNotes || 'Belum ada catatan pribadi yang ditulis...';
             }
+
+            // 6. Carousel Countdown Home
+            renderHomeCountdownCarousel();
         }
 
         function renderVehicleStats() {
@@ -2068,8 +2128,7 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             renderApp();
-            setInterval(updateHomeCountdown, 1000);
-            updateHomeCountdown();
+            setInterval(renderHomeCountdownCarousel, 1000);
         });
     </script>
 </body>
