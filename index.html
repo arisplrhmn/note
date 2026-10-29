@@ -407,9 +407,10 @@
                 <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
                     <i data-lucide="bike" class="w-5 h-5 text-purple-400"></i> Catatan Kendaraan | Beat
                 </h2>
-                <p class="text-[11px] sm:text-xs text-gray-400">Pengeluaran cicilan, bensin, oli, cuci, dan parkir motor</p>
+                <p class="text-[11px] sm:text-xs text-gray-400">Pengeluaran cicilan, pajak, bensin, oli, cuci, dan parkir motor</p>
             </div>
 
+            <!-- CICILAN MOTOR BEAT -->
             <div class="glass-card rounded-2xl p-4 sm:p-6 border-l-4 border-l-purple-500 space-y-3">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
@@ -438,6 +439,46 @@
                     <div class="bg-gray-900/60 p-2.5 rounded-xl border border-gray-800 flex justify-between items-center">
                         <span class="text-gray-400">Total Sisa Harus Dibayar:</span>
                         <span class="font-bold text-rose-400" id="sisaBiayaText">Rp 17.598.000</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BAGIAN BARU: PAJAK KENDARAAN (PAJAK TAHUNAN & PAJAK 5 TAHUNAN / STNK) -->
+            <div class="glass-card rounded-2xl p-4 sm:p-5 border border-sky-500/20 space-y-3">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <div class="p-2 rounded-xl bg-sky-500/20 text-sky-400 border border-sky-500/30">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm sm:text-base font-bold text-white">Pengingat Pajak Kendaraan</h3>
+                            <p class="text-[10px] sm:text-xs text-gray-400">Format Tanggal: <span class="text-sky-300 font-bold">TANGGAL - BULAN - TAHUN (DD - MM - YYYY)</span></p>
+                        </div>
+                    </div>
+                    <button onclick="openModal('modalPajak')" class="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold flex items-center gap-1 shadow-lg shadow-sky-600/20">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit Pajak
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                    <!-- Pajak Tahunan -->
+                    <div class="bg-gray-900/80 p-3.5 rounded-xl border border-gray-800 space-y-1.5">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">Pajak Tahunan</span>
+                            <span id="pajakTahunanDays" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20">-</span>
+                        </div>
+                        <div class="text-base font-black text-white font-mono" id="pajakTahunanDisplay">01 - 01 - 2027</div>
+                        <p class="text-[10px] text-gray-400" id="pajakTahunanDesc">Jatuh tempo pembayaran STNK tahunan</p>
+                    </div>
+
+                    <!-- Pajak 5 Tahunan (Kaleng) -->
+                    <div class="bg-gray-900/80 p-3.5 rounded-xl border border-gray-800 space-y-1.5">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Pajak 5 Tahunan (STNK / Plat)</span>
+                            <span id="pajak5TahunanDays" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">-</span>
+                        </div>
+                        <div class="text-base font-black text-white font-mono" id="pajak5TahunanDisplay">01 - 01 - 2030</div>
+                        <p class="text-[10px] text-gray-400" id="pajak5TahunanDesc">Jatuh tempo ganti plat kaleng nomor kendaraan</p>
                     </div>
                 </div>
             </div>
@@ -745,11 +786,36 @@
 
     <!-- ================= MODALS ================= -->
 
-    <!-- Modal Tambah Salinan Text -->
+    <!-- Modal Edit Pajak Kendaraan -->
+    <div id="modalPajak" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <i data-lucide="file-text" class="w-4 h-4 text-sky-400"></i> Edit Pajak Kendaraan
+            </h3>
+            <p class="text-[11px] text-gray-400">Pilih tanggal jatuh tempo pajak. Format penulisan tampilan akan otomatis: <span class="text-white font-bold">DD - MM - YYYY</span>.</p>
+            <form onsubmit="handlePajakSubmit(event)" class="space-y-3 pt-1">
+                <div>
+                    <label class="text-[11px] font-bold text-sky-300 block mb-1">Tanggal Pajak Tahunan</label>
+                    <input type="date" id="pajakTahunanInput" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white focus:border-sky-500">
+                </div>
+                <div>
+                    <label class="text-[11px] font-bold text-purple-300 block mb-1">Tanggal Pajak 5 Tahunan (STNK / Plat)</label>
+                    <input type="date" id="pajak5TahunanInput" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white focus:border-purple-500">
+                </div>
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalPajak')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
+                    <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-sky-600 text-white text-xs font-semibold">Simpan Pajak</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Tambah/Edit Salinan Text -->
     <div id="modalAddCopier" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 class="text-base font-bold text-white">Tambah Salinan Text Baru</h3>
+            <h3 id="modalCopierTitle" class="text-base font-bold text-white">Tambah Salinan Text Baru</h3>
             <form onsubmit="handleCopierSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editCopierId">
                 <input type="text" id="copierTitle" placeholder="Judul" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <textarea id="copierContent" rows="3" placeholder="Teks..." required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white"></textarea>
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
@@ -859,37 +925,16 @@
         </div>
     </div>
 
-    <!-- Modal Countdown Tambah -->
+    <!-- Modal Countdown Tambah/Edit -->
     <div id="modalCountdown" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 class="text-base font-bold text-white">Tambah Hitung Mundur Acara</h3>
+            <h3 id="modalCdTitle" class="text-base font-bold text-white">Tambah Hitung Mundur Acara</h3>
             <form onsubmit="handleCountdownSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editCdId">
                 <input type="text" id="cdTitle" placeholder="Nama Acara" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <input type="date" id="cdDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
                     <button type="button" onclick="closeModal('modalCountdown')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
-                    <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-pink-600 text-white text-xs font-semibold">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Edit Countdown -->
-    <div id="modalEditCountdown" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 class="text-base font-bold text-white">Edit Hitung Mundur Acara</h3>
-            <form onsubmit="handleEditCountdownSubmit(event)" class="space-y-2.5">
-                <input type="hidden" id="editCdId">
-                <div>
-                    <label class="text-[10px] text-gray-400 block mb-1">Nama Acara</label>
-                    <input type="text" id="editCdTitle" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                </div>
-                <div>
-                    <label class="text-[10px] text-gray-400 block mb-1">Tanggal Acara</label>
-                    <input type="date" id="editCdDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                </div>
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalEditCountdown')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
                     <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-pink-600 text-white text-xs font-semibold">Simpan</button>
                 </div>
             </form>
@@ -911,11 +956,12 @@
         </div>
     </div>
 
-    <!-- Modal Tambah Pemasukan -->
+    <!-- Modal Pemasukan (Tambah & Edit) -->
     <div id="modalAddIncome" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 class="text-base font-bold text-white">Tambah Pemasukan</h3>
+            <h3 id="modalIncomeTitle" class="text-base font-bold text-white">Tambah Pemasukan</h3>
             <form onsubmit="handleIncomeSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editIncId">
                 <input type="date" id="incDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <input type="number" id="incNominal" placeholder="Nominal Rp" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div>
@@ -931,11 +977,12 @@
         </div>
     </div>
 
-    <!-- Modal Tambah Pengeluaran -->
+    <!-- Modal Pengeluaran (Tambah & Edit) -->
     <div id="modalAddExpense" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 class="text-base font-bold text-white">Tambah Pengeluaran</h3>
+            <h3 id="modalExpenseTitle" class="text-base font-bold text-white">Tambah Pengeluaran</h3>
             <form onsubmit="handleExpenseSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editExpId">
                 <input type="date" id="expDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <input type="number" id="expNominal" placeholder="Nominal Rp" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div>
@@ -1095,6 +1142,8 @@
     <script>
         const defaultData = {
             cicilanBeat: 12,
+            pajakTahunanDate: "2027-01-01",
+            pajak5TahunanDate: "2030-01-01",
             cashBalance: 500000,
             bankAccounts: [
                 { id: 'b-bca', name: 'BCA', saldo: 1250000 }
@@ -1153,10 +1202,22 @@
         if(!state.oliLogs) state.oliLogs = [];
         if(!state.parkirLogs) state.parkirLogs = [];
         if(!state.cuciLogs) state.cuciLogs = [];
+        if(!state.pajakTahunanDate) state.pajakTahunanDate = "2027-01-01";
+        if(!state.pajak5TahunanDate) state.pajak5TahunanDate = "2030-01-01";
 
         function saveState() {
             localStorage.setItem('arisplrhmn_projects_db', JSON.stringify(state));
             renderApp();
+        }
+
+        // Helper Format Tanggal Ke DD - MM - YYYY
+        function formatDateIndo(dateStr) {
+            if (!dateStr) return "-";
+            const parts = dateStr.split('-');
+            if (parts.length === 3) {
+                return `${parts[2]} - ${parts[1]} - ${parts[0]}`;
+            }
+            return dateStr;
         }
 
         function switchTab(tabId) {
@@ -1180,8 +1241,29 @@
         }
 
         function openModal(modalId) {
-            if(modalId === 'modalAddIncome' || modalId === 'modalAddExpense') {
+            if(modalId === 'modalAddIncome') {
+                document.getElementById('editIncId').value = '';
+                document.getElementById('modalIncomeTitle').innerText = 'Tambah Pemasukan';
+                document.getElementById('incDate').value = new Date().toISOString().split('T')[0];
+                document.getElementById('incNominal').value = '';
+                document.getElementById('incNote').value = '';
                 populateAccountDropdowns();
+            }
+            if(modalId === 'modalAddExpense') {
+                document.getElementById('editExpId').value = '';
+                document.getElementById('modalExpenseTitle').innerText = 'Tambah Pengeluaran';
+                document.getElementById('expDate').value = new Date().toISOString().split('T')[0];
+                document.getElementById('expNominal').value = '';
+                document.getElementById('expCategory').value = 'Tagihan';
+                document.getElementById('expCustomCat').value = '';
+                document.getElementById('expNote').value = '';
+                populateAccountDropdowns();
+            }
+            if(modalId === 'modalAddCopier') {
+                document.getElementById('editCopierId').value = '';
+                document.getElementById('modalCopierTitle').innerText = 'Tambah Salinan Text Baru';
+                document.getElementById('copierTitle').value = '';
+                document.getElementById('copierContent').value = '';
             }
             if(modalId === 'modalJob') {
                 document.getElementById('editJobId').value = '';
@@ -1207,6 +1289,12 @@
                 document.getElementById('hutangTitle').value = '';
                 document.getElementById('hutangNominal').value = '';
                 document.getElementById('hutangDate').value = new Date().toISOString().split('T')[0];
+            }
+            if(modalId === 'modalCountdown') {
+                document.getElementById('editCdId').value = '';
+                document.getElementById('modalCdTitle').innerText = 'Tambah Hitung Mundur Acara';
+                document.getElementById('cdTitle').value = '';
+                document.getElementById('cdDate').value = new Date().toISOString().split('T')[0];
             }
             if(modalId === 'modalRoutine') {
                 document.getElementById('editRoutineId').value = '';
@@ -1241,6 +1329,10 @@
                 document.getElementById('cuciDate').value = new Date().toISOString().split('T')[0];
                 document.getElementById('cuciLoc').value = '';
                 document.getElementById('cuciCost').value = '';
+            }
+            if(modalId === 'modalPajak') {
+                document.getElementById('pajakTahunanInput').value = state.pajakTahunanDate || "2027-01-01";
+                document.getElementById('pajak5TahunanInput').value = state.pajak5TahunanDate || "2030-01-01";
             }
             const modal = document.getElementById(modalId);
             if(modal) modal.classList.remove('hidden');
@@ -1281,9 +1373,14 @@
                             <h3 class="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5">
                                 <i data-lucide="file-text" class="w-4 h-4 text-sky-400"></i> ${item.title}
                             </h3>
-                            <button onclick="deleteCopier('${item.id}')" class="text-gray-500 hover:text-rose-400 p-1">
-                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                            </button>
+                            <div class="flex items-center gap-1">
+                                <button onclick="openEditCopierModal('${item.id}')" class="text-gray-400 hover:text-sky-400 p-1 transition" title="Edit Salinan">
+                                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <button onclick="deleteCopier('${item.id}')" class="text-gray-400 hover:text-rose-400 p-1 transition" title="Hapus">
+                                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 text-xs text-gray-300 font-mono whitespace-pre-wrap select-all">
                             ${item.content}
@@ -1294,6 +1391,16 @@
                     </button>
                 </div>
             `).join('');
+        }
+
+        function openEditCopierModal(id) {
+            const c = state.textCopier.find(x => x.id === id);
+            if(!c) return;
+            document.getElementById('editCopierId').value = c.id;
+            document.getElementById('modalCopierTitle').innerText = 'Edit Salinan Text';
+            document.getElementById('copierTitle').value = c.title || '';
+            document.getElementById('copierContent').value = c.content || '';
+            openModal('modalAddCopier');
         }
 
         function copyToClipboard(id) {
@@ -1324,13 +1431,23 @@
 
         function handleCopierSubmit(e) {
             e.preventDefault();
-            state.textCopier.unshift({
-                id: 'cop-' + Date.now(),
-                title: document.getElementById('copierTitle').value,
-                content: document.getElementById('copierContent').value
-            });
-            document.getElementById('copierTitle').value = '';
-            document.getElementById('copierContent').value = '';
+            const editId = document.getElementById('editCopierId').value;
+            const title = document.getElementById('copierTitle').value;
+            const content = document.getElementById('copierContent').value;
+
+            if (editId) {
+                const c = state.textCopier.find(x => x.id === editId);
+                if (c) {
+                    c.title = title;
+                    c.content = content;
+                }
+            } else {
+                state.textCopier.unshift({
+                    id: 'cop-' + Date.now(),
+                    title, content
+                });
+            }
+
             closeModal('modalAddCopier');
             saveState();
         }
@@ -1395,7 +1512,7 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-y-1.5 text-xs text-gray-300 border-t border-b border-gray-800/80 py-2.5">
-                        <div><span class="text-gray-500 block text-[10px]">Apply Kerja:</span> ${j.applyDate || '-'}</div>
+                        <div><span class="text-gray-500 block text-[10px]">Apply Kerja:</span> ${formatDateIndo(j.applyDate)}</div>
                         <div><span class="text-gray-500 block text-[10px]">Ada Kabar:</span> ${j.kabar || '-'}</div>
                         <div><span class="text-gray-500 block text-[10px]">Interview:</span> ${j.interview || '-'}</div>
                         <div><span class="text-gray-500 block text-[10px]">Day 1 Kerja:</span> ${j.day1 || '-'}</div>
@@ -1434,7 +1551,7 @@
             if(bcaLog) {
                 bcaLog.innerHTML = (state.bcaLogs || []).map(b => `
                     <div class="flex justify-between items-center text-xs p-2.5 rounded-xl bg-gray-900/80 border border-gray-800">
-                        <span class="text-gray-300 font-mono">${b.date}</span>
+                        <span class="text-gray-300 font-mono">${formatDateIndo(b.date)}</span>
                         <div class="flex items-center gap-2.5">
                             <span class="text-blue-400 font-semibold">Rp ${Number(b.nominal).toLocaleString('id-ID')}</span>
                             <button onclick="deleteLog('bcaLogs', '${b.id}')" class="text-gray-500 hover:text-rose-400">
@@ -1455,7 +1572,7 @@
             if(tokenLog) {
                 tokenLog.innerHTML = (state.tokenLogs || []).map(t => `
                     <div class="flex justify-between items-center text-xs p-2.5 rounded-xl bg-gray-900/80 border border-gray-800">
-                        <span class="text-gray-300 font-mono">${t.date}</span>
+                        <span class="text-gray-300 font-mono">${formatDateIndo(t.date)}</span>
                         <div class="flex items-center gap-2.5">
                             <span class="text-yellow-400 font-semibold">Rp ${Number(t.nominal).toLocaleString('id-ID')}</span>
                             <button onclick="deleteLog('tokenLogs', '${t.id}')" class="text-gray-500 hover:text-rose-400">
@@ -1494,7 +1611,7 @@
                     <div class="glass-card rounded-xl p-3 flex justify-between items-center border border-gray-800">
                         <div>
                             <h4 class="text-xs font-bold text-white">${h.title}</h4>
-                            <p class="text-[11px] text-amber-400 font-medium">${h.nominal} - <span class="text-gray-400">${h.date}</span></p>
+                            <p class="text-[11px] text-amber-400 font-medium">${h.nominal} - <span class="text-gray-400">${formatDateIndo(h.date)}</span></p>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditHutangModal('${h.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Hutang">
@@ -1546,7 +1663,7 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <h3 class="text-xs sm:text-sm font-bold text-white">${cd.title}</h3>
-                                <span class="text-[10px] text-gray-400 font-mono">${cd.date}</span>
+                                <span class="text-[10px] text-gray-400 font-mono">${formatDateIndo(cd.date)}</span>
                             </div>
                             <div class="flex items-center gap-1">
                                 <button onclick="openEditCountdownModal('${cd.id}')" class="text-gray-400 hover:text-pink-400 p-1 transition" title="Edit Countdown">
@@ -1570,21 +1687,10 @@
             const cd = state.countdowns.find(x => x.id === id);
             if (!cd) return;
             document.getElementById('editCdId').value = cd.id;
-            document.getElementById('editCdTitle').value = cd.title;
-            document.getElementById('editCdDate').value = cd.date;
-            openModal('modalEditCountdown');
-        }
-
-        function handleEditCountdownSubmit(e) {
-            e.preventDefault();
-            const id = document.getElementById('editCdId').value;
-            const cd = state.countdowns.find(x => x.id === id);
-            if (cd) {
-                cd.title = document.getElementById('editCdTitle').value;
-                cd.date = document.getElementById('editCdDate').value;
-                closeModal('modalEditCountdown');
-                saveState();
-            }
+            document.getElementById('modalCdTitle').innerText = 'Edit Hitung Mundur Acara';
+            document.getElementById('cdTitle').value = cd.title;
+            document.getElementById('cdDate').value = cd.date;
+            openModal('modalCountdown');
         }
 
         function renderHomeCountdownCarousel() {
@@ -1624,7 +1730,7 @@
                                 </div>
                                 <h3 class="text-xs sm:text-sm font-bold text-white truncate" title="${cd.title}">${cd.title}</h3>
                             </div>
-                            <span class="text-[10px] font-mono text-gray-400 bg-gray-900/80 px-2 py-0.5 rounded border border-gray-800 flex-shrink-0">${cd.date}</span>
+                            <span class="text-[10px] font-mono text-gray-400 bg-gray-900/80 px-2 py-0.5 rounded border border-gray-800 flex-shrink-0">${formatDateIndo(cd.date)}</span>
                         </div>
 
                         <div class="grid grid-cols-4 gap-1.5 text-center">
@@ -1764,11 +1870,16 @@
                         <div>
                             <span class="text-emerald-400 font-bold">+ Rp ${Number(inc.nominal).toLocaleString('id-ID')}</span>
                             <span class="text-gray-200 block">${inc.note} (${getAccountName(inc.account)})</span>
-                            <span class="text-[10px] text-gray-500">${inc.date}</span>
+                            <span class="text-[10px] text-gray-500">${formatDateIndo(inc.date)}</span>
                         </div>
-                        <button onclick="deleteCashflow('income', '${inc.id}')" class="text-gray-500 hover:text-rose-400 p-1">
-                            <i data-lucide="x" class="w-3.5 h-3.5"></i>
-                        </button>
+                        <div class="flex items-center gap-1">
+                            <button onclick="openEditIncomeModal('${inc.id}')" class="text-gray-400 hover:text-emerald-400 p-1" title="Edit Pemasukan">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button onclick="deleteCashflow('income', '${inc.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus">
+                                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
                     </div>
                 `).join('') || `<p class="text-xs text-gray-500 italic text-center py-3">Belum ada pemasukan.</p>`;
             }
@@ -1780,14 +1891,55 @@
                         <div>
                             <span class="text-rose-400 font-bold">- Rp ${Number(exp.nominal).toLocaleString('id-ID')}</span>
                             <span class="text-gray-200 block">[${exp.category}] ${exp.note || ''} (${getAccountName(exp.account)})</span>
-                            <span class="text-[10px] text-gray-500">${exp.date}</span>
+                            <span class="text-[10px] text-gray-500">${formatDateIndo(exp.date)}</span>
                         </div>
-                        <button onclick="deleteCashflow('expense', '${exp.id}')" class="text-gray-500 hover:text-rose-400 p-1">
-                            <i data-lucide="x" class="w-3.5 h-3.5"></i>
-                        </button>
+                        <div class="flex items-center gap-1">
+                            <button onclick="openEditExpenseModal('${exp.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Edit Pengeluaran">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button onclick="deleteCashflow('expense', '${exp.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus">
+                                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
                     </div>
                 `).join('') || `<p class="text-xs text-gray-500 italic text-center py-3">Belum ada pengeluaran.</p>`;
             }
+        }
+
+        function openEditIncomeModal(id) {
+            const inc = state.incomes.find(x => x.id === id);
+            if(!inc) return;
+            populateAccountDropdowns();
+            document.getElementById('editIncId').value = inc.id;
+            document.getElementById('modalIncomeTitle').innerText = 'Edit Pemasukan';
+            document.getElementById('incDate').value = inc.date;
+            document.getElementById('incNominal').value = inc.nominal;
+            document.getElementById('incAccount').value = inc.account;
+            document.getElementById('incNote').value = inc.note || '';
+            openModal('modalAddIncome');
+        }
+
+        function openEditExpenseModal(id) {
+            const exp = state.expenses.find(x => x.id === id);
+            if(!exp) return;
+            populateAccountDropdowns();
+            document.getElementById('editExpId').value = exp.id;
+            document.getElementById('modalExpenseTitle').innerText = 'Edit Pengeluaran';
+            document.getElementById('expDate').value = exp.date;
+            document.getElementById('expNominal').value = exp.nominal;
+            
+            const stdCats = ['Tagihan', 'Belanja', 'Shopee', 'Tokopedia', 'Bensin', 'Makan / Minum'];
+            if(stdCats.includes(exp.category)) {
+                document.getElementById('expCategory').value = exp.category;
+                document.getElementById('expCustomCat').value = '';
+            } else {
+                document.getElementById('expCategory').value = 'Lainnya';
+                document.getElementById('expCustomCat').value = exp.category;
+            }
+
+            document.getElementById('expAccount').value = exp.account;
+            document.getElementById('expNote').value = exp.note || '';
+            openModal('modalAddExpense');
         }
 
         function openEditSaldoModal(accKey, name) {
@@ -1897,37 +2049,69 @@
 
         function handleIncomeSubmit(e) {
             e.preventDefault();
+            const editId = document.getElementById('editIncId').value;
+            const date = document.getElementById('incDate').value;
             const nominal = document.getElementById('incNominal').value;
             const account = document.getElementById('incAccount').value;
-            state.incomes.unshift({
-                id: 'inc-' + Date.now(),
-                date: document.getElementById('incDate').value,
-                nominal: nominal,
-                account: account,
-                note: document.getElementById('incNote').value
-            });
-            updateAccountBalance(account, nominal, true);
+            const note = document.getElementById('incNote').value;
+
+            if (editId) {
+                const inc = state.incomes.find(x => x.id === editId);
+                if (inc) {
+                    // Revert saldo lama
+                    updateAccountBalance(inc.account, inc.nominal, false);
+                    inc.date = date;
+                    inc.nominal = nominal;
+                    inc.account = account;
+                    inc.note = note;
+                    // Terapkan saldo baru
+                    updateAccountBalance(account, nominal, true);
+                }
+            } else {
+                state.incomes.unshift({
+                    id: 'inc-' + Date.now(),
+                    date, nominal, account, note
+                });
+                updateAccountBalance(account, nominal, true);
+            }
+
             closeModal('modalAddIncome');
             saveState();
         }
 
         function handleExpenseSubmit(e) {
             e.preventDefault();
+            const editId = document.getElementById('editExpId').value;
+            const date = document.getElementById('expDate').value;
             const nominal = document.getElementById('expNominal').value;
             const account = document.getElementById('expAccount').value;
             let cat = document.getElementById('expCategory').value;
             if(cat === 'Lainnya') {
                 cat = document.getElementById('expCustomCat').value || 'Lainnya';
             }
-            state.expenses.unshift({
-                id: 'exp-' + Date.now(),
-                date: document.getElementById('expDate').value,
-                nominal: nominal,
-                category: cat,
-                account: account,
-                note: document.getElementById('expNote').value
-            });
-            updateAccountBalance(account, nominal, false);
+            const note = document.getElementById('expNote').value;
+
+            if (editId) {
+                const exp = state.expenses.find(x => x.id === editId);
+                if (exp) {
+                    // Revert saldo lama
+                    updateAccountBalance(exp.account, exp.nominal, true);
+                    exp.date = date;
+                    exp.nominal = nominal;
+                    exp.category = cat;
+                    exp.account = account;
+                    exp.note = note;
+                    // Terapkan saldo baru
+                    updateAccountBalance(account, nominal, false);
+                }
+            } else {
+                state.expenses.unshift({
+                    id: 'exp-' + Date.now(),
+                    date, nominal, category: cat, account, note
+                });
+                updateAccountBalance(account, nominal, false);
+            }
+
             closeModal('modalAddExpense');
             saveState();
         }
@@ -2046,11 +2230,22 @@
 
         function handleCountdownSubmit(e) {
             e.preventDefault();
-            state.countdowns.unshift({
-                id: 'cd-' + Date.now(),
-                title: document.getElementById('cdTitle').value,
-                date: document.getElementById('cdDate').value
-            });
+            const editId = document.getElementById('editCdId').value;
+            const title = document.getElementById('cdTitle').value;
+            const date = document.getElementById('cdDate').value;
+
+            if(editId) {
+                const cd = state.countdowns.find(x => x.id === editId);
+                if(cd) {
+                    cd.title = title;
+                    cd.date = date;
+                }
+            } else {
+                state.countdowns.unshift({
+                    id: 'cd-' + Date.now(),
+                    title, date
+                });
+            }
             closeModal('modalCountdown');
             saveState();
         }
@@ -2073,6 +2268,14 @@
                 });
             }
             closeModal('modalRoutine');
+            saveState();
+        }
+
+        function handlePajakSubmit(e) {
+            e.preventDefault();
+            state.pajakTahunanDate = document.getElementById('pajakTahunanInput').value;
+            state.pajak5TahunanDate = document.getElementById('pajak5TahunanInput').value;
+            closeModal('modalPajak');
             saveState();
         }
 
@@ -2203,6 +2406,28 @@
                     badge.className = "text-[10px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30";
                 }
             }
+
+            // Render Informasi Pajak
+            const p1Display = document.getElementById('pajakTahunanDisplay');
+            if(p1Display) p1Display.innerText = formatDateIndo(state.pajakTahunanDate);
+
+            const p5Display = document.getElementById('pajak5TahunanDisplay');
+            if(p5Display) p5Display.innerText = formatDateIndo(state.pajak5TahunanDate);
+
+            const now = new Date();
+            if (state.pajakTahunanDate) {
+                const diff1 = new Date(state.pajakTahunanDate + "T00:00:00") - now;
+                const days1 = Math.ceil(diff1 / (1000 * 60 * 60 * 24));
+                const p1Days = document.getElementById('pajakTahunanDays');
+                if(p1Days) p1Days.innerText = days1 >= 0 ? `${days1} Hari lagi` : `Lewat ${Math.abs(days1)} Hari`;
+            }
+
+            if (state.pajak5TahunanDate) {
+                const diff5 = new Date(state.pajak5TahunanDate + "T00:00:00") - now;
+                const days5 = Math.ceil(diff5 / (1000 * 60 * 60 * 24));
+                const p5Days = document.getElementById('pajak5TahunanDays');
+                if(p5Days) p5Days.innerText = days5 >= 0 ? `${days5} Hari lagi` : `Lewat ${Math.abs(days5)} Hari`;
+            }
         }
 
         function filterSum(logs, costField, dateFilter) {
@@ -2263,7 +2488,6 @@
             const cCount = document.getElementById('cuciCount');
             if(cCount) cCount.innerText = state.cuciLogs ? state.cuciLogs.length : 0;
 
-            // Render Log Lists with Edit and Delete buttons & max-h-40 overflow-y-auto scrolling
             const bensinLogEl = document.getElementById('bensinLog');
             if(bensinLogEl) {
                 bensinLogEl.innerHTML = (state.bensinLogs || []).map(b => `
@@ -2271,7 +2495,7 @@
                         <div>
                             <span class="text-amber-400 font-bold">Rp ${Number(b.cost).toLocaleString('id-ID')}</span>
                             <span class="text-gray-200 block text-[11px]">📍 ${b.loc}</span>
-                            <span class="text-[10px] text-gray-500">📅 ${b.date}</span>
+                            <span class="text-[10px] text-gray-500">📅 ${formatDateIndo(b.date)}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditBensinModal('${b.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Bensin">
@@ -2292,7 +2516,7 @@
                         <div>
                             <span class="text-cyan-400 font-bold">Rp ${Number(o.cost).toLocaleString('id-ID')}</span>
                             <span class="text-gray-200 block text-[11px]">📍 ${o.loc || 'Bengkel'} | ⚙️ ${o.km}</span>
-                            <span class="text-[10px] text-gray-500">📅 ${o.date}</span>
+                            <span class="text-[10px] text-gray-500">📅 ${formatDateIndo(o.date)}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditOliModal('${o.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Oli">
@@ -2313,7 +2537,7 @@
                         <div>
                             <span class="text-emerald-400 font-bold">Rp ${Number(p.cost).toLocaleString('id-ID')}</span>
                             <span class="text-gray-200 block text-[11px]">📍 ${p.loc}</span>
-                            <span class="text-[10px] text-gray-500">📅 ${p.date}</span>
+                            <span class="text-[10px] text-gray-500">📅 ${formatDateIndo(p.date)}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditParkirModal('${p.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Parkir">
@@ -2334,7 +2558,7 @@
                         <div>
                             <span class="text-blue-400 font-bold">${c.cost ? 'Rp ' + Number(c.cost).toLocaleString('id-ID') : 'Cuci'}</span>
                             <span class="text-gray-200 block text-[11px]">📍 ${c.loc || 'Tempat Cuci'}</span>
-                            <span class="text-[10px] text-gray-500">📅 ${c.date}</span>
+                            <span class="text-[10px] text-gray-500">📅 ${formatDateIndo(c.date)}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditCuciModal('${c.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Cuci">
