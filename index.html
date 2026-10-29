@@ -52,6 +52,30 @@
             color: #38bdf8;
         }
 
+        /* Styling khusus tombol HOME di tengah bawah */
+        .home-center-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 3.25rem;
+            height: 3.25rem;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+            transform: translateY(-12px);
+            transition: all 0.2s ease-in-out;
+            flex-shrink: 0;
+            border: 3px solid #0b0f17;
+        }
+
+        .home-center-btn.active {
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
+            transform: translateY(-14px) scale(1.05);
+            border-color: #38bdf8;
+        }
+
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -69,32 +93,31 @@
 
     <!-- Header / Navbar -->
     <header class="sticky top-0 z-40 glass-card border-b border-gray-800/80 bg-opacity-90 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
             
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                        <h1 class="text-xl font-extrabold tracking-tight text-white">
-                            arisplrhmn
-                        </h1>
-                        <p class="text-xs text-gray-400">Personal</p>
-                    </div>
-                </div>
+            <!-- Brand / Logo -->
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <h1 class="text-xl font-extrabold tracking-tight text-white">
+                    Personal Workspace
+                </h1>
             </div>
 
-            <!-- Export / Import buttons -->
-            <div class="flex items-center gap-2">
-                <button onclick="exportJSON()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-800 hover:bg-gray-700 text-cyan-400 border border-cyan-500/30 flex items-center gap-1.5 transition">
+            <!-- Export / Import buttons (Tengah Atas) -->
+            <div class="flex items-center justify-center gap-2 my-1 md:my-0">
+                <button onclick="exportJSON()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-gray-800/90 hover:bg-gray-700 text-cyan-400 border border-cyan-500/30 flex items-center gap-1.5 transition shadow-sm">
                     <i data-lucide="download" class="w-3.5 h-3.5"></i> Ekspor JSON
                 </button>
-                <label class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-800 hover:bg-gray-700 text-purple-400 border border-purple-500/30 flex items-center gap-1.5 cursor-pointer transition">
+                <label class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-gray-800/90 hover:bg-gray-700 text-purple-400 border border-purple-500/30 flex items-center gap-1.5 cursor-pointer transition shadow-sm">
                     <i data-lucide="upload" class="w-3.5 h-3.5"></i> Impor JSON
                     <input type="file" id="importFile" onchange="importJSON(event)" accept=".json" class="hidden">
                 </label>
             </div>
+
+            <div class="hidden md:block w-24"></div> <!-- Spacer balance -->
         </div>
 
         <!-- Navigation Tabs (Top Desktop Navigation) -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2 overflow-x-auto pb-2 hidden md:block" id="navContainer">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-1 overflow-x-auto pb-2 hidden md:block" id="navContainer">
             <div class="flex items-center gap-2 min-w-max">
                 <button onclick="switchTab('home')" id="tab-home" class="nav-btn active px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
@@ -198,7 +221,12 @@
                 <div class="glass-card rounded-2xl p-4 border border-gray-800 space-y-2">
                     <div class="flex justify-between items-center">
                         <span class="text-xs font-bold text-gray-400 uppercase">Dompet / Cash</span>
-                        <i data-lucide="wallet" class="w-4 h-4 text-emerald-400"></i>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="openEditSaldoModal('cash', 'Dompet / Cash')" class="text-[10px] text-emerald-400 hover:underline flex items-center gap-0.5">
+                                <i data-lucide="edit-3" class="w-3 h-3"></i> Edit
+                            </button>
+                            <i data-lucide="wallet" class="w-4 h-4 text-emerald-400 ml-1"></i>
+                        </div>
                     </div>
                     <div class="text-lg font-black text-white" id="balance-cash">Rp 0</div>
                 </div>
@@ -426,13 +454,14 @@
 
         <!-- ================= ADMIN BCA TAB ================= -->
         <section id="sec-bca" class="hidden space-y-6">
-            <div class="glass-card rounded-2xl p-6 border border-blue-500/20 flex items-center justify-between">
+            <div class="glass-card rounded-2xl p-6 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl font-bold text-white">Admin Bulanan Bank BCA</h2>
                     <p class="text-xs text-gray-400">Biaya Administrasi Rp 10.000 /bulan</p>
-                    <p class="text-xs text-blue-400 font-semibold mt-1">Total Terpotong: <span id="bcaTotalRp">Rp 0</span></p>
+                    <p class="text-xs text-blue-400 font-bold mt-1">Sudah <span id="bcaCount" class="text-cyan-300">0</span>x bayar admin bulan</p>
+                    <p class="text-xs text-gray-300 font-semibold mt-0.5">Total Terpotong: <span id="bcaTotalRp" class="text-blue-400">Rp 0</span></p>
                 </div>
-                <button onclick="addBcaPayment()" class="px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center gap-2">+ Bayar Bulan Ini (+1)</button>
+                <button onclick="addBcaPayment()" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs flex items-center gap-2 shadow-lg shadow-blue-600/20">+ Bayar Bulan Ini (+1)</button>
             </div>
             <div class="glass-card rounded-2xl p-5">
                 <h3 class="text-sm font-bold text-white mb-3">Riwayat Admin Bulanan BCA</h3>
@@ -442,12 +471,13 @@
 
         <!-- ================= TOKEN LISTRIK TAB ================= -->
         <section id="sec-token" class="hidden space-y-6">
-            <div class="glass-card rounded-2xl p-6 border border-yellow-500/20 flex items-center justify-between">
+            <div class="glass-card rounded-2xl p-6 border border-yellow-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl font-bold text-white">Token Listrik PLN</h2>
                     <p class="text-xs text-gray-400">Riwayat pengisian stroom/token listrik rumah</p>
+                    <p class="text-xs text-yellow-400 font-bold mt-1">Sudah <span id="tokenCount" class="text-amber-300">0</span>x isi token</p>
                 </div>
-                <button onclick="openModal('modalToken')" class="px-4 py-2.5 rounded-xl bg-yellow-600 text-white font-semibold text-xs">+ Catat Isi Token</button>
+                <button onclick="openModal('modalToken')" class="px-4 py-2.5 rounded-xl bg-yellow-600 hover:bg-yellow-500 text-white font-semibold text-xs shadow-lg shadow-yellow-600/20">+ Catat Isi Token</button>
             </div>
             <div class="glass-card rounded-2xl p-5">
                 <h3 class="text-sm font-bold text-white mb-3">Riwayat Isi Token</h3>
@@ -542,11 +572,9 @@
 
     <!-- ================= FIXED BOTTOM NAVIGATION BAR ================= -->
     <nav class="fixed bottom-0 inset-x-0 z-50 glass-card bg-gray-950/95 border-t border-gray-800/80 backdrop-blur-lg">
-        <div class="max-w-4xl mx-auto px-1 flex items-center justify-between overflow-x-auto">
-            <button onclick="switchTab('home')" id="bottom-tab-home" class="bottom-nav-btn active">
-                <i data-lucide="layout-dashboard" class="w-4 h-4 mb-0.5"></i>
-                <span>Home</span>
-            </button>
+        <div class="max-w-5xl mx-auto px-2 flex items-center justify-between overflow-x-auto relative py-1">
+            
+            <!-- Sisi Kiri Bottom Nav -->
             <button onclick="switchTab('cashflow')" id="bottom-tab-cashflow" class="bottom-nav-btn">
                 <i data-lucide="wallet-cards" class="w-4 h-4 mb-0.5"></i>
                 <span>Keuangan</span>
@@ -567,6 +595,14 @@
                 <i data-lucide="zap" class="w-4 h-4 mb-0.5"></i>
                 <span>Token</span>
             </button>
+
+            <!-- TENGAN BOTTOM NAV: TOMBOL HOME (DIBUAT BEDA / FLOATING ACTION) -->
+            <button onclick="switchTab('home')" id="bottom-tab-home" class="home-center-btn active">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span class="text-[9px] font-bold leading-none mt-0.5">HOME</span>
+            </button>
+
+            <!-- Sisi Kanan Bottom Nav -->
             <button onclick="switchTab('finance')" id="bottom-tab-finance" class="bottom-nav-btn">
                 <i data-lucide="wallet" class="w-4 h-4 mb-0.5"></i>
                 <span>Tagihan</span>
@@ -587,6 +623,7 @@
                 <i data-lucide="copy" class="w-4 h-4 mb-0.5"></i>
                 <span>Salin Teks</span>
             </button>
+
         </div>
     </nav>
 
@@ -767,6 +804,24 @@
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
                     <button type="button" onclick="closeModal('modalAddExpense')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Batal</button>
                     <button type="submit" class="px-4 py-2 rounded-xl bg-rose-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Edit Saldo -->
+    <div id="modalEditSaldo" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-xs w-full p-5 space-y-3 border border-gray-700">
+            <h3 class="text-sm font-bold text-white">Edit Saldo - <span id="editSaldoAccountName" class="text-cyan-400"></span></h3>
+            <form onsubmit="handleEditSaldoSubmit(event)" class="space-y-3">
+                <input type="hidden" id="editSaldoAccKey">
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Saldo Baru (Rp)</label>
+                    <input type="number" id="editSaldoAmount" placeholder="Masukkan saldo baru" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-cyan-500">
+                </div>
+                <div class="flex justify-end gap-2 pt-1">
+                    <button type="button" onclick="closeModal('modalEditSaldo')" class="px-3 py-1.5 bg-gray-800 text-xs rounded-lg text-gray-300">Batal</button>
+                    <button type="submit" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-xs rounded-lg text-white font-semibold">Simpan Saldo</button>
                 </div>
             </form>
         </div>
@@ -1059,6 +1114,17 @@
             saveState();
         }
 
+        function deleteAccount(type, id) {
+            if(type === 'bank') {
+                state.bankAccounts = state.bankAccounts.filter(b => b.id !== id);
+            } else if(type === 'digital') {
+                state.digitalBanks = state.digitalBanks.filter(db => db.id !== id);
+            } else if(type === 'ewallet') {
+                state.ewallets = state.ewallets.filter(ew => ew.id !== id);
+            }
+            saveState();
+        }
+
         function populateAccountDropdowns() {
             const selects = ['incAccount', 'expAccount'];
             selects.forEach(selId => {
@@ -1111,6 +1177,9 @@
 
         function renderBCA() {
             const count = state.bcaLogs ? state.bcaLogs.length : 0;
+            const bcaCount = document.getElementById('bcaCount');
+            if(bcaCount) bcaCount.innerText = count;
+
             const bcaTotalRp = document.getElementById('bcaTotalRp');
             if(bcaTotalRp) bcaTotalRp.innerText = `Rp ${(count * 10000).toLocaleString('id-ID')}`;
 
@@ -1132,6 +1201,9 @@
 
         function renderToken() {
             const count = state.tokenLogs ? state.tokenLogs.length : 0;
+            const tokenCount = document.getElementById('tokenCount');
+            if(tokenCount) tokenCount.innerText = count;
+
             const tokenLog = document.getElementById('tokenLog');
             if(tokenLog) {
                 tokenLog.innerHTML = (state.tokenLogs || []).map(t => `
@@ -1228,7 +1300,6 @@
                 return;
             }
 
-            // Ambil acara terdekat / pertama
             const targetCd = state.countdowns[0];
             titleEl.innerText = targetCd.title;
             dateEl.innerText = targetCd.date;
@@ -1281,31 +1352,55 @@
             const bankAccountsList = document.getElementById('bankAccountsList');
             if(bankAccountsList) {
                 bankAccountsList.innerHTML = state.bankAccounts.map(b => `
-                    <div class="flex justify-between items-center text-xs">
+                    <div class="flex justify-between items-center text-xs group">
                         <span class="text-gray-300">${b.name}</span>
-                        <span class="font-bold text-cyan-400">Rp ${Number(b.saldo).toLocaleString('id-ID')}</span>
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-bold text-cyan-400">Rp ${Number(b.saldo).toLocaleString('id-ID')}</span>
+                            <button onclick="openEditSaldoModal('bank_${b.id}', 'Bank ${b.name}')" class="text-gray-500 hover:text-cyan-300 transition" title="Edit Saldo">
+                                <i data-lucide="edit-2" class="w-3 h-3"></i>
+                            </button>
+                            <button onclick="deleteAccount('bank', '${b.id}')" class="text-gray-500 hover:text-rose-400 transition" title="Hapus Bank">
+                                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                            </button>
+                        </div>
                     </div>
-                `).join('');
+                `).join('') || `<p class="text-[10px] text-gray-500 italic">Belum ada bank</p>`;
             }
 
             const digitalBanksList = document.getElementById('digitalBanksList');
             if(digitalBanksList) {
                 digitalBanksList.innerHTML = state.digitalBanks.map(db => `
-                    <div class="flex justify-between items-center text-xs">
+                    <div class="flex justify-between items-center text-xs group">
                         <span class="text-gray-300">${db.name}</span>
-                        <span class="font-bold text-purple-400">Rp ${Number(db.saldo).toLocaleString('id-ID')}</span>
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-bold text-purple-400">Rp ${Number(db.saldo).toLocaleString('id-ID')}</span>
+                            <button onclick="openEditSaldoModal('digital_${db.id}', '${db.name}')" class="text-gray-500 hover:text-purple-300 transition" title="Edit Saldo">
+                                <i data-lucide="edit-2" class="w-3 h-3"></i>
+                            </button>
+                            <button onclick="deleteAccount('digital', '${db.id}')" class="text-gray-500 hover:text-rose-400 transition" title="Hapus Bank Digital">
+                                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                            </button>
+                        </div>
                     </div>
-                `).join('');
+                `).join('') || `<p class="text-[10px] text-gray-500 italic">Belum ada bank digital</p>`;
             }
 
             const ewalletsList = document.getElementById('ewalletsList');
             if(ewalletsList) {
                 ewalletsList.innerHTML = state.ewallets.map(ew => `
-                    <div class="flex justify-between items-center text-xs">
+                    <div class="flex justify-between items-center text-xs group">
                         <span class="text-gray-300">${ew.name}</span>
-                        <span class="font-bold text-yellow-400">Rp ${Number(ew.saldo).toLocaleString('id-ID')}</span>
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-bold text-yellow-400">Rp ${Number(ew.saldo).toLocaleString('id-ID')}</span>
+                            <button onclick="openEditSaldoModal('ewallet_${ew.id}', '${ew.name}')" class="text-gray-500 hover:text-yellow-300 transition" title="Edit Saldo">
+                                <i data-lucide="edit-2" class="w-3 h-3"></i>
+                            </button>
+                            <button onclick="deleteAccount('ewallet', '${ew.id}')" class="text-gray-500 hover:text-rose-400 transition" title="Hapus E-Wallet">
+                                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                            </button>
+                        </div>
                     </div>
-                `).join('');
+                `).join('') || `<p class="text-[10px] text-gray-500 italic">Belum ada E-Wallet</p>`;
             }
 
             const cashflowFilterPeriod = document.getElementById('cashflowFilterPeriod');
@@ -1348,6 +1443,56 @@
                     </div>
                 `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada pengeluaran.</p>`;
             }
+        }
+
+        function openEditSaldoModal(accKey, name) {
+            document.getElementById('editSaldoAccKey').value = accKey;
+            document.getElementById('editSaldoAccountName').innerText = name;
+            
+            let currentBalance = 0;
+            if (accKey === 'cash') {
+                currentBalance = state.cashBalance;
+            } else {
+                const [type, id] = accKey.split('_');
+                if (type === 'bank') {
+                    const b = state.bankAccounts.find(x => x.id === id);
+                    if (b) currentBalance = b.saldo;
+                } else if (type === 'digital') {
+                    const db = state.digitalBanks.find(x => x.id === id);
+                    if (db) currentBalance = db.saldo;
+                } else if (type === 'ewallet') {
+                    const ew = state.ewallets.find(x => x.id === id);
+                    if (ew) currentBalance = ew.saldo;
+                }
+            }
+
+            document.getElementById('editSaldoAmount').value = currentBalance;
+            openModal('modalEditSaldo');
+        }
+
+        function handleEditSaldoSubmit(e) {
+            e.preventDefault();
+            const accKey = document.getElementById('editSaldoAccKey').value;
+            const newAmount = Number(document.getElementById('editSaldoAmount').value);
+
+            if (accKey === 'cash') {
+                state.cashBalance = newAmount;
+            } else {
+                const [type, id] = accKey.split('_');
+                if (type === 'bank') {
+                    const b = state.bankAccounts.find(x => x.id === id);
+                    if (b) b.saldo = newAmount;
+                } else if (type === 'digital') {
+                    const db = state.digitalBanks.find(x => x.id === id);
+                    if (db) db.saldo = newAmount;
+                } else if (type === 'ewallet') {
+                    const ew = state.ewallets.find(x => x.id === id);
+                    if (ew) ew.saldo = newAmount;
+                }
+            }
+
+            closeModal('modalEditSaldo');
+            saveState();
         }
 
         function filterByPeriod(arr, period) {
@@ -1588,7 +1733,7 @@
         }
 
         function renderHomeOverview() {
-            // Kosongkan atau biarkan kosong sesuai permintaan cuman countdown aja di dashboard
+            // Dashboard countdown
         }
 
         function renderVehicleStats() {
