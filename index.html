@@ -1242,93 +1242,105 @@
 
         function openModal(modalId) {
             if(modalId === 'modalAddIncome') {
-                document.getElementById('editIncId').value = '';
-                document.getElementById('modalIncomeTitle').innerText = 'Tambah Pemasukan';
-                document.getElementById('incDate').value = new Date().toISOString().split('T')[0];
-                document.getElementById('incNominal').value = '';
-                document.getElementById('incNote').value = '';
+                if (!document.getElementById('editIncId').value) {
+                    document.getElementById('modalIncomeTitle').innerText = 'Tambah Pemasukan';
+                    document.getElementById('incDate').value = new Date().toISOString().split('T')[0];
+                    document.getElementById('incNominal').value = '';
+                    document.getElementById('incNote').value = '';
+                }
                 populateAccountDropdowns();
             }
             if(modalId === 'modalAddExpense') {
-                document.getElementById('editExpId').value = '';
-                document.getElementById('modalExpenseTitle').innerText = 'Tambah Pengeluaran';
-                document.getElementById('expDate').value = new Date().toISOString().split('T')[0];
-                document.getElementById('expNominal').value = '';
-                document.getElementById('expCategory').value = 'Tagihan';
-                document.getElementById('expCustomCat').value = '';
-                document.getElementById('expNote').value = '';
+                if (!document.getElementById('editExpId').value) {
+                    document.getElementById('modalExpenseTitle').innerText = 'Tambah Pengeluaran';
+                    document.getElementById('expDate').value = new Date().toISOString().split('T')[0];
+                    document.getElementById('expNominal').value = '';
+                    document.getElementById('expCategory').value = 'Tagihan';
+                    document.getElementById('expCustomCat').value = '';
+                    document.getElementById('expNote').value = '';
+                }
                 populateAccountDropdowns();
             }
             if(modalId === 'modalAddCopier') {
-                document.getElementById('editCopierId').value = '';
-                document.getElementById('modalCopierTitle').innerText = 'Tambah Salinan Text Baru';
-                document.getElementById('copierTitle').value = '';
-                document.getElementById('copierContent').value = '';
+                if (!document.getElementById('editCopierId').value) {
+                    document.getElementById('modalCopierTitle').innerText = 'Tambah Salinan Text Baru';
+                    document.getElementById('copierTitle').value = '';
+                    document.getElementById('copierContent').value = '';
+                }
             }
             if(modalId === 'modalJob') {
-                document.getElementById('editJobId').value = '';
-                document.getElementById('modalJobTitle').innerText = 'Tambah Lamaran Kerja';
-                document.getElementById('jobCompany').value = '';
-                document.getElementById('jobPos').value = '';
-                document.getElementById('jobApply').value = new Date().toISOString().split('T')[0];
-                document.getElementById('jobKabar').value = 'Tidak';
-                document.getElementById('jobInterview').value = '';
-                document.getElementById('jobDay1').value = '';
-                document.getElementById('jobGaji').value = '';
-                document.getElementById('jobResign').value = '';
+                if (!document.getElementById('editJobId').value) {
+                    document.getElementById('modalJobTitle').innerText = 'Tambah Lamaran Kerja';
+                    document.getElementById('jobCompany').value = '';
+                    document.getElementById('jobPos').value = '';
+                    document.getElementById('jobApply').value = new Date().toISOString().split('T')[0];
+                    document.getElementById('jobKabar').value = 'Tidak';
+                    document.getElementById('jobInterview').value = '';
+                    document.getElementById('jobDay1').value = '';
+                    document.getElementById('jobGaji').value = '';
+                    document.getElementById('jobResign').value = '';
+                }
             }
             if(modalId === 'modalTagihan') {
-                document.getElementById('editTagihanId').value = '';
-                document.getElementById('modalTagihanTitle').innerText = 'Catat Tagihan';
-                document.getElementById('tagihanTitle').value = '';
-                document.getElementById('tagihanNominal').value = '';
+                if (!document.getElementById('editTagihanId').value) {
+                    document.getElementById('modalTagihanTitle').innerText = 'Catat Tagihan';
+                    document.getElementById('tagihanTitle').value = '';
+                    document.getElementById('tagihanNominal').value = '';
+                }
             }
             if(modalId === 'modalHutang') {
-                document.getElementById('editHutangId').value = '';
-                document.getElementById('modalHutangTitle').innerText = 'Catat Hutang Pribadi';
-                document.getElementById('hutangTitle').value = '';
-                document.getElementById('hutangNominal').value = '';
-                document.getElementById('hutangDate').value = new Date().toISOString().split('T')[0];
+                if (!document.getElementById('editHutangId').value) {
+                    document.getElementById('modalHutangTitle').innerText = 'Catat Hutang Pribadi';
+                    document.getElementById('hutangTitle').value = '';
+                    document.getElementById('hutangNominal').value = '';
+                    document.getElementById('hutangDate').value = new Date().toISOString().split('T')[0];
+                }
             }
             if(modalId === 'modalCountdown') {
-                document.getElementById('editCdId').value = '';
-                document.getElementById('modalCdTitle').innerText = 'Tambah Hitung Mundur Acara';
-                document.getElementById('cdTitle').value = '';
-                document.getElementById('cdDate').value = new Date().toISOString().split('T')[0];
+                if (!document.getElementById('editCdId').value) {
+                    document.getElementById('modalCdTitle').innerText = 'Tambah Hitung Mundur Acara';
+                    document.getElementById('cdTitle').value = '';
+                    document.getElementById('cdDate').value = new Date().toISOString().split('T')[0];
+                }
             }
             if(modalId === 'modalRoutine') {
-                document.getElementById('editRoutineId').value = '';
-                document.getElementById('modalRoutineTitle').innerText = 'Tambah Rutinitas Harian';
-                document.getElementById('routineText').value = '';
+                if (!document.getElementById('editRoutineId').value) {
+                    document.getElementById('modalRoutineTitle').innerText = 'Tambah Rutinitas Harian';
+                    document.getElementById('routineText').value = '';
+                }
             }
             if(modalId === 'modalBensin') {
-                document.getElementById('editBensinId').value = '';
-                document.getElementById('modalBensinTitle').innerText = 'Catat Bensin';
-                document.getElementById('bensinDate').value = new Date().toISOString().split('T')[0];
-                document.getElementById('bensinLoc').value = '';
-                document.getElementById('bensinCost').value = '';
+                if (!document.getElementById('editBensinId').value) {
+                    document.getElementById('modalBensinTitle').innerText = 'Catat Bensin';
+                    document.getElementById('bensinDate').value = new Date().toISOString().split('T')[0];
+                    document.getElementById('bensinLoc').value = '';
+                    document.getElementById('bensinCost').value = '';
+                }
             }
             if(modalId === 'modalOli') {
-                document.getElementById('editOliId').value = '';
-                document.getElementById('modalOliTitle').innerText = 'Catat Ganti Oli';
-                document.getElementById('oliDate').value = new Date().toISOString().split('T')[0];
-                document.getElementById('oliLoc').value = '';
-                document.getElementById('oliKm').value = '';
-                document.getElementById('oliCost').value = '';
+                if (!document.getElementById('editOliId').value) {
+                    document.getElementById('modalOliTitle').innerText = 'Catat Ganti Oli';
+                    document.getElementById('oliDate').value = new Date().toISOString().split('T')[0];
+                    document.getElementById('oliLoc').value = '';
+                    document.getElementById('oliKm').value = '';
+                    document.getElementById('oliCost').value = '';
+                }
             }
             if(modalId === 'modalParkir') {
-                document.getElementById('editParkirId').value = '';
-                document.getElementById('modalParkirTitle').innerText = 'Catat Parkir';
-                document.getElementById('parkirDate').value = new Date().toISOString().split('T')[0];
-                document.getElementById('parkirLoc').value = '';
-                document.getElementById('parkirCost').value = '2000';
+                if (!document.getElementById('editParkirId').value) {
+                    document.getElementById('modalParkirTitle').innerText = 'Catat Parkir';
+                    document.getElementById('parkirDate').value = new Date().toISOString().split('T')[0];
+                    document.getElementById('parkirLoc').value = '';
+                    document.getElementById('parkirCost').value = '2000';
+                }
             }
             if(modalId === 'modalCuci') {
-                document.getElementById('editCuciId').value = '';
-                document.getElementById('modalCuciTitle').innerText = 'Catat Cuci Motor';
-                document.getElementById('cuciDate').value = new Date().toISOString().split('T')[0];
-                document.getElementById('cuciLoc').value = '';
-                document.getElementById('cuciCost').value = '';
+                if (!document.getElementById('editCuciId').value) {
+                    document.getElementById('modalCuciTitle').innerText = 'Catat Cuci Motor';
+                    document.getElementById('cuciDate').value = new Date().toISOString().split('T')[0];
+                    document.getElementById('cuciLoc').value = '';
+                    document.getElementById('cuciCost').value = '';
+                }
             }
             if(modalId === 'modalPajak') {
                 document.getElementById('pajakTahunanInput').value = state.pajakTahunanDate || "2027-01-01";
@@ -1336,6 +1348,22 @@
             }
             const modal = document.getElementById(modalId);
             if(modal) modal.classList.remove('hidden');
+        }
+
+        function openModalAddNew(modalId) {
+            if (modalId === 'modalAddIncome') document.getElementById('editIncId').value = '';
+            if (modalId === 'modalAddExpense') document.getElementById('editExpId').value = '';
+            if (modalId === 'modalAddCopier') document.getElementById('editCopierId').value = '';
+            if (modalId === 'modalJob') document.getElementById('editJobId').value = '';
+            if (modalId === 'modalTagihan') document.getElementById('editTagihanId').value = '';
+            if (modalId === 'modalHutang') document.getElementById('editHutangId').value = '';
+            if (modalId === 'modalCountdown') document.getElementById('editCdId').value = '';
+            if (modalId === 'modalRoutine') document.getElementById('editRoutineId').value = '';
+            if (modalId === 'modalBensin') document.getElementById('editBensinId').value = '';
+            if (modalId === 'modalOli') document.getElementById('editOliId').value = '';
+            if (modalId === 'modalParkir') document.getElementById('editParkirId').value = '';
+            if (modalId === 'modalCuci') document.getElementById('editCuciId').value = '';
+            openModal(modalId);
         }
 
         function closeModal(modalId) {
@@ -1374,10 +1402,10 @@
                                 <i data-lucide="file-text" class="w-4 h-4 text-sky-400"></i> ${item.title}
                             </h3>
                             <div class="flex items-center gap-1">
-                                <button onclick="openEditCopierModal('${item.id}')" class="text-gray-400 hover:text-sky-400 p-1 transition" title="Edit Salinan">
+                                <button onclick="openEditCopierModal('${item.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Teks">
                                     <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
                                 </button>
-                                <button onclick="deleteCopier('${item.id}')" class="text-gray-400 hover:text-rose-400 p-1 transition" title="Hapus">
+                                <button onclick="deleteCopier('${item.id}')" class="text-gray-500 hover:text-rose-400 p-1" title="Hapus Teks">
                                     <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                                 </button>
                             </div>
@@ -1909,14 +1937,35 @@
         function openEditIncomeModal(id) {
             const inc = state.incomes.find(x => x.id === id);
             if(!inc) return;
-            populateAccountDropdowns();
             document.getElementById('editIncId').value = inc.id;
             document.getElementById('modalIncomeTitle').innerText = 'Edit Pemasukan';
             document.getElementById('incDate').value = inc.date;
             document.getElementById('incNominal').value = inc.nominal;
-            document.getElementById('incAccount').value = inc.account;
             document.getElementById('incNote').value = inc.note || '';
             openModal('modalAddIncome');
+            document.getElementById('incAccount').value = inc.account;
+        }
+
+        function openEditExpenseModal(id) {
+            const exp = state.expenses.find(x => x.id === id);
+            if(!exp) return;
+            document.getElementById('editExpId').value = exp.id;
+            document.getElementById('modalExpenseTitle').innerText = 'Edit Pengeluaran';
+            document.getElementById('expDate').value = exp.date;
+            document.getElementById('expNominal').value = exp.nominal;
+            
+            const stdCats = ['Tagihan', 'Belanja', 'Shopee', 'Tokopedia', 'Bensin', 'Makan / Minum'];
+            if(stdCats.includes(exp.category)) {
+                document.getElementById('expCategory').value = exp.category;
+                document.getElementById('expCustomCat').value = '';
+            } else {
+                document.getElementById('expCategory').value = 'Lainnya';
+                document.getElementById('expCustomCat').value = exp.category;
+            }
+
+            document.getElementById('expNote').value = exp.note || '';
+            openModal('modalAddExpense');
+            document.getElementById('expAccount').value = exp.account;
         }
 
         function openEditExpenseModal(id) {
