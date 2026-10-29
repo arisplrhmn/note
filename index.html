@@ -170,10 +170,10 @@
                 </div>
                 <!-- Tombol Pintas / Quick Actions -->
                 <div class="flex items-center gap-1.5 flex-wrap">
-                    <button onclick="switchTab('cashflow'); openModal('modalAddIncome');" class="px-2.5 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 border border-emerald-500/30 text-[11px] font-semibold flex items-center gap-1 transition">
+                    <button onclick="switchTab('cashflow'); openModalAddNew('modalAddIncome');" class="px-2.5 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 border border-emerald-500/30 text-[11px] font-semibold flex items-center gap-1 transition">
                         <i data-lucide="arrow-down-left" class="w-3 h-3"></i> + Masuk
                     </button>
-                    <button onclick="switchTab('cashflow'); openModal('modalAddExpense');" class="px-2.5 py-1.5 rounded-xl bg-rose-500/20 text-rose-400 hover:bg-rose-500/30 border border-rose-500/30 text-[11px] font-semibold flex items-center gap-1 transition">
+                    <button onclick="switchTab('cashflow'); openModalAddNew('modalAddExpense');" class="px-2.5 py-1.5 rounded-xl bg-rose-500/20 text-rose-400 hover:bg-rose-500/30 border border-rose-500/30 text-[11px] font-semibold flex items-center gap-1 transition">
                         <i data-lucide="arrow-up-right" class="w-3 h-3"></i> + Keluar
                     </button>
                     <button onclick="switchTab('copier')" class="px-2.5 py-1.5 rounded-xl bg-sky-500/20 text-sky-400 hover:bg-sky-500/30 border border-sky-500/30 text-[11px] font-semibold flex items-center gap-1 transition">
@@ -182,7 +182,7 @@
                 </div>
             </div>
 
-            <!-- CAROUSEL COUNTDOWN DI DASHBOARD (Horizontal Scroll) -->
+            <!-- CAROUSEL COUNTDOWN DI DASHBOARD -->
             <div class="space-y-2">
                 <div class="flex items-center justify-between px-1">
                     <span class="text-xs font-bold text-pink-400 uppercase tracking-wider flex items-center gap-1.5">
@@ -302,10 +302,10 @@
                     <p class="text-[11px] sm:text-xs text-gray-400">Kelola dompet, bank, bank digital, dan e-wallet</p>
                 </div>
                 <div class="flex items-center gap-1.5">
-                    <button onclick="openModal('modalAddIncome')" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center gap-1 shadow-lg shadow-emerald-600/25">
+                    <button onclick="openModalAddNew('modalAddIncome')" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center gap-1 shadow-lg shadow-emerald-600/25">
                         <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> Masuk
                     </button>
-                    <button onclick="openModal('modalAddExpense')" class="px-3 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs flex items-center gap-1 shadow-lg shadow-rose-600/25">
+                    <button onclick="openModalAddNew('modalAddExpense')" class="px-3 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs flex items-center gap-1 shadow-lg shadow-rose-600/25">
                         <i data-lucide="minus-circle" class="w-3.5 h-3.5"></i> Keluar
                     </button>
                 </div>
@@ -394,7 +394,7 @@
                     </h2>
                     <p class="text-[11px] sm:text-xs text-gray-400">Daftar riwayat aplikasi lamaran pekerjaan</p>
                 </div>
-                <button onclick="openModal('modalJob')" class="px-3.5 py-2 rounded-xl bg-cyan-600 text-white font-semibold text-xs flex items-center gap-1.5">
+                <button onclick="openModalAddNew('modalJob')" class="px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-cyan-600/20">
                     <i data-lucide="plus" class="w-4 h-4"></i> Tambah
                 </button>
             </div>
@@ -426,8 +426,8 @@
                         <p class="text-[11px] sm:text-xs text-gray-400 mt-0.5">Desember 2025 - November 2026 (Angsuran Ke <span id="cicilanCurrent" class="text-purple-400 font-bold">12</span> / 33)</p>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button onclick="changeCicilan(-1)" class="px-2.5 py-1.5 rounded-xl bg-gray-800 text-white text-xs font-semibold border border-gray-700">- Bulan</button>
-                        <button onclick="changeCicilan(1)" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white text-xs font-semibold">+ Bayar Bulan Ini</button>
+                        <button onclick="changeCicilan(-1)" class="px-2.5 py-1.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold border border-gray-700">- Bulan</button>
+                        <button onclick="changeCicilan(1)" class="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold">+ Bayar Bulan Ini</button>
                     </div>
                 </div>
 
@@ -443,7 +443,7 @@
                 </div>
             </div>
 
-            <!-- BAGIAN BARU: PAJAK KENDARAAN (PAJAK TAHUNAN & PAJAK 5 TAHUNAN / STNK) -->
+            <!-- PAJAK KENDARAAN -->
             <div class="glass-card rounded-2xl p-4 sm:p-5 border border-sky-500/20 space-y-3">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center gap-2">
@@ -452,7 +452,7 @@
                         </div>
                         <div>
                             <h3 class="text-sm sm:text-base font-bold text-white">Pengingat Pajak Kendaraan</h3>
-                            <p class="text-[10px] sm:text-xs text-gray-400">Format Tanggal: <span class="text-sky-300 font-bold">TANGGAL - BULAN - TAHUN (DD - MM - YYYY)</span></p>
+                            <p class="text-[10px] sm:text-xs text-gray-400">Format Tanggal: <span class="text-sky-300 font-bold">DD - MM - YYYY</span></p>
                         </div>
                     </div>
                     <button onclick="openModal('modalPajak')" class="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold flex items-center gap-1 shadow-lg shadow-sky-600/20">
@@ -471,7 +471,7 @@
                         <p class="text-[10px] text-gray-400" id="pajakTahunanDesc">Jatuh tempo pembayaran STNK tahunan</p>
                     </div>
 
-                    <!-- Pajak 5 Tahunan (Kaleng) -->
+                    <!-- Pajak 5 Tahunan -->
                     <div class="bg-gray-900/80 p-3.5 rounded-xl border border-gray-800 space-y-1.5">
                         <div class="flex justify-between items-center">
                             <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Pajak 5 Tahunan (STNK / Plat)</span>
@@ -494,7 +494,7 @@
                                 <p class="text-[10px] text-gray-400">Sudah <span id="bensinCount" class="text-amber-400 font-bold">0</span>x isi</p>
                             </div>
                         </div>
-                        <button onclick="openModal('modalBensin')" class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 text-xs font-semibold border border-amber-500/30">+ Catat</button>
+                        <button onclick="openModalAddNew('modalBensin')" class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 text-xs font-semibold border border-amber-500/30 hover:bg-amber-500/30">+ Catat</button>
                     </div>
 
                     <div class="grid grid-cols-3 gap-1.5 text-center text-[11px] bg-gray-900/80 p-2 rounded-xl border border-gray-800">
@@ -527,7 +527,7 @@
                                 <p class="text-[10px] text-gray-400">Sudah <span id="oliCount" class="text-cyan-400 font-bold">0</span>x ganti</p>
                             </div>
                         </div>
-                        <button onclick="openModal('modalOli')" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 text-xs font-semibold border border-cyan-500/30">+ Catat</button>
+                        <button onclick="openModalAddNew('modalOli')" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 text-xs font-semibold border border-cyan-500/30 hover:bg-cyan-500/30">+ Catat</button>
                     </div>
 
                     <div class="grid grid-cols-3 gap-1.5 text-center text-[11px] bg-gray-900/80 p-2 rounded-xl border border-gray-800">
@@ -556,11 +556,11 @@
                         <div class="flex items-center gap-2">
                             <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400"><i data-lucide="parking-square" class="w-4 h-4"></i></div>
                             <div>
-                                <h3 class="text-xs sm:text-sm font-bold text-white">Parkir (Rp 2.000)</h3>
+                                <h3 class="text-xs sm:text-sm font-bold text-white">Parkir</h3>
                                 <p class="text-[10px] text-gray-400">Sudah <span id="parkirCount" class="text-emerald-400 font-bold">0</span>x parkir</p>
                             </div>
                         </div>
-                        <button onclick="openModal('modalParkir')" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 text-xs font-semibold border border-emerald-500/30">+ Catat</button>
+                        <button onclick="openModalAddNew('modalParkir')" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 text-xs font-semibold border border-emerald-500/30 hover:bg-emerald-500/30">+ Catat</button>
                     </div>
 
                     <div class="grid grid-cols-3 gap-1.5 text-center text-[11px] bg-gray-900/80 p-2 rounded-xl border border-gray-800">
@@ -593,7 +593,7 @@
                                 <p class="text-[10px] text-gray-400">Sudah <span id="cuciCount" class="text-blue-400 font-bold">0</span>x cuci</p>
                             </div>
                         </div>
-                        <button onclick="openModal('modalCuci')" class="px-2.5 py-1 rounded-lg bg-blue-500/20 text-blue-300 text-xs font-semibold border border-blue-500/30">+ Catat</button>
+                        <button onclick="openModalAddNew('modalCuci')" class="px-2.5 py-1 rounded-lg bg-blue-500/20 text-blue-300 text-xs font-semibold border border-blue-500/30 hover:bg-blue-500/30">+ Catat</button>
                     </div>
                     <div class="space-y-1">
                         <span class="text-[11px] font-bold text-gray-400 block">Riwayat Cuci Motor:</span>
@@ -608,16 +608,20 @@
         <section id="sec-bca" class="hidden space-y-4">
             <div class="glass-card rounded-2xl p-4 sm:p-6 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div>
-                    <h2 class="text-lg sm:text-xl font-bold text-white">Admin Bulanan BCA</h2>
-                    <p class="text-[11px] sm:text-xs text-gray-400">Biaya Administrasi Rp 10.000 /bulan</p>
-                    <p class="text-xs text-blue-400 font-bold mt-1">Sudah <span id="bcaCount" class="text-cyan-300">0</span>x bayar admin</p>
-                    <p class="text-xs text-gray-300 font-semibold mt-0.5">Total Terpotong: <span id="bcaTotalRp" class="text-blue-400">Rp 0</span></p>
+                    <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="landmark" class="w-5 h-5 text-blue-400"></i> Admin Bulanan BCA
+                    </h2>
+                    <p class="text-[11px] sm:text-xs text-gray-400">Biaya Administrasi Bulanan Rekening BCA</p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <p class="text-xs text-blue-400 font-bold">Sudah <span id="bcaCount" class="text-cyan-300">0</span>x bayar admin</p>
+                        <p class="text-xs text-gray-300 font-semibold">Total Biaya: <span id="bcaTotalRp" class="text-blue-400 font-bold">Rp 0</span></p>
+                    </div>
                 </div>
-                <button onclick="addBcaPayment()" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-blue-600/20">+ Bayar Bulan Ini</button>
+                <button onclick="openModalAddNew('modalBca')" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-blue-600/20">+ Catat Admin BCA</button>
             </div>
             <div class="glass-card rounded-2xl p-4 space-y-3">
-                <h3 class="text-xs sm:text-sm font-bold text-white">Riwayat</h3>
-                <div id="bcaLog" class="space-y-2 max-h-64 overflow-y-auto pr-1"></div>
+                <h3 class="text-xs sm:text-sm font-bold text-white">Riwayat Biaya Admin BCA</h3>
+                <div id="bcaLog" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
             </div>
         </section>
 
@@ -625,15 +629,20 @@
         <section id="sec-token" class="hidden space-y-4">
             <div class="glass-card rounded-2xl p-4 sm:p-6 border border-yellow-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div>
-                    <h2 class="text-lg sm:text-xl font-bold text-white">Token Listrik PLN</h2>
+                    <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="zap" class="w-5 h-5 text-yellow-400"></i> Token Listrik PLN
+                    </h2>
                     <p class="text-[11px] sm:text-xs text-gray-400">Riwayat pengisian stroom listrik rumah</p>
-                    <p class="text-xs text-yellow-400 font-bold mt-1">Sudah <span id="tokenCount" class="text-amber-300">0</span>x isi token</p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <p class="text-xs text-yellow-400 font-bold">Sudah <span id="tokenCount" class="text-amber-300">0</span>x isi token</p>
+                        <p class="text-xs text-gray-300 font-semibold">Total Biaya: <span id="tokenTotalRp" class="text-yellow-400 font-bold">Rp 0</span></p>
+                    </div>
                 </div>
-                <button onclick="openModal('modalToken')" class="px-3.5 py-2 rounded-xl bg-yellow-600 hover:bg-yellow-500 text-white font-semibold text-xs shadow-lg shadow-yellow-600/20">+ Catat Token</button>
+                <button onclick="openModalAddNew('modalToken')" class="px-3.5 py-2 rounded-xl bg-yellow-600 hover:bg-yellow-500 text-white font-semibold text-xs shadow-lg shadow-yellow-600/20">+ Catat Token</button>
             </div>
             <div class="glass-card rounded-2xl p-4 space-y-3">
-                <h3 class="text-xs sm:text-sm font-bold text-white">Riwayat</h3>
-                <div id="tokenLog" class="space-y-2 max-h-64 overflow-y-auto pr-1"></div>
+                <h3 class="text-xs sm:text-sm font-bold text-white">Riwayat Token Listrik</h3>
+                <div id="tokenLog" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
             </div>
         </section>
 
@@ -643,7 +652,7 @@
                 <div class="glass-card rounded-2xl p-4 space-y-3">
                     <div class="flex items-center justify-between">
                         <h2 class="text-sm sm:text-base font-bold text-white">Catat Tagihan</h2>
-                        <button onclick="openModal('modalTagihan')" class="px-3 py-1.5 rounded-xl bg-rose-600 text-white font-semibold text-xs">+ Tambah</button>
+                        <button onclick="openModalAddNew('modalTagihan')" class="px-3 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs">+ Tambah</button>
                     </div>
                     <div id="tagihanList" class="space-y-2 max-h-64 overflow-y-auto pr-1"></div>
                 </div>
@@ -651,7 +660,7 @@
                 <div class="glass-card rounded-2xl p-4 space-y-3">
                     <div class="flex items-center justify-between">
                         <h2 class="text-sm sm:text-base font-bold text-white">Hutang Pribadi</h2>
-                        <button onclick="openModal('modalHutang')" class="px-3 py-1.5 rounded-xl bg-amber-600 text-white font-semibold text-xs">+ Tambah</button>
+                        <button onclick="openModalAddNew('modalHutang')" class="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs">+ Tambah</button>
                     </div>
                     <div id="hutangList" class="space-y-2 max-h-64 overflow-y-auto pr-1"></div>
                 </div>
@@ -662,7 +671,7 @@
         <section id="sec-countdown" class="hidden space-y-4">
             <div class="flex items-center justify-between">
                 <h2 class="text-lg sm:text-xl font-bold text-white">Hitung Mundur Acara</h2>
-                <button onclick="openModal('modalCountdown')" class="px-3.5 py-2 rounded-xl bg-pink-600 text-white font-semibold text-xs">+ Acara Baru</button>
+                <button onclick="openModalAddNew('modalCountdown')" class="px-3.5 py-2 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-semibold text-xs">+ Acara Baru</button>
             </div>
             <div id="countdownList" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
         </section>
@@ -677,7 +686,7 @@
                         </h3>
                         <p class="text-[10px] sm:text-xs text-gray-400">Tulis ide atau pengingat penting</p>
                     </div>
-                    <button onclick="saveGeneralNotes()" class="px-3 py-1.5 rounded-xl bg-cyan-600 text-white text-xs font-semibold shadow-lg shadow-cyan-600/20">
+                    <button onclick="saveGeneralNotes()" class="px-3 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold shadow-lg shadow-cyan-600/20">
                         Simpan
                     </button>
                 </div>
@@ -695,7 +704,7 @@
                         </h3>
                         <p class="text-[10px] sm:text-xs text-gray-400">Daftar kegiatan dan kebiasaan harian</p>
                     </div>
-                    <button onclick="openModal('modalRoutine')" class="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs flex items-center gap-1 shadow-lg shadow-purple-600/20">
+                    <button onclick="openModalAddNew('modalRoutine')" class="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs flex items-center gap-1 shadow-lg shadow-purple-600/20">
                         <i data-lucide="plus" class="w-3.5 h-3.5"></i> Tambah
                     </button>
                 </div>
@@ -712,7 +721,7 @@
                     </h2>
                     <p class="text-[11px] sm:text-xs text-gray-400">Salin teks cepat dalam satu klik</p>
                 </div>
-                <button onclick="openModal('modalAddCopier')" class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-sky-600/20">
+                <button onclick="openModalAddNew('modalAddCopier')" class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-sky-600/20">
                     <i data-lucide="plus" class="w-4 h-4"></i> Tambah
                 </button>
             </div>
@@ -792,7 +801,7 @@
             <h3 class="text-base font-bold text-white flex items-center gap-2">
                 <i data-lucide="file-text" class="w-4 h-4 text-sky-400"></i> Edit Pajak Kendaraan
             </h3>
-            <p class="text-[11px] text-gray-400">Pilih tanggal jatuh tempo pajak. Format penulisan tampilan akan otomatis: <span class="text-white font-bold">DD - MM - YYYY</span>.</p>
+            <p class="text-[11px] text-gray-400">Pilih tanggal jatuh tempo pajak. Format penulisan tampilan: <span class="text-white font-bold">DD - MM - YYYY</span>.</p>
             <form onsubmit="handlePajakSubmit(event)" class="space-y-3 pt-1">
                 <div>
                     <label class="text-[11px] font-bold text-sky-300 block mb-1">Tanggal Pajak Tahunan</label>
@@ -855,11 +864,11 @@
                 </div>
                 <div>
                     <label class="text-[10px] text-gray-400 block mb-1">Interview</label>
-                    <input type="text" id="jobInterview" placeholder="Tanggal / -" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2 text-xs text-white">
+                    <input type="text" id="jobInterview" placeholder="Keterangan / -" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2 text-xs text-white">
                 </div>
                 <div>
                     <label class="text-[10px] text-gray-400 block mb-1">Day 1 Kerja</label>
-                    <input type="text" id="jobDay1" placeholder="Tanggal / -" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2 text-xs text-white">
+                    <input type="text" id="jobDay1" placeholder="Keterangan / -" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2 text-xs text-white">
                 </div>
                 <div>
                     <label class="text-[10px] text-gray-400 block mb-1">Gaji Pertama</label>
@@ -867,7 +876,7 @@
                 </div>
                 <div>
                     <label class="text-[10px] text-gray-400 block mb-1">Resign</label>
-                    <input type="text" id="jobResign" placeholder="Tanggal / -" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2 text-xs text-white">
+                    <input type="text" id="jobResign" placeholder="Keterangan / -" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2 text-xs text-white">
                 </div>
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
                     <button type="button" onclick="closeModal('modalJob')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
@@ -877,16 +886,53 @@
         </div>
     </div>
 
-    <!-- Modal Token -->
+    <!-- Modal Token Listrik (Tambah & Edit) -->
     <div id="modalToken" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 class="text-base font-bold text-white">Catat Isi Token Listrik</h3>
+            <h3 id="modalTokenTitle" class="text-base font-bold text-white">Catat Isi Token Listrik</h3>
             <form onsubmit="handleTokenSubmit(event)" class="space-y-2.5">
-                <input type="date" id="tokenDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="number" id="tokenNominal" placeholder="Nominal Rp" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="hidden" id="editTokenId">
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Tanggal Pengisian</label>
+                    <input type="date" id="tokenDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                </div>
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Nominal Pembelian (Rp)</label>
+                    <input type="number" id="tokenNominal" placeholder="Nominal Rp (misal: 50000)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                </div>
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Beli di Mana?</label>
+                    <input type="text" id="tokenSource" placeholder="Contoh: Shopee, Tokopedia, Indomaret, DANA" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                </div>
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
                     <button type="button" onclick="closeModal('modalToken')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
                     <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-yellow-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal BCA Admin (Tambah & Edit) -->
+    <div id="modalBca" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
+            <h3 id="modalBcaTitle" class="text-base font-bold text-white">Catat Admin Bulanan BCA</h3>
+            <form onsubmit="handleBcaSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editBcaId">
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Tanggal Potong Admin</label>
+                    <input type="date" id="bcaDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                </div>
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Nominal Biaya Admin (Rp)</label>
+                    <input type="number" id="bcaNominal" placeholder="Nominal Rp" value="10000" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                </div>
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Keterangan / Sumber Rekening</label>
+                    <input type="text" id="bcaNote" placeholder="Contoh: Admin Bulanan BCA / M-BCA" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                </div>
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalBca')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
+                    <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-blue-600 text-white text-xs font-semibold">Simpan</button>
                 </div>
             </form>
         </div>
@@ -1169,8 +1215,8 @@
             oliLogs: [],
             parkirLogs: [],
             cuciLogs: [],
-            bcaLogs: [{ id: "bca-1", date: "2026-10-01", nominal: 10000 }],
-            tokenLogs: [],
+            bcaLogs: [{ id: "bca-1", date: "2026-10-01", nominal: 10000, note: "Admin Bulanan BCA" }],
+            tokenLogs: [{ id: "tok-1", date: "2026-10-15", nominal: 50000, source: "Shopee" }],
             tagihan: [{ id: "t-1", title: "Cicilan Beat", amount: "Rp 838.000 / bln" }],
             hutang: [],
             countdowns: [{ id: "cd-1", title: "Tahun Baru 2027", date: "2027-01-01" }],
@@ -1210,9 +1256,9 @@
             renderApp();
         }
 
-        // Helper Format Tanggal Ke DD - MM - YYYY
+        // Helper Format Tanggal Utama: TANGGAL - BULAN - TAHUN (DD - MM - YYYY)
         function formatDateIndo(dateStr) {
-            if (!dateStr) return "-";
+            if (!dateStr || dateStr === '-') return "-";
             const parts = dateStr.split('-');
             if (parts.length === 3) {
                 return `${parts[2]} - ${parts[1]} - ${parts[0]}`;
@@ -1279,6 +1325,22 @@
                     document.getElementById('jobDay1').value = '';
                     document.getElementById('jobGaji').value = '';
                     document.getElementById('jobResign').value = '';
+                }
+            }
+            if(modalId === 'modalToken') {
+                if (!document.getElementById('editTokenId').value) {
+                    document.getElementById('modalTokenTitle').innerText = 'Catat Isi Token Listrik';
+                    document.getElementById('tokenDate').value = new Date().toISOString().split('T')[0];
+                    document.getElementById('tokenNominal').value = '';
+                    document.getElementById('tokenSource').value = '';
+                }
+            }
+            if(modalId === 'modalBca') {
+                if (!document.getElementById('editBcaId').value) {
+                    document.getElementById('modalBcaTitle').innerText = 'Catat Admin Bulanan BCA';
+                    document.getElementById('bcaDate').value = new Date().toISOString().split('T')[0];
+                    document.getElementById('bcaNominal').value = '10000';
+                    document.getElementById('bcaNote').value = '';
                 }
             }
             if(modalId === 'modalTagihan') {
@@ -1355,6 +1417,8 @@
             if (modalId === 'modalAddExpense') document.getElementById('editExpId').value = '';
             if (modalId === 'modalAddCopier') document.getElementById('editCopierId').value = '';
             if (modalId === 'modalJob') document.getElementById('editJobId').value = '';
+            if (modalId === 'modalToken') document.getElementById('editTokenId').value = '';
+            if (modalId === 'modalBca') document.getElementById('editBcaId').value = '';
             if (modalId === 'modalTagihan') document.getElementById('editTagihanId').value = '';
             if (modalId === 'modalHutang') document.getElementById('editHutangId').value = '';
             if (modalId === 'modalCountdown') document.getElementById('editCdId').value = '';
@@ -1572,23 +1636,67 @@
             const bcaCount = document.getElementById('bcaCount');
             if(bcaCount) bcaCount.innerText = count;
 
+            const totalSum = (state.bcaLogs || []).reduce((acc, log) => acc + Number(log.nominal || 0), 0);
             const bcaTotalRp = document.getElementById('bcaTotalRp');
-            if(bcaTotalRp) bcaTotalRp.innerText = `Rp ${(count * 10000).toLocaleString('id-ID')}`;
+            if(bcaTotalRp) bcaTotalRp.innerText = `Rp ${totalSum.toLocaleString('id-ID')}`;
 
             const bcaLog = document.getElementById('bcaLog');
             if(bcaLog) {
                 bcaLog.innerHTML = (state.bcaLogs || []).map(b => `
-                    <div class="flex justify-between items-center text-xs p-2.5 rounded-xl bg-gray-900/80 border border-gray-800">
-                        <span class="text-gray-300 font-mono">${formatDateIndo(b.date)}</span>
-                        <div class="flex items-center gap-2.5">
-                            <span class="text-blue-400 font-semibold">Rp ${Number(b.nominal).toLocaleString('id-ID')}</span>
-                            <button onclick="deleteLog('bcaLogs', '${b.id}')" class="text-gray-500 hover:text-rose-400">
+                    <div class="flex justify-between items-center text-xs p-3 rounded-xl bg-gray-900/80 border border-gray-800">
+                        <div>
+                            <span class="text-blue-400 font-bold">Rp ${Number(b.nominal).toLocaleString('id-ID')}</span>
+                            <span class="text-gray-200 block text-[11px]">${b.note || 'Admin Bulanan BCA'}</span>
+                            <span class="text-[10px] text-gray-500 font-mono">📅 ${formatDateIndo(b.date)}</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="openEditBcaModal('${b.id}')" class="text-gray-400 hover:text-cyan-400 p-1 transition" title="Edit BCA">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button onclick="deleteLog('bcaLogs', '${b.id}')" class="text-gray-400 hover:text-rose-400 p-1 transition" title="Hapus">
                                 <i data-lucide="x" class="w-3.5 h-3.5"></i>
                             </button>
                         </div>
                     </div>
-                `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada riwayat pembayaran admin BCA.</p>`;
+                `).join('') || `<p class="text-xs text-gray-500 italic text-center py-4">Belum ada riwayat pembayaran admin BCA.</p>`;
             }
+        }
+
+        function openEditBcaModal(id) {
+            const b = state.bcaLogs.find(x => x.id === id);
+            if(!b) return;
+            document.getElementById('editBcaId').value = b.id;
+            document.getElementById('modalBcaTitle').innerText = 'Edit Admin Bulanan BCA';
+            document.getElementById('bcaDate').value = b.date;
+            document.getElementById('bcaNominal').value = b.nominal;
+            document.getElementById('bcaNote').value = b.note || '';
+            openModal('modalBca');
+        }
+
+        function handleBcaSubmit(e) {
+            e.preventDefault();
+            const editId = document.getElementById('editBcaId').value;
+            const date = document.getElementById('bcaDate').value;
+            const nominal = Number(document.getElementById('bcaNominal').value);
+            const note = document.getElementById('bcaNote').value;
+
+            if(editId) {
+                const b = state.bcaLogs.find(x => x.id === editId);
+                if(b) {
+                    b.date = date;
+                    b.nominal = nominal;
+                    b.note = note;
+                }
+            } else {
+                state.bcaLogs.unshift({
+                    id: 'bca-' + Date.now(),
+                    date,
+                    nominal,
+                    note: note || 'Admin Bulanan BCA'
+                });
+            }
+            closeModal('modalBca');
+            saveState();
         }
 
         function renderToken() {
@@ -1596,20 +1704,67 @@
             const tokenCount = document.getElementById('tokenCount');
             if(tokenCount) tokenCount.innerText = count;
 
+            const totalSum = (state.tokenLogs || []).reduce((acc, log) => acc + Number(log.nominal || 0), 0);
+            const tokenTotalRp = document.getElementById('tokenTotalRp');
+            if(tokenTotalRp) tokenTotalRp.innerText = `Rp ${totalSum.toLocaleString('id-ID')}`;
+
             const tokenLog = document.getElementById('tokenLog');
             if(tokenLog) {
                 tokenLog.innerHTML = (state.tokenLogs || []).map(t => `
-                    <div class="flex justify-between items-center text-xs p-2.5 rounded-xl bg-gray-900/80 border border-gray-800">
-                        <span class="text-gray-300 font-mono">${formatDateIndo(t.date)}</span>
-                        <div class="flex items-center gap-2.5">
-                            <span class="text-yellow-400 font-semibold">Rp ${Number(t.nominal).toLocaleString('id-ID')}</span>
-                            <button onclick="deleteLog('tokenLogs', '${t.id}')" class="text-gray-500 hover:text-rose-400">
+                    <div class="flex justify-between items-center text-xs p-3 rounded-xl bg-gray-900/80 border border-gray-800">
+                        <div>
+                            <span class="text-yellow-400 font-bold">Rp ${Number(t.nominal).toLocaleString('id-ID')}</span>
+                            <span class="text-gray-200 block text-[11px]">🛒 Beli di: <span class="text-cyan-300 font-semibold">${t.source || '-'}</span></span>
+                            <span class="text-[10px] text-gray-500 font-mono">📅 ${formatDateIndo(t.date)}</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="openEditTokenModal('${t.id}')" class="text-gray-400 hover:text-cyan-400 p-1 transition" title="Edit Token">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button onclick="deleteLog('tokenLogs', '${t.id}')" class="text-gray-400 hover:text-rose-400 p-1 transition" title="Hapus">
                                 <i data-lucide="x" class="w-3.5 h-3.5"></i>
                             </button>
                         </div>
                     </div>
-                `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada riwayat isi token.</p>`;
+                `).join('') || `<p class="text-xs text-gray-500 italic text-center py-4">Belum ada riwayat isi token listrik.</p>`;
             }
+        }
+
+        function openEditTokenModal(id) {
+            const t = state.tokenLogs.find(x => x.id === id);
+            if(!t) return;
+            document.getElementById('editTokenId').value = t.id;
+            document.getElementById('modalTokenTitle').innerText = 'Edit Token Listrik';
+            document.getElementById('tokenDate').value = t.date;
+            document.getElementById('tokenNominal').value = t.nominal;
+            document.getElementById('tokenSource').value = t.source || '';
+            openModal('modalToken');
+        }
+
+        function handleTokenSubmit(e) {
+            e.preventDefault();
+            const editId = document.getElementById('editTokenId').value;
+            const date = document.getElementById('tokenDate').value;
+            const nominal = Number(document.getElementById('tokenNominal').value);
+            const source = document.getElementById('tokenSource').value;
+
+            if(editId) {
+                const t = state.tokenLogs.find(x => x.id === editId);
+                if(t) {
+                    t.date = date;
+                    t.nominal = nominal;
+                    t.source = source;
+                }
+            } else {
+                state.tokenLogs.unshift({
+                    id: 'tok-' + Date.now(),
+                    date,
+                    nominal,
+                    source
+                });
+            }
+            closeModal('modalToken');
+            saveState();
         }
 
         function renderFinance() {
@@ -1619,7 +1774,7 @@
                     <div class="glass-card rounded-xl p-3 flex justify-between items-center border border-gray-800">
                         <div>
                             <h4 class="text-xs font-bold text-white">${t.title}</h4>
-                            <p class="text-[11px] text-rose-400">${t.amount}</p>
+                            <p class="text-[11px] text-rose-400 font-semibold">${t.amount}</p>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditTagihanModal('${t.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Tagihan">
@@ -1639,7 +1794,7 @@
                     <div class="glass-card rounded-xl p-3 flex justify-between items-center border border-gray-800">
                         <div>
                             <h4 class="text-xs font-bold text-white">${h.title}</h4>
-                            <p class="text-[11px] text-amber-400 font-medium">${h.nominal} - <span class="text-gray-400">${formatDateIndo(h.date)}</span></p>
+                            <p class="text-[11px] text-amber-400 font-semibold">${h.nominal} - <span class="text-gray-400 font-mono">${formatDateIndo(h.date)}</span></p>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditHutangModal('${h.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Hutang">
@@ -1898,7 +2053,7 @@
                         <div>
                             <span class="text-emerald-400 font-bold">+ Rp ${Number(inc.nominal).toLocaleString('id-ID')}</span>
                             <span class="text-gray-200 block">${inc.note} (${getAccountName(inc.account)})</span>
-                            <span class="text-[10px] text-gray-500">${formatDateIndo(inc.date)}</span>
+                            <span class="text-[10px] text-gray-500 font-mono">${formatDateIndo(inc.date)}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditIncomeModal('${inc.id}')" class="text-gray-400 hover:text-emerald-400 p-1" title="Edit Pemasukan">
@@ -1919,7 +2074,7 @@
                         <div>
                             <span class="text-rose-400 font-bold">- Rp ${Number(exp.nominal).toLocaleString('id-ID')}</span>
                             <span class="text-gray-200 block">[${exp.category}] ${exp.note || ''} (${getAccountName(exp.account)})</span>
-                            <span class="text-[10px] text-gray-500">${formatDateIndo(exp.date)}</span>
+                            <span class="text-[10px] text-gray-500 font-mono">${formatDateIndo(exp.date)}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditExpenseModal('${exp.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Edit Pengeluaran">
@@ -1937,35 +2092,14 @@
         function openEditIncomeModal(id) {
             const inc = state.incomes.find(x => x.id === id);
             if(!inc) return;
+            populateAccountDropdowns();
             document.getElementById('editIncId').value = inc.id;
             document.getElementById('modalIncomeTitle').innerText = 'Edit Pemasukan';
             document.getElementById('incDate').value = inc.date;
             document.getElementById('incNominal').value = inc.nominal;
+            document.getElementById('incAccount').value = inc.account;
             document.getElementById('incNote').value = inc.note || '';
             openModal('modalAddIncome');
-            document.getElementById('incAccount').value = inc.account;
-        }
-
-        function openEditExpenseModal(id) {
-            const exp = state.expenses.find(x => x.id === id);
-            if(!exp) return;
-            document.getElementById('editExpId').value = exp.id;
-            document.getElementById('modalExpenseTitle').innerText = 'Edit Pengeluaran';
-            document.getElementById('expDate').value = exp.date;
-            document.getElementById('expNominal').value = exp.nominal;
-            
-            const stdCats = ['Tagihan', 'Belanja', 'Shopee', 'Tokopedia', 'Bensin', 'Makan / Minum'];
-            if(stdCats.includes(exp.category)) {
-                document.getElementById('expCategory').value = exp.category;
-                document.getElementById('expCustomCat').value = '';
-            } else {
-                document.getElementById('expCategory').value = 'Lainnya';
-                document.getElementById('expCustomCat').value = exp.category;
-            }
-
-            document.getElementById('expNote').value = exp.note || '';
-            openModal('modalAddExpense');
-            document.getElementById('expAccount').value = exp.account;
         }
 
         function openEditExpenseModal(id) {
@@ -2107,13 +2241,11 @@
             if (editId) {
                 const inc = state.incomes.find(x => x.id === editId);
                 if (inc) {
-                    // Revert saldo lama
                     updateAccountBalance(inc.account, inc.nominal, false);
                     inc.date = date;
                     inc.nominal = nominal;
                     inc.account = account;
                     inc.note = note;
-                    // Terapkan saldo baru
                     updateAccountBalance(account, nominal, true);
                 }
             } else {
@@ -2143,14 +2275,12 @@
             if (editId) {
                 const exp = state.expenses.find(x => x.id === editId);
                 if (exp) {
-                    // Revert saldo lama
                     updateAccountBalance(exp.account, exp.nominal, true);
                     exp.date = date;
                     exp.nominal = nominal;
                     exp.category = cat;
                     exp.account = account;
                     exp.note = note;
-                    // Terapkan saldo baru
                     updateAccountBalance(account, nominal, false);
                 }
             } else {
@@ -2217,17 +2347,6 @@
                 });
             }
             closeModal('modalJob');
-            saveState();
-        }
-
-        function handleTokenSubmit(e) {
-            e.preventDefault();
-            state.tokenLogs.unshift({
-                id: 't-' + Date.now(),
-                date: document.getElementById('tokenDate').value,
-                nominal: document.getElementById('tokenNominal').value
-            });
-            closeModal('modalToken');
             saveState();
         }
 
@@ -2325,16 +2444,6 @@
             state.pajakTahunanDate = document.getElementById('pajakTahunanInput').value;
             state.pajak5TahunanDate = document.getElementById('pajak5TahunanInput').value;
             closeModal('modalPajak');
-            saveState();
-        }
-
-        function addBcaPayment() {
-            const today = new Date().toISOString().split('T')[0];
-            state.bcaLogs.unshift({
-                id: 'bca-' + Date.now(),
-                date: today,
-                nominal: 10000
-            });
             saveState();
         }
 
@@ -2456,7 +2565,7 @@
                 }
             }
 
-            // Render Informasi Pajak
+            // Render Informasi Pajak dengan DD - MM - YYYY
             const p1Display = document.getElementById('pajakTahunanDisplay');
             if(p1Display) p1Display.innerText = formatDateIndo(state.pajakTahunanDate);
 
@@ -2544,7 +2653,7 @@
                         <div>
                             <span class="text-amber-400 font-bold">Rp ${Number(b.cost).toLocaleString('id-ID')}</span>
                             <span class="text-gray-200 block text-[11px]">📍 ${b.loc}</span>
-                            <span class="text-[10px] text-gray-500">📅 ${formatDateIndo(b.date)}</span>
+                            <span class="text-[10px] text-gray-500 font-mono">📅 ${formatDateIndo(b.date)}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditBensinModal('${b.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Bensin">
@@ -2565,7 +2674,7 @@
                         <div>
                             <span class="text-cyan-400 font-bold">Rp ${Number(o.cost).toLocaleString('id-ID')}</span>
                             <span class="text-gray-200 block text-[11px]">📍 ${o.loc || 'Bengkel'} | ⚙️ ${o.km}</span>
-                            <span class="text-[10px] text-gray-500">📅 ${formatDateIndo(o.date)}</span>
+                            <span class="text-[10px] text-gray-500 font-mono">📅 ${formatDateIndo(o.date)}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditOliModal('${o.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Oli">
@@ -2586,7 +2695,7 @@
                         <div>
                             <span class="text-emerald-400 font-bold">Rp ${Number(p.cost).toLocaleString('id-ID')}</span>
                             <span class="text-gray-200 block text-[11px]">📍 ${p.loc}</span>
-                            <span class="text-[10px] text-gray-500">📅 ${formatDateIndo(p.date)}</span>
+                            <span class="text-[10px] text-gray-500 font-mono">📅 ${formatDateIndo(p.date)}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditParkirModal('${p.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Parkir">
@@ -2607,7 +2716,7 @@
                         <div>
                             <span class="text-blue-400 font-bold">${c.cost ? 'Rp ' + Number(c.cost).toLocaleString('id-ID') : 'Cuci'}</span>
                             <span class="text-gray-200 block text-[11px]">📍 ${c.loc || 'Tempat Cuci'}</span>
-                            <span class="text-[10px] text-gray-500">📅 ${formatDateIndo(c.date)}</span>
+                            <span class="text-[10px] text-gray-500 font-mono">📅 ${formatDateIndo(c.date)}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditCuciModal('${c.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Cuci">
