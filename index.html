@@ -443,6 +443,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <!-- Bensin Section -->
                 <div class="glass-card rounded-2xl p-4 border border-gray-800 space-y-3">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-2">
@@ -469,9 +470,13 @@
                             <span id="bensinTotalYear" class="font-bold text-white">Rp 0</span>
                         </div>
                     </div>
-                    <div id="bensinLog" class="space-y-1.5 max-h-36 overflow-y-auto pr-1"></div>
+                    <div class="space-y-1">
+                        <span class="text-[11px] font-bold text-gray-400 block">Riwayat Isi Bensin:</span>
+                        <div id="bensinLog" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
+                    </div>
                 </div>
 
+                <!-- Oli Section -->
                 <div class="glass-card rounded-2xl p-4 border border-gray-800 space-y-3">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-2">
@@ -498,9 +503,13 @@
                             <span id="oliTotalYear" class="font-bold text-white">Rp 0</span>
                         </div>
                     </div>
-                    <div id="oliLog" class="space-y-1.5 max-h-36 overflow-y-auto pr-1"></div>
+                    <div class="space-y-1">
+                        <span class="text-[11px] font-bold text-gray-400 block">Riwayat Ganti Oli:</span>
+                        <div id="oliLog" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
+                    </div>
                 </div>
 
+                <!-- Parkir Section -->
                 <div class="glass-card rounded-2xl p-4 border border-gray-800 space-y-3">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-2">
@@ -527,9 +536,13 @@
                             <span id="parkirTotalYear" class="font-bold text-white">Rp 0</span>
                         </div>
                     </div>
-                    <div id="parkirLog" class="space-y-1.5 max-h-36 overflow-y-auto pr-1"></div>
+                    <div class="space-y-1">
+                        <span class="text-[11px] font-bold text-gray-400 block">Riwayat Parkir:</span>
+                        <div id="parkirLog" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
+                    </div>
                 </div>
 
+                <!-- Cuci Motor Section -->
                 <div class="glass-card rounded-2xl p-4 border border-gray-800 space-y-3">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-2">
@@ -541,7 +554,10 @@
                         </div>
                         <button onclick="openModal('modalCuci')" class="px-2.5 py-1 rounded-lg bg-blue-500/20 text-blue-300 text-xs font-semibold border border-blue-500/30">+ Catat</button>
                     </div>
-                    <div id="cuciLog" class="space-y-1.5 max-h-36 overflow-y-auto pr-1"></div>
+                    <div class="space-y-1">
+                        <span class="text-[11px] font-bold text-gray-400 block">Riwayat Cuci Motor:</span>
+                        <div id="cuciLog" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
+                    </div>
                 </div>
 
             </div>
@@ -1009,11 +1025,12 @@
         </div>
     </div>
 
-    <!-- Modals Kendaraan -->
+    <!-- Modals Kendaraan (Tambah & Edit) -->
     <div id="modalBensin" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 class="text-base font-bold text-white">Catat Bensin</h3>
+            <h3 id="modalBensinTitle" class="text-base font-bold text-white">Catat Bensin</h3>
             <form onsubmit="handleBensinSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editBensinId">
                 <input type="date" id="bensinDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <input type="text" id="bensinLoc" placeholder="Lokasi SPBU" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <input type="number" id="bensinCost" placeholder="Nominal Rp" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
@@ -1027,9 +1044,11 @@
 
     <div id="modalOli" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 class="text-base font-bold text-white">Catat Ganti Oli</h3>
+            <h3 id="modalOliTitle" class="text-base font-bold text-white">Catat Ganti Oli</h3>
             <form onsubmit="handleOliSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editOliId">
                 <input type="date" id="oliDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="text" id="oliLoc" placeholder="Lokasi Bengkel" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <input type="text" id="oliKm" placeholder="Kilometer (misal: 12.500 KM)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <input type="number" id="oliCost" placeholder="Biaya Rp" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
@@ -1042,10 +1061,12 @@
 
     <div id="modalParkir" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 class="text-base font-bold text-white">Catat Parkir (Rp 2.000)</h3>
+            <h3 id="modalParkirTitle" class="text-base font-bold text-white">Catat Parkir</h3>
             <form onsubmit="handleParkirSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editParkirId">
                 <input type="date" id="parkirDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <input type="text" id="parkirLoc" placeholder="Lokasi Parkir" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="number" id="parkirCost" placeholder="Biaya Rp (default 2000)" value="2000" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
                     <button type="button" onclick="closeModal('modalParkir')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
                     <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-semibold">Simpan</button>
@@ -1056,10 +1077,12 @@
 
     <div id="modalCuci" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 class="text-base font-bold text-white">Catat Cuci Motor</h3>
+            <h3 id="modalCuciTitle" class="text-base font-bold text-white">Catat Cuci Motor</h3>
             <form onsubmit="handleCuciSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editCuciId">
                 <input type="date" id="cuciDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="text" id="cuciLoc" placeholder="Tempat Cuci / Sendiri" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="text" id="cuciLoc" placeholder="Tempat Cuci / Sendiri" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="number" id="cuciCost" placeholder="Biaya Rp" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
                     <button type="button" onclick="closeModal('modalCuci')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
                     <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-blue-600 text-white text-xs font-semibold">Simpan</button>
@@ -1126,6 +1149,10 @@
         if(!state.countdowns) state.countdowns = [];
         if(!state.routines) state.routines = [];
         if(!state.textCopier) state.textCopier = defaultData.textCopier;
+        if(!state.bensinLogs) state.bensinLogs = [];
+        if(!state.oliLogs) state.oliLogs = [];
+        if(!state.parkirLogs) state.parkirLogs = [];
+        if(!state.cuciLogs) state.cuciLogs = [];
 
         function saveState() {
             localStorage.setItem('arisplrhmn_projects_db', JSON.stringify(state));
@@ -1185,6 +1212,35 @@
                 document.getElementById('editRoutineId').value = '';
                 document.getElementById('modalRoutineTitle').innerText = 'Tambah Rutinitas Harian';
                 document.getElementById('routineText').value = '';
+            }
+            if(modalId === 'modalBensin') {
+                document.getElementById('editBensinId').value = '';
+                document.getElementById('modalBensinTitle').innerText = 'Catat Bensin';
+                document.getElementById('bensinDate').value = new Date().toISOString().split('T')[0];
+                document.getElementById('bensinLoc').value = '';
+                document.getElementById('bensinCost').value = '';
+            }
+            if(modalId === 'modalOli') {
+                document.getElementById('editOliId').value = '';
+                document.getElementById('modalOliTitle').innerText = 'Catat Ganti Oli';
+                document.getElementById('oliDate').value = new Date().toISOString().split('T')[0];
+                document.getElementById('oliLoc').value = '';
+                document.getElementById('oliKm').value = '';
+                document.getElementById('oliCost').value = '';
+            }
+            if(modalId === 'modalParkir') {
+                document.getElementById('editParkirId').value = '';
+                document.getElementById('modalParkirTitle').innerText = 'Catat Parkir';
+                document.getElementById('parkirDate').value = new Date().toISOString().split('T')[0];
+                document.getElementById('parkirLoc').value = '';
+                document.getElementById('parkirCost').value = '2000';
+            }
+            if(modalId === 'modalCuci') {
+                document.getElementById('editCuciId').value = '';
+                document.getElementById('modalCuciTitle').innerText = 'Catat Cuci Motor';
+                document.getElementById('cuciDate').value = new Date().toISOString().split('T')[0];
+                document.getElementById('cuciLoc').value = '';
+                document.getElementById('cuciCost').value = '';
             }
             const modal = document.getElementById(modalId);
             if(modal) modal.classList.remove('hidden');
@@ -2206,6 +2262,91 @@
             if(pCount) pCount.innerText = state.parkirLogs ? state.parkirLogs.length : 0;
             const cCount = document.getElementById('cuciCount');
             if(cCount) cCount.innerText = state.cuciLogs ? state.cuciLogs.length : 0;
+
+            // Render Log Lists with Edit and Delete buttons & max-h-40 overflow-y-auto scrolling
+            const bensinLogEl = document.getElementById('bensinLog');
+            if(bensinLogEl) {
+                bensinLogEl.innerHTML = (state.bensinLogs || []).map(b => `
+                    <div class="flex justify-between items-center text-xs p-2 rounded-xl bg-gray-900/60 border border-gray-800">
+                        <div>
+                            <span class="text-amber-400 font-bold">Rp ${Number(b.cost).toLocaleString('id-ID')}</span>
+                            <span class="text-gray-200 block text-[11px]">📍 ${b.loc}</span>
+                            <span class="text-[10px] text-gray-500">📅 ${b.date}</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button onclick="openEditBensinModal('${b.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Bensin">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button onclick="deleteLog('bensinLogs', '${b.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus Bensin">
+                                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('') || `<p class="text-[11px] text-gray-500 italic">Belum ada riwayat bensin.</p>`;
+            }
+
+            const oliLogEl = document.getElementById('oliLog');
+            if(oliLogEl) {
+                oliLogEl.innerHTML = (state.oliLogs || []).map(o => `
+                    <div class="flex justify-between items-center text-xs p-2 rounded-xl bg-gray-900/60 border border-gray-800">
+                        <div>
+                            <span class="text-cyan-400 font-bold">Rp ${Number(o.cost).toLocaleString('id-ID')}</span>
+                            <span class="text-gray-200 block text-[11px]">📍 ${o.loc || 'Bengkel'} | ⚙️ ${o.km}</span>
+                            <span class="text-[10px] text-gray-500">📅 ${o.date}</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button onclick="openEditOliModal('${o.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Oli">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button onclick="deleteLog('oliLogs', '${o.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus Oli">
+                                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('') || `<p class="text-[11px] text-gray-500 italic">Belum ada riwayat ganti oli.</p>`;
+            }
+
+            const parkirLogEl = document.getElementById('parkirLog');
+            if(parkirLogEl) {
+                parkirLogEl.innerHTML = (state.parkirLogs || []).map(p => `
+                    <div class="flex justify-between items-center text-xs p-2 rounded-xl bg-gray-900/60 border border-gray-800">
+                        <div>
+                            <span class="text-emerald-400 font-bold">Rp ${Number(p.cost).toLocaleString('id-ID')}</span>
+                            <span class="text-gray-200 block text-[11px]">📍 ${p.loc}</span>
+                            <span class="text-[10px] text-gray-500">📅 ${p.date}</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button onclick="openEditParkirModal('${p.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Parkir">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button onclick="deleteLog('parkirLogs', '${p.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus Parkir">
+                                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('') || `<p class="text-[11px] text-gray-500 italic">Belum ada riwayat parkir.</p>`;
+            }
+
+            const cuciLogEl = document.getElementById('cuciLog');
+            if(cuciLogEl) {
+                cuciLogEl.innerHTML = (state.cuciLogs || []).map(c => `
+                    <div class="flex justify-between items-center text-xs p-2 rounded-xl bg-gray-900/60 border border-gray-800">
+                        <div>
+                            <span class="text-blue-400 font-bold">${c.cost ? 'Rp ' + Number(c.cost).toLocaleString('id-ID') : 'Cuci'}</span>
+                            <span class="text-gray-200 block text-[11px]">📍 ${c.loc || 'Tempat Cuci'}</span>
+                            <span class="text-[10px] text-gray-500">📅 ${c.date}</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button onclick="openEditCuciModal('${c.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Cuci">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button onclick="deleteLog('cuciLogs', '${c.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus Cuci">
+                                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('') || `<p class="text-[11px] text-gray-500 italic">Belum ada riwayat cuci.</p>`;
+            }
         }
 
         function changeCicilan(val) {
@@ -2213,49 +2354,145 @@
             saveState();
         }
 
+        function openEditBensinModal(id) {
+            const b = state.bensinLogs.find(x => x.id === id);
+            if(!b) return;
+            document.getElementById('editBensinId').value = b.id;
+            document.getElementById('modalBensinTitle').innerText = 'Edit Bensin';
+            document.getElementById('bensinDate').value = b.date;
+            document.getElementById('bensinLoc').value = b.loc;
+            document.getElementById('bensinCost').value = b.cost;
+            openModal('modalBensin');
+        }
+
         function handleBensinSubmit(e) {
             e.preventDefault();
-            state.bensinLogs.unshift({
-                id: 'b-' + Date.now(),
-                date: document.getElementById('bensinDate').value,
-                loc: document.getElementById('bensinLoc').value,
-                cost: document.getElementById('bensinCost').value
-            });
+            const editId = document.getElementById('editBensinId').value;
+            const date = document.getElementById('bensinDate').value;
+            const loc = document.getElementById('bensinLoc').value;
+            const cost = document.getElementById('bensinCost').value;
+
+            if(editId) {
+                const b = state.bensinLogs.find(x => x.id === editId);
+                if(b) {
+                    b.date = date;
+                    b.loc = loc;
+                    b.cost = cost;
+                }
+            } else {
+                state.bensinLogs.unshift({
+                    id: 'b-' + Date.now(),
+                    date, loc, cost
+                });
+            }
             closeModal('modalBensin');
             saveState();
         }
 
+        function openEditOliModal(id) {
+            const o = state.oliLogs.find(x => x.id === id);
+            if(!o) return;
+            document.getElementById('editOliId').value = o.id;
+            document.getElementById('modalOliTitle').innerText = 'Edit Ganti Oli';
+            document.getElementById('oliDate').value = o.date;
+            document.getElementById('oliLoc').value = o.loc;
+            document.getElementById('oliKm').value = o.km;
+            document.getElementById('oliCost').value = o.cost;
+            openModal('modalOli');
+        }
+
         function handleOliSubmit(e) {
             e.preventDefault();
-            state.oliLogs.unshift({
-                id: 'o-' + Date.now(),
-                date: document.getElementById('oliDate').value,
-                km: document.getElementById('oliKm').value,
-                cost: document.getElementById('oliCost').value
-            });
+            const editId = document.getElementById('editOliId').value;
+            const date = document.getElementById('oliDate').value;
+            const loc = document.getElementById('oliLoc').value;
+            const km = document.getElementById('oliKm').value;
+            const cost = document.getElementById('oliCost').value;
+
+            if(editId) {
+                const o = state.oliLogs.find(x => x.id === editId);
+                if(o) {
+                    o.date = date;
+                    o.loc = loc;
+                    o.km = km;
+                    o.cost = cost;
+                }
+            } else {
+                state.oliLogs.unshift({
+                    id: 'o-' + Date.now(),
+                    date, loc, km, cost
+                });
+            }
             closeModal('modalOli');
             saveState();
         }
 
+        function openEditParkirModal(id) {
+            const p = state.parkirLogs.find(x => x.id === id);
+            if(!p) return;
+            document.getElementById('editParkirId').value = p.id;
+            document.getElementById('modalParkirTitle').innerText = 'Edit Parkir';
+            document.getElementById('parkirDate').value = p.date;
+            document.getElementById('parkirLoc').value = p.loc;
+            document.getElementById('parkirCost').value = p.cost;
+            openModal('modalParkir');
+        }
+
         function handleParkirSubmit(e) {
             e.preventDefault();
-            state.parkirLogs.unshift({
-                id: 'p-' + Date.now(),
-                date: document.getElementById('parkirDate').value,
-                loc: document.getElementById('parkirLoc').value,
-                cost: 2000
-            });
+            const editId = document.getElementById('editParkirId').value;
+            const date = document.getElementById('parkirDate').value;
+            const loc = document.getElementById('parkirLoc').value;
+            const cost = document.getElementById('parkirCost').value;
+
+            if(editId) {
+                const p = state.parkirLogs.find(x => x.id === editId);
+                if(p) {
+                    p.date = date;
+                    p.loc = loc;
+                    p.cost = cost;
+                }
+            } else {
+                state.parkirLogs.unshift({
+                    id: 'p-' + Date.now(),
+                    date, loc, cost
+                });
+            }
             closeModal('modalParkir');
             saveState();
         }
 
+        function openEditCuciModal(id) {
+            const c = state.cuciLogs.find(x => x.id === id);
+            if(!c) return;
+            document.getElementById('editCuciId').value = c.id;
+            document.getElementById('modalCuciTitle').innerText = 'Edit Cuci Motor';
+            document.getElementById('cuciDate').value = c.date;
+            document.getElementById('cuciLoc').value = c.loc;
+            document.getElementById('cuciCost').value = c.cost;
+            openModal('modalCuci');
+        }
+
         function handleCuciSubmit(e) {
             e.preventDefault();
-            state.cuciLogs.unshift({
-                id: 'c-' + Date.now(),
-                date: document.getElementById('cuciDate').value,
-                loc: document.getElementById('cuciLoc').value
-            });
+            const editId = document.getElementById('editCuciId').value;
+            const date = document.getElementById('cuciDate').value;
+            const loc = document.getElementById('cuciLoc').value;
+            const cost = document.getElementById('cuciCost').value;
+
+            if(editId) {
+                const c = state.cuciLogs.find(x => x.id === editId);
+                if(c) {
+                    c.date = date;
+                    c.loc = loc;
+                    c.cost = cost;
+                }
+            } else {
+                state.cuciLogs.unshift({
+                    id: 'c-' + Date.now(),
+                    date, loc, cost
+                });
+            }
             closeModal('modalCuci');
             saveState();
         }
