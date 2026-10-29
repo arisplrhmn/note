@@ -196,7 +196,6 @@
 
             <!-- Sumber Keuangan / Akun Dompet & Bank -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <!-- Cash/Dompet -->
                 <div class="glass-card rounded-2xl p-4 border border-gray-800 space-y-2">
                     <div class="flex justify-between items-center">
                         <span class="text-xs font-bold text-gray-400 uppercase">Dompet / Cash</span>
@@ -205,7 +204,6 @@
                     <div class="text-lg font-black text-white" id="balance-cash">Rp 0</div>
                 </div>
 
-                <!-- Bank -->
                 <div class="glass-card rounded-2xl p-4 border border-gray-800 space-y-2">
                     <div class="flex justify-between items-center">
                         <span class="text-xs font-bold text-gray-400 uppercase">Akun Bank</span>
@@ -214,7 +212,6 @@
                     <div id="bankAccountsList" class="space-y-1"></div>
                 </div>
 
-                <!-- Bank Digital -->
                 <div class="glass-card rounded-2xl p-4 border border-gray-800 space-y-2">
                     <div class="flex justify-between items-center">
                         <span class="text-xs font-bold text-gray-400 uppercase">Bank Digital</span>
@@ -223,7 +220,6 @@
                     <div id="digitalBanksList" class="space-y-1"></div>
                 </div>
 
-                <!-- E-Wallet -->
                 <div class="glass-card rounded-2xl p-4 border border-gray-800 space-y-2">
                     <div class="flex justify-between items-center">
                         <span class="text-xs font-bold text-gray-400 uppercase">E-Wallet</span>
@@ -233,7 +229,6 @@
                 </div>
             </div>
 
-            <!-- Filter Rekapitulasi Waktu -->
             <div class="glass-card rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3 border border-gray-800">
                 <div class="flex items-center gap-2">
                     <span class="text-xs font-bold text-gray-300">Filter Rekap:</span>
@@ -251,9 +246,7 @@
                 </div>
             </div>
 
-            <!-- Riwayat Pemasukan & Pengeluaran -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Log Pemasukan -->
                 <div class="glass-card rounded-2xl p-5 space-y-3">
                     <h3 class="text-sm font-bold text-white flex items-center gap-2">
                         <i data-lucide="arrow-down-left" class="w-4 h-4 text-emerald-400"></i> Riwayat Pemasukan
@@ -261,7 +254,6 @@
                     <div id="incomeLogList" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
                 </div>
 
-                <!-- Log Pengeluaran -->
                 <div class="glass-card rounded-2xl p-5 space-y-3">
                     <h3 class="text-sm font-bold text-white flex items-center gap-2">
                         <i data-lucide="arrow-up-right" class="w-4 h-4 text-rose-400"></i> Riwayat Pengeluaran
@@ -296,7 +288,6 @@
                 <p class="text-xs text-gray-400">Pengeluaran cicilan, bensin, oli, cuci, dan parkir motor</p>
             </div>
 
-            <!-- Cicilan Beat Card -->
             <div class="glass-card rounded-2xl p-6 border-l-4 border-l-purple-500 space-y-4">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
@@ -329,10 +320,7 @@
                 </div>
             </div>
 
-            <!-- Vehicle Counters Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
-                <!-- Bensin -->
                 <div class="glass-card rounded-2xl p-5 border border-gray-800 space-y-4">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-2">
@@ -362,7 +350,6 @@
                     <div id="bensinLog" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
                 </div>
 
-                <!-- Ganti Oli -->
                 <div class="glass-card rounded-2xl p-5 border border-gray-800 space-y-4">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-2">
@@ -392,7 +379,6 @@
                     <div id="oliLog" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
                 </div>
 
-                <!-- Parkir -->
                 <div class="glass-card rounded-2xl p-5 border border-gray-800 space-y-4">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-2">
@@ -422,7 +408,6 @@
                     <div id="parkirLog" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
                 </div>
 
-                <!-- Cuci Motor -->
                 <div class="glass-card rounded-2xl p-5 border border-gray-800">
                     <div class="flex justify-between items-center mb-4">
                         <div class="flex items-center gap-2">
@@ -526,6 +511,113 @@
 
     <!-- ================= MODALS ================= -->
 
+    <!-- Modal Job -->
+    <div id="modalJob" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-md w-full p-6 space-y-4 border border-gray-700">
+            <h3 class="text-lg font-bold text-white">Tambah Catatan Lamaran Kerja</h3>
+            <form onsubmit="handleJobSubmit(event)" class="space-y-3">
+                <input type="text" id="jobCompany" placeholder="Nama Perusahaan (misal: SPPG Sayang 1)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="text" id="jobPos" placeholder="Posisi (misal: Operator Packing)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="text-[10px] text-gray-400 block mb-1">Apply Kerja</label>
+                        <input type="date" id="jobApply" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="text-[10px] text-gray-400 block mb-1">Ada Kabar?</label>
+                        <select id="jobKabar" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                            <option value="Tidak">Tidak</option>
+                            <option value="Ada">Ada</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="text" id="jobInterview" placeholder="Interview (Tanggal / -)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="text" id="jobDay1" placeholder="Day 1 Kerja (Tanggal / -)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="text" id="jobGaji" placeholder="Gaji Pertama (Keterangan / -)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="text" id="jobResign" placeholder="Resign (Tanggal / -)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalJob')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Kembali / Tidak Jadi</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-cyan-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Token -->
+    <div id="modalToken" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
+            <h3 class="text-lg font-bold text-white">Catat Isi Token Listrik</h3>
+            <form onsubmit="handleTokenSubmit(event)" class="space-y-3">
+                <input type="date" id="tokenDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="number" id="tokenNominal" placeholder="Nominal Rp (misal: 50000)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalToken')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Kembali / Tidak Jadi</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-yellow-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Tagihan -->
+    <div id="modalTagihan" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
+            <h3 class="text-lg font-bold text-white">Tambah Catatan Tagihan</h3>
+            <form onsubmit="handleTagihanSubmit(event)" class="space-y-3">
+                <input type="text" id="tagihanTitle" placeholder="Nama Tagihan (misal: Cicilan BRI)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="text" id="tagihanNominal" placeholder="Nominal / Keterangan" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalTagihan')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Kembali / Tidak Jadi</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-rose-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Hutang -->
+    <div id="modalHutang" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
+            <h3 class="text-lg font-bold text-white">Catat Hutang Pribadi</h3>
+            <form onsubmit="handleHutangSubmit(event)" class="space-y-3">
+                <input type="text" id="hutangTitle" placeholder="Keterangan / Kepada" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="text" id="hutangNominal" placeholder="Nominal Rp" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="date" id="hutangDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalHutang')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Kembali / Tidak Jadi</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-amber-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Countdown -->
+    <div id="modalCountdown" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
+            <h3 class="text-lg font-bold text-white">Tambah Hitung Mundur Acara</h3>
+            <form onsubmit="handleCountdownSubmit(event)" class="space-y-3">
+                <input type="text" id="cdTitle" placeholder="Nama Acara" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="date" id="cdDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalCountdown')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Kembali / Tidak Jadi</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-pink-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Routine -->
+    <div id="modalRoutine" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
+            <h3 class="text-lg font-bold text-white">Tambah Rutinitas Harian</h3>
+            <form onsubmit="handleRoutineSubmit(event)" class="space-y-3">
+                <input type="text" id="routineText" placeholder="Aktivitas Rutinitas" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalRoutine')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Kembali / Tidak Jadi</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-purple-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Modal Tambah Pemasukan -->
     <div id="modalAddIncome" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
@@ -535,9 +627,7 @@
                 <input type="number" id="incNominal" placeholder="Nominal Rp (misal: 150000)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div>
                     <label class="text-[10px] text-gray-400 block mb-1">Simpan Masuk ke Akun / Dompet</label>
-                    <select id="incAccount" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                        <!-- Rendered via JS -->
-                    </select>
+                    <select id="incAccount" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white"></select>
                 </div>
                 <input type="text" id="incNote" placeholder="Keterangan / Sumber (misal: Gaji Freelance)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
@@ -570,9 +660,7 @@
                 <input type="text" id="expCustomCat" placeholder="Nama Kategori Baru (jika pilih Lainnya)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div>
                     <label class="text-[10px] text-gray-400 block mb-1">Potong dari Akun / Dompet</label>
-                    <select id="expAccount" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                        <!-- Rendered via JS -->
-                    </select>
+                    <select id="expAccount" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white"></select>
                 </div>
                 <input type="text" id="expNote" placeholder="Keterangan / Catatan" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
@@ -583,7 +671,7 @@
         </div>
     </div>
 
-    <!-- Modals Tambah Akun (Bank / Digital Bank / E-Wallet) -->
+    <!-- Modals Tambah Akun -->
     <div id="modalAddBank" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-xs w-full p-5 space-y-3 border border-gray-700">
             <h3 class="text-sm font-bold text-white">Tambah Akun Bank Baru</h3>
@@ -626,7 +714,7 @@
         </div>
     </div>
 
-    <!-- Modals Kendaraan / Lainnya -->
+    <!-- Modals Kendaraan -->
     <div id="modalBensin" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
             <h3 class="text-lg font-bold text-white">Catat Isi Bensin Pertalite</h3>
@@ -666,6 +754,20 @@
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
                     <button type="button" onclick="closeModal('modalParkir')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Kembali / Tidak Jadi</button>
                     <button type="submit" class="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalCuci" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
+            <h3 class="text-lg font-bold text-white">Catat Cuci Motor</h3>
+            <form onsubmit="handleCuciSubmit(event)" class="space-y-3">
+                <input type="date" id="cuciDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="text" id="cuciLoc" placeholder="Tempat Cuci / Sendiri" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalCuci')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Kembali / Tidak Jadi</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold">Simpan</button>
                 </div>
             </form>
         </div>
@@ -711,13 +813,19 @@
 
         let state = JSON.parse(localStorage.getItem('arisplrhmn_projects_db')) || defaultData;
 
-        // Auto-fix missing properties for backward compatibility
         if(state.cashBalance === undefined) state.cashBalance = 0;
         if(!state.bankAccounts) state.bankAccounts = [{id:'b-bca', name:'BCA', saldo:0}];
         if(!state.digitalBanks) state.digitalBanks = [{id:'db-seabank', name:'Seabank', saldo:0}, {id:'db-jago', name:'Bank Jago', saldo:0}];
         if(!state.ewallets) state.ewallets = [{id:'ew-gopay', name:'Gopay', saldo:0}, {id:'ew-ovo', name:'OVO', saldo:0}, {id:'ew-dana', name:'DANA', saldo:0}, {id:'ew-shopeepay', name:'ShopeePay', saldo:0}];
         if(!state.incomes) state.incomes = [];
         if(!state.expenses) state.expenses = [];
+        if(!state.jobs) state.jobs = [];
+        if(!state.bcaLogs) state.bcaLogs = [];
+        if(!state.tokenLogs) state.tokenLogs = [];
+        if(!state.tagihan) state.tagihan = [];
+        if(!state.hutang) state.hutang = [];
+        if(!state.countdowns) state.countdowns = [];
+        if(!state.routines) state.routines = [];
 
         function saveState() {
             localStorage.setItem('arisplrhmn_projects_db', JSON.stringify(state));
@@ -726,26 +834,41 @@
 
         function switchTab(tabId) {
             ['home', 'cashflow', 'job', 'vehicle', 'bca', 'token', 'finance', 'countdown', 'notes'].forEach(t => {
-                document.getElementById(`sec-${t}`).classList.add('hidden');
-                document.getElementById(`tab-${t}`).classList.remove('active');
+                const sec = document.getElementById(`sec-${t}`);
+                const tab = document.getElementById(`tab-${t}`);
+                if(sec) sec.classList.add('hidden');
+                if(tab) tab.classList.remove('active');
             });
-            document.getElementById(`sec-${tabId}`).classList.remove('hidden');
-            document.getElementById(`tab-${tabId}`).classList.add('active');
+            const targetSec = document.getElementById(`sec-${tabId}`);
+            const targetTab = document.getElementById(`tab-${tabId}`);
+            if(targetSec) targetSec.classList.remove('hidden');
+            if(targetTab) targetTab.classList.add('active');
         }
 
         function openModal(modalId) {
             if(modalId === 'modalAddIncome' || modalId === 'modalAddExpense') {
                 populateAccountDropdowns();
             }
-            document.getElementById(modalId).classList.remove('hidden');
+            const modal = document.getElementById(modalId);
+            if(modal) modal.classList.remove('hidden');
         }
-        function closeModal(modalId) { document.getElementById(modalId).classList.add('hidden'); }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if(modal) modal.classList.add('hidden');
+        }
 
         function renderApp() {
+            renderHomeOverview();
+            renderJobs();
             renderVehicleStats();
             renderVehicleLogs();
+            renderBCA();
+            renderToken();
+            renderFinance();
+            renderCountdowns();
+            renderNotes();
             renderCashflow();
-            renderHomeOverview();
             lucide.createIcons();
         }
 
@@ -753,6 +876,7 @@
             const selects = ['incAccount', 'expAccount'];
             selects.forEach(selId => {
                 const el = document.getElementById(selId);
+                if(!el) return;
                 let html = `<option value="cash">Dompet / Cash (Rp ${Number(state.cashBalance).toLocaleString('id-ID')})</option>`;
                 
                 state.bankAccounts.forEach(b => {
@@ -768,63 +892,239 @@
             });
         }
 
-        function renderCashflow() {
-            // Render Wallet / Accounts UI
-            document.getElementById('balance-cash').innerText = `Rp ${Number(state.cashBalance).toLocaleString('id-ID')}`;
+        function renderJobs() {
+            const container = document.getElementById('jobList');
+            if(!container) return;
+            if (state.jobs.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-500 italic col-span-2 text-center py-4">Belum ada catatan lamaran kerja.</p>`;
+                return;
+            }
+            container.innerHTML = state.jobs.map(j => `
+                <div class="glass-card rounded-2xl p-5 border border-gray-800 space-y-3 relative">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-base font-bold text-white">${j.company}</h3>
+                            <p class="text-xs text-cyan-400 font-medium">Posisi: ${j.posisi || '-'}</p>
+                        </div>
+                        <button onclick="deleteJob('${j.id}')" class="text-gray-500 hover:text-rose-400 p-1">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-y-2 text-xs text-gray-300 border-t border-b border-gray-800/80 py-3">
+                        <div><span class="text-gray-500 block">Apply Kerja:</span> ${j.applyDate || '-'}</div>
+                        <div><span class="text-gray-500 block">Ada Kabar:</span> ${j.kabar || '-'}</div>
+                        <div><span class="text-gray-500 block">Interview:</span> ${j.interview || '-'}</div>
+                        <div><span class="text-gray-500 block">Day 1 Kerja:</span> ${j.day1 || '-'}</div>
+                        <div class="col-span-2"><span class="text-gray-500 block">Gaji Pertama:</span> <span class="text-emerald-400">${j.gaji || '-'}</span></div>
+                        <div class="col-span-2"><span class="text-gray-500 block">Resign:</span> <span class="text-rose-400">${j.resign || '-'}</span></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderBCA() {
+            const count = state.bcaLogs ? state.bcaLogs.length : 0;
+            const bcaCountText = document.getElementById('bcaCountText');
+            if(bcaCountText) bcaCountText.innerText = `${count}x`;
             
-            document.getElementById('bankAccountsList').innerHTML = state.bankAccounts.map(b => `
-                <div class="flex justify-between items-center text-xs">
-                    <span class="text-gray-300">${b.name}</span>
-                    <span class="font-bold text-cyan-400">Rp ${Number(b.saldo).toLocaleString('id-ID')}</span>
-                </div>
-            `).join('');
+            const bcaTotalRp = document.getElementById('bcaTotalRp');
+            if(bcaTotalRp) bcaTotalRp.innerText = `Rp ${(count * 10000).toLocaleString('id-ID')}`;
 
-            document.getElementById('digitalBanksList').innerHTML = state.digitalBanks.map(db => `
-                <div class="flex justify-between items-center text-xs">
-                    <span class="text-gray-300">${db.name}</span>
-                    <span class="font-bold text-purple-400">Rp ${Number(db.saldo).toLocaleString('id-ID')}</span>
-                </div>
-            `).join('');
+            const bcaLog = document.getElementById('bcaLog');
+            if(bcaLog) {
+                bcaLog.innerHTML = (state.bcaLogs || []).map(b => `
+                    <div class="flex justify-between items-center text-xs p-3 rounded-xl bg-gray-900/80 border border-gray-800">
+                        <span class="text-gray-300 font-mono">${b.date}</span>
+                        <div class="flex items-center gap-3">
+                            <span class="text-blue-400 font-semibold">Rp ${Number(b.nominal).toLocaleString('id-ID')}</span>
+                            <button onclick="deleteLog('bcaLogs', '${b.id}')" class="text-gray-500 hover:text-rose-400">
+                                <i data-lucide="x" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada riwayat pembayaran admin BCA.</p>`;
+            }
+            const homeBcaCount = document.getElementById('home-bca-count');
+            if(homeBcaCount) homeBcaCount.innerText = `${count}x`;
+            const homeBcaTotal = document.getElementById('home-bca-total');
+            if(homeBcaTotal) homeBcaTotal.innerText = `Total: Rp ${(count * 10000).toLocaleString('id-ID')}`;
+        }
 
-            document.getElementById('ewalletsList').innerHTML = state.ewallets.map(ew => `
-                <div class="flex justify-between items-center text-xs">
-                    <span class="text-gray-300">${ew.name}</span>
-                    <span class="font-bold text-yellow-400">Rp ${Number(ew.saldo).toLocaleString('id-ID')}</span>
-                </div>
-            `).join('');
+        function renderToken() {
+            const count = state.tokenLogs ? state.tokenLogs.length : 0;
+            const tokenCountText = document.getElementById('tokenCountText');
+            if(tokenCountText) tokenCountText.innerText = `${count}x`;
 
-            // Filter & Render Logs
-            const period = document.getElementById('cashflowFilterPeriod').value;
+            const tokenLog = document.getElementById('tokenLog');
+            if(tokenLog) {
+                tokenLog.innerHTML = (state.tokenLogs || []).map(t => `
+                    <div class="flex justify-between items-center text-xs p-3 rounded-xl bg-gray-900/80 border border-gray-800">
+                        <span class="text-gray-300 font-mono">${t.date}</span>
+                        <div class="flex items-center gap-3">
+                            <span class="text-yellow-400 font-semibold">Rp ${Number(t.nominal).toLocaleString('id-ID')}</span>
+                            <button onclick="deleteLog('tokenLogs', '${t.id}')" class="text-gray-500 hover:text-rose-400">
+                                <i data-lucide="x" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada riwayat isi token.</p>`;
+            }
+            const homeTokenCount = document.getElementById('home-token-count');
+            if(homeTokenCount) homeTokenCount.innerText = `${count}x Isi`;
+        }
+
+        function renderFinance() {
+            const tagihanList = document.getElementById('tagihanList');
+            if(tagihanList) {
+                tagihanList.innerHTML = (state.tagihan || []).map(t => `
+                    <div class="glass-card rounded-xl p-3.5 flex justify-between items-center border border-gray-800">
+                        <div>
+                            <h4 class="text-xs font-bold text-white">${t.title}</h4>
+                            <p class="text-[11px] text-rose-400">${t.amount}</p>
+                        </div>
+                        <button onclick="deleteLog('tagihan', '${t.id}')" class="text-gray-500 hover:text-rose-400 p-1">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada catatan tagihan.</p>`;
+            }
+
+            const hutangList = document.getElementById('hutangList');
+            if(hutangList) {
+                hutangList.innerHTML = (state.hutang || []).map(h => `
+                    <div class="glass-card rounded-xl p-3.5 flex justify-between items-center border border-gray-800">
+                        <div>
+                            <h4 class="text-xs font-bold text-white">${h.title}</h4>
+                            <p class="text-[11px] text-amber-400 font-medium">${h.nominal} - <span class="text-gray-400">${h.date}</span></p>
+                        </div>
+                        <button onclick="deleteLog('hutang', '${h.id}')" class="text-gray-500 hover:text-rose-400 p-1">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada catatan hutang.</p>`;
+            }
+        }
+
+        function renderCountdowns() {
+            const container = document.getElementById('countdownList');
+            if (!container) return;
+            if (state.countdowns.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-500 italic col-span-2">Belum ada hitung mundur acara.</p>`;
+                return;
+            }
+
+            container.innerHTML = state.countdowns.map(cd => {
+                const diff = new Date(cd.date) - new Date();
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                return `
+                    <div class="glass-card rounded-2xl p-5 border border-pink-500/20 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-sm font-bold text-white">${cd.title}</h3>
+                            <button onclick="deleteLog('countdowns', '${cd.id}')" class="text-gray-500 hover:text-rose-400">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-black text-pink-400">${days >= 0 ? days : 0}</span>
+                            <span class="text-xs text-gray-400">Hari tersisa (${cd.date})</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderNotes() {
+            const routineList = document.getElementById('routineList');
+            if(routineList) {
+                routineList.innerHTML = (state.routines || []).map(r => `
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-gray-900/60 border border-gray-800">
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" ${r.done ? 'checked' : ''} onchange="toggleRoutine('${r.id}')" class="rounded border-gray-700 bg-gray-800 text-purple-600 focus:ring-0">
+                            <span class="text-xs ${r.done ? 'line-through text-gray-500' : 'text-gray-200'}">${r.text}</span>
+                        </div>
+                        <button onclick="deleteLog('routines', '${r.id}')" class="text-gray-500 hover:text-rose-400">×</button>
+                    </div>
+                `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada rutinitas.</p>`;
+            }
+
+            const generalNotesInput = document.getElementById('generalNotesInput');
+            if(generalNotesInput) generalNotesInput.value = state.generalNotes || '';
+        }
+
+        function renderCashflow() {
+            const balCash = document.getElementById('balance-cash');
+            if(balCash) balCash.innerText = `Rp ${Number(state.cashBalance).toLocaleString('id-ID')}`;
+            
+            const bankAccountsList = document.getElementById('bankAccountsList');
+            if(bankAccountsList) {
+                bankAccountsList.innerHTML = state.bankAccounts.map(b => `
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-gray-300">${b.name}</span>
+                        <span class="font-bold text-cyan-400">Rp ${Number(b.saldo).toLocaleString('id-ID')}</span>
+                    </div>
+                `).join('');
+            }
+
+            const digitalBanksList = document.getElementById('digitalBanksList');
+            if(digitalBanksList) {
+                digitalBanksList.innerHTML = state.digitalBanks.map(db => `
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-gray-300">${db.name}</span>
+                        <span class="font-bold text-purple-400">Rp ${Number(db.saldo).toLocaleString('id-ID')}</span>
+                    </div>
+                `).join('');
+            }
+
+            const ewalletsList = document.getElementById('ewalletsList');
+            if(ewalletsList) {
+                ewalletsList.innerHTML = state.ewallets.map(ew => `
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-gray-300">${ew.name}</span>
+                        <span class="font-bold text-yellow-400">Rp ${Number(ew.saldo).toLocaleString('id-ID')}</span>
+                    </div>
+                `).join('');
+            }
+
+            const cashflowFilterPeriod = document.getElementById('cashflowFilterPeriod');
+            const period = cashflowFilterPeriod ? cashflowFilterPeriod.value : 'bulanan';
             const filteredIncomes = filterByPeriod(state.incomes, period);
             const filteredExpenses = filterByPeriod(state.expenses, period);
 
             const totalInc = filteredIncomes.reduce((a, b) => a + Number(b.nominal), 0);
             const totalExp = filteredExpenses.reduce((a, b) => a + Number(b.nominal), 0);
 
-            document.getElementById('recapIncome').innerText = `Rp ${totalInc.toLocaleString('id-ID')}`;
-            document.getElementById('recapExpense').innerText = `Rp ${totalExp.toLocaleString('id-ID')}`;
+            const recapIncome = document.getElementById('recapIncome');
+            if(recapIncome) recapIncome.innerText = `Rp ${totalInc.toLocaleString('id-ID')}`;
+            const recapExpense = document.getElementById('recapExpense');
+            if(recapExpense) recapExpense.innerText = `Rp ${totalExp.toLocaleString('id-ID')}`;
 
-            document.getElementById('incomeLogList').innerHTML = filteredIncomes.map(inc => `
-                <div class="flex justify-between items-center text-xs p-2.5 rounded-xl bg-gray-900/60 border border-gray-800">
-                    <div>
-                        <span class="text-emerald-400 font-bold">+ Rp ${Number(inc.nominal).toLocaleString('id-ID')}</span>
-                        <span class="text-gray-200 block">${inc.note} (${getAccountName(inc.account)})</span>
-                        <span class="text-[10px] text-gray-500">${inc.date}</span>
+            const incomeLogList = document.getElementById('incomeLogList');
+            if(incomeLogList) {
+                incomeLogList.innerHTML = filteredIncomes.map(inc => `
+                    <div class="flex justify-between items-center text-xs p-2.5 rounded-xl bg-gray-900/60 border border-gray-800">
+                        <div>
+                            <span class="text-emerald-400 font-bold">+ Rp ${Number(inc.nominal).toLocaleString('id-ID')}</span>
+                            <span class="text-gray-200 block">${inc.note} (${getAccountName(inc.account)})</span>
+                            <span class="text-[10px] text-gray-500">${inc.date}</span>
+                        </div>
+                        <button onclick="deleteCashflow('income', '${inc.id}')" class="text-gray-500 hover:text-rose-400">×</button>
                     </div>
-                    <button onclick="deleteCashflow('income', '${inc.id}')" class="text-gray-500 hover:text-rose-400">×</button>
-                </div>
-            `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada pemasukan.</p>`;
+                `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada pemasukan.</p>`;
+            }
 
-            document.getElementById('expenseLogList').innerHTML = filteredExpenses.map(exp => `
-                <div class="flex justify-between items-center text-xs p-2.5 rounded-xl bg-gray-900/60 border border-gray-800">
-                    <div>
-                        <span class="text-rose-400 font-bold">- Rp ${Number(exp.nominal).toLocaleString('id-ID')}</span>
-                        <span class="text-gray-200 block">[${exp.category}] ${exp.note || ''} (${getAccountName(exp.account)})</span>
-                        <span class="text-[10px] text-gray-500">${exp.date}</span>
+            const expenseLogList = document.getElementById('expenseLogList');
+            if(expenseLogList) {
+                expenseLogList.innerHTML = filteredExpenses.map(exp => `
+                    <div class="flex justify-between items-center text-xs p-2.5 rounded-xl bg-gray-900/60 border border-gray-800">
+                        <div>
+                            <span class="text-rose-400 font-bold">- Rp ${Number(exp.nominal).toLocaleString('id-ID')}</span>
+                            <span class="text-gray-200 block">[${exp.category}] ${exp.note || ''} (${getAccountName(exp.account)})</span>
+                            <span class="text-[10px] text-gray-500">${exp.date}</span>
+                        </div>
+                        <button onclick="deleteCashflow('expense', '${exp.id}')" class="text-gray-500 hover:text-rose-400">×</button>
                     </div>
-                    <button onclick="deleteCashflow('expense', '${exp.id}')" class="text-gray-500 hover:text-rose-400">×</button>
-                </div>
-            `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada pengeluaran.</p>`;
+                `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada pengeluaran.</p>`;
+            }
         }
 
         function filterByPeriod(arr, period) {
@@ -886,7 +1186,6 @@
             e.preventDefault();
             const nominal = document.getElementById('incNominal').value;
             const account = document.getElementById('incAccount').value;
-            
             state.incomes.unshift({
                 id: 'inc-' + Date.now(),
                 date: document.getElementById('incDate').value,
@@ -894,7 +1193,6 @@
                 account: account,
                 note: document.getElementById('incNote').value
             });
-
             updateAccountBalance(account, nominal, true);
             closeModal('modalAddIncome');
             saveState();
@@ -908,7 +1206,6 @@
             if(cat === 'Lainnya') {
                 cat = document.getElementById('expCustomCat').value || 'Lainnya';
             }
-
             state.expenses.unshift({
                 id: 'exp-' + Date.now(),
                 date: document.getElementById('expDate').value,
@@ -917,7 +1214,6 @@
                 account: account,
                 note: document.getElementById('expNote').value
             });
-
             updateAccountBalance(account, nominal, false);
             closeModal('modalAddExpense');
             saveState();
@@ -944,6 +1240,113 @@
             saveState();
         }
 
+        function handleJobSubmit(e) {
+            e.preventDefault();
+            state.jobs.unshift({
+                id: 'job-' + Date.now(),
+                company: document.getElementById('jobCompany').value,
+                posisi: document.getElementById('jobPos').value || '-',
+                applyDate: document.getElementById('jobApply').value,
+                kabar: document.getElementById('jobKabar').value,
+                interview: document.getElementById('jobInterview').value || '-',
+                day1: document.getElementById('jobDay1').value || '-',
+                gaji: document.getElementById('jobGaji').value || '-',
+                resign: document.getElementById('jobResign').value || '-'
+            });
+            closeModal('modalJob');
+            saveState();
+        }
+
+        function handleTokenSubmit(e) {
+            e.preventDefault();
+            state.tokenLogs.unshift({
+                id: 't-' + Date.now(),
+                date: document.getElementById('tokenDate').value,
+                nominal: document.getElementById('tokenNominal').value
+            });
+            closeModal('modalToken');
+            saveState();
+        }
+
+        function handleTagihanSubmit(e) {
+            e.preventDefault();
+            state.tagihan.unshift({
+                id: 'tg-' + Date.now(),
+                title: document.getElementById('tagihanTitle').value,
+                amount: document.getElementById('tagihanNominal').value
+            });
+            closeModal('modalTagihan');
+            saveState();
+        }
+
+        function handleHutangSubmit(e) {
+            e.preventDefault();
+            state.hutang.unshift({
+                id: 'h-' + Date.now(),
+                title: document.getElementById('hutangTitle').value,
+                nominal: document.getElementById('hutangNominal').value,
+                date: document.getElementById('hutangDate').value
+            });
+            closeModal('modalHutang');
+            saveState();
+        }
+
+        function handleCountdownSubmit(e) {
+            e.preventDefault();
+            state.countdowns.unshift({
+                id: 'cd-' + Date.now(),
+                title: document.getElementById('cdTitle').value,
+                date: document.getElementById('cdDate').value
+            });
+            closeModal('modalCountdown');
+            saveState();
+        }
+
+        function handleRoutineSubmit(e) {
+            e.preventDefault();
+            state.routines.unshift({
+                id: 'r-' + Date.now(),
+                text: document.getElementById('routineText').value,
+                done: false
+            });
+            closeModal('modalRoutine');
+            saveState();
+        }
+
+        function addBcaPayment() {
+            const today = new Date().toISOString().split('T')[0];
+            state.bcaLogs.unshift({
+                id: 'bca-' + Date.now(),
+                date: today,
+                nominal: 10000
+            });
+            saveState();
+        }
+
+        function toggleRoutine(id) {
+            const r = state.routines.find(x => x.id === id);
+            if (r) {
+                r.done = !r.done;
+                saveState();
+            }
+        }
+
+        function saveGeneralNotes() {
+            state.generalNotes = document.getElementById('generalNotesInput').value;
+            saveState();
+            alert('Catatan berhasil disimpan!');
+        }
+
+        function deleteJob(id) {
+            state.jobs = state.jobs.filter(j => j.id !== id);
+            saveState();
+        }
+
+        function deleteLog(key, id) {
+            state[key] = state[key].filter(x => x.id !== id);
+            saveState();
+        }
+
         function deleteCashflow(type, id) {
             if(type === 'income') {
                 const idx = state.incomes.findIndex(x => x.id === id);
@@ -964,8 +1367,10 @@
         function renderHomeOverview() {
             const totalInc = (state.incomes || []).reduce((a,b) => a + Number(b.nominal), 0);
             const totalExp = (state.expenses || []).reduce((a,b) => a + Number(b.nominal), 0);
-            document.getElementById('home-total-income').innerText = `Rp ${totalInc.toLocaleString('id-ID')}`;
-            document.getElementById('home-total-expense').innerText = `Rp ${totalExp.toLocaleString('id-ID')}`;
+            const homeInc = document.getElementById('home-total-income');
+            if(homeInc) homeInc.innerText = `Rp ${totalInc.toLocaleString('id-ID')}`;
+            const homeExp = document.getElementById('home-total-expense');
+            if(homeExp) homeExp.innerText = `Rp ${totalExp.toLocaleString('id-ID')}`;
         }
 
         function renderVehicleStats() {
@@ -974,19 +1379,27 @@
             const sisaBulan = Math.max(0, total - current);
             const sisaBiaya = sisaBulan * 838000;
 
-            document.getElementById('cicilanCurrent').innerText = current;
-            document.getElementById('sisaBulanText').innerText = `${sisaBulan} Bulan`;
-            document.getElementById('sisaBiayaText').innerText = `Rp ${sisaBiaya.toLocaleString('id-ID')}`;
-            document.getElementById('home-cicilan-status').innerText = `${current} / 33 Bulan`;
-            document.getElementById('home-cicilan-sisa').innerText = `Sisa ${sisaBulan} bln | Rp ${sisaBiaya.toLocaleString('id-ID')}`;
+            const cicilanCurrent = document.getElementById('cicilanCurrent');
+            if(cicilanCurrent) cicilanCurrent.innerText = current;
+            const sisaBulanText = document.getElementById('sisaBulanText');
+            if(sisaBulanText) sisaBulanText.innerText = `${sisaBulan} Bulan`;
+            const sisaBiayaText = document.getElementById('sisaBiayaText');
+            if(sisaBiayaText) sisaBiayaText.innerText = `Rp ${sisaBiaya.toLocaleString('id-ID')}`;
+
+            const homeCicilanStatus = document.getElementById('home-cicilan-status');
+            if(homeCicilanStatus) homeCicilanStatus.innerText = `${current} / 33 Bulan`;
+            const homeCicilanSisa = document.getElementById('home-cicilan-sisa');
+            if(homeCicilanSisa) homeCicilanSisa.innerText = `Sisa ${sisaBulan} bln | Rp ${sisaBiaya.toLocaleString('id-ID')}`;
 
             const badge = document.getElementById('cicilanStatusBadge');
-            if (current >= 33) {
-                badge.innerText = "Sudah Lunas";
-                badge.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
-            } else {
-                badge.innerText = "Belum Lunas";
-                badge.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30";
+            if(badge) {
+                if (current >= 33) {
+                    badge.innerText = "Sudah Lunas";
+                    badge.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+                } else {
+                    badge.innerText = "Belum Lunas";
+                    badge.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30";
+                }
             }
         }
 
@@ -1010,25 +1423,43 @@
             const bMonth = filterSum(state.bensinLogs, 'cost', 'month');
             const bYear = filterSum(state.bensinLogs, 'cost', 'year');
 
-            document.getElementById('bensinTotalAll').innerText = `Rp ${bAll.toLocaleString('id-ID')}`;
-            document.getElementById('bensinTotalMonth').innerText = `Rp ${bMonth.toLocaleString('id-ID')}`;
-            document.getElementById('bensinTotalYear').innerText = `Rp ${bYear.toLocaleString('id-ID')}`;
+            const bensinTotalAll = document.getElementById('bensinTotalAll');
+            if(bensinTotalAll) bensinTotalAll.innerText = `Rp ${bAll.toLocaleString('id-ID')}`;
+            const bensinTotalMonth = document.getElementById('bensinTotalMonth');
+            if(bensinTotalMonth) bensinTotalMonth.innerText = `Rp ${bMonth.toLocaleString('id-ID')}`;
+            const bensinTotalYear = document.getElementById('bensinTotalYear');
+            if(bensinTotalYear) bensinTotalYear.innerText = `Rp ${bYear.toLocaleString('id-ID')}`;
 
             const oAll = filterSum(state.oliLogs, 'cost', 'all');
             const oMonth = filterSum(state.oliLogs, 'cost', 'month');
             const oYear = filterSum(state.oliLogs, 'cost', 'year');
 
-            document.getElementById('oliTotalAll').innerText = `Rp ${oAll.toLocaleString('id-ID')}`;
-            document.getElementById('oliTotalMonth').innerText = `Rp ${oMonth.toLocaleString('id-ID')}`;
-            document.getElementById('oliTotalYear').innerText = `Rp ${oYear.toLocaleString('id-ID')}`;
+            const oliTotalAll = document.getElementById('oliTotalAll');
+            if(oliTotalAll) oliTotalAll.innerText = `Rp ${oAll.toLocaleString('id-ID')}`;
+            const oliTotalMonth = document.getElementById('oliTotalMonth');
+            if(oliTotalMonth) oliTotalMonth.innerText = `Rp ${oMonth.toLocaleString('id-ID')}`;
+            const oliTotalYear = document.getElementById('oliTotalYear');
+            if(oliTotalYear) oliTotalYear.innerText = `Rp ${oYear.toLocaleString('id-ID')}`;
 
             const pAll = filterSum(state.parkirLogs, 'cost', 'all');
             const pMonth = filterSum(state.parkirLogs, 'cost', 'month');
             const pYear = filterSum(state.parkirLogs, 'cost', 'year');
 
-            document.getElementById('parkirTotalAll').innerText = `Rp ${pAll.toLocaleString('id-ID')}`;
-            document.getElementById('parkirTotalMonth').innerText = `Rp ${pMonth.toLocaleString('id-ID')}`;
-            document.getElementById('parkirTotalYear').innerText = `Rp ${pYear.toLocaleString('id-ID')}`;
+            const parkirTotalAll = document.getElementById('parkirTotalAll');
+            if(parkirTotalAll) parkirTotalAll.innerText = `Rp ${pAll.toLocaleString('id-ID')}`;
+            const parkirTotalMonth = document.getElementById('parkirTotalMonth');
+            if(parkirTotalMonth) parkirTotalMonth.innerText = `Rp ${pMonth.toLocaleString('id-ID')}`;
+            const parkirTotalYear = document.getElementById('parkirTotalYear');
+            if(parkirTotalYear) parkirTotalYear.innerText = `Rp ${pYear.toLocaleString('id-ID')}`;
+
+            const bCount = document.getElementById('bensinCount');
+            if(bCount) bCount.innerText = state.bensinLogs ? state.bensinLogs.length : 0;
+            const oCount = document.getElementById('oliCount');
+            if(oCount) oCount.innerText = state.oliLogs ? state.oliLogs.length : 0;
+            const pCount = document.getElementById('parkirCount');
+            if(pCount) pCount.innerText = state.parkirLogs ? state.parkirLogs.length : 0;
+            const cCount = document.getElementById('cuciCount');
+            if(cCount) cCount.innerText = state.cuciLogs ? state.cuciLogs.length : 0;
         }
 
         function changeCicilan(val) {
@@ -1069,6 +1500,17 @@
                 cost: 2000
             });
             closeModal('modalParkir');
+            saveState();
+        }
+
+        function handleCuciSubmit(e) {
+            e.preventDefault();
+            state.cuciLogs.unshift({
+                id: 'c-' + Date.now(),
+                date: document.getElementById('cuciDate').value,
+                loc: document.getElementById('cuciLoc').value
+            });
+            closeModal('modalCuci');
             saveState();
         }
 
