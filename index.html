@@ -122,6 +122,9 @@
                 <button onclick="switchTab('home')" id="tab-home" class="nav-btn active px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
                 </button>
+                <button onclick="switchTab('ari')" id="tab-ari" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
+                    <i data-lucide="book-open" class="w-4 h-4"></i> アリ
+                </button>
                 <button onclick="switchTab('cashflow')" id="tab-cashflow" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="wallet-cards" class="w-4 h-4"></i> Keuangan
                 </button>
@@ -290,6 +293,46 @@
                 </div>
             </div>
 
+        </section>
+
+        <!-- ================= アリ (ARI / BELAJAR) TAB ================= -->
+        <section id="sec-ari" class="hidden space-y-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="book-open" class="w-5 h-5 text-sky-400"></i> アリ - Ruang Belajar
+                    </h2>
+                    <p class="text-[11px] sm:text-xs text-gray-400">Rutinitas Belajar & Target Belajar</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- 1. Rutinitas Belajar -->
+                <div class="glass-card rounded-2xl p-4 space-y-3 border border-sky-500/20">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-sky-400"></i> Rutinitas Belajar
+                        </h3>
+                        <button onclick="openModalAddNew('modalStudyRoutine')" class="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs flex items-center gap-1 shadow-lg shadow-sky-600/20">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Tambah
+                        </button>
+                    </div>
+                    <div id="studyRoutineList" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
+                </div>
+
+                <!-- 2. Target Belajar -->
+                <div class="glass-card rounded-2xl p-4 space-y-3 border border-indigo-500/20">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                            <i data-lucide="target" class="w-4 h-4 text-indigo-400"></i> Target Belajar
+                        </h3>
+                        <button onclick="openModalAddNew('modalStudyTarget')" class="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center gap-1 shadow-lg shadow-indigo-600/20">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Tambah Target
+                        </button>
+                    </div>
+                    <div id="studyTargetList" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
+                </div>
+            </div>
         </section>
 
         <!-- ================= KEUANGAN TAB ================= -->
@@ -736,6 +779,10 @@
         <div class="max-w-5xl mx-auto px-1 flex items-center justify-between overflow-x-auto relative py-1 no-scrollbar">
             
             <!-- Sisi Kiri Bottom Nav -->
+            <button onclick="switchTab('ari')" id="bottom-tab-ari" class="bottom-nav-btn">
+                <i data-lucide="book-open" class="w-4 h-4 mb-0.5"></i>
+                <span>アリ</span>
+            </button>
             <button onclick="switchTab('cashflow')" id="bottom-tab-cashflow" class="bottom-nav-btn">
                 <i data-lucide="wallet-cards" class="w-4 h-4 mb-0.5"></i>
                 <span>Keuangan</span>
@@ -752,10 +799,6 @@
                 <i data-lucide="landmark" class="w-4 h-4 mb-0.5"></i>
                 <span>BCA</span>
             </button>
-            <button onclick="switchTab('token')" id="bottom-tab-token" class="bottom-nav-btn">
-                <i data-lucide="zap" class="w-4 h-4 mb-0.5"></i>
-                <span>Token</span>
-            </button>
 
             <!-- TENGAH BOTTOM NAV: TOMBOL HOME -->
             <button onclick="switchTab('home')" id="bottom-tab-home" class="home-center-btn active mx-1">
@@ -764,6 +807,10 @@
             </button>
 
             <!-- Sisi Kanan Bottom Nav -->
+            <button onclick="switchTab('token')" id="bottom-tab-token" class="bottom-nav-btn">
+                <i data-lucide="zap" class="w-4 h-4 mb-0.5"></i>
+                <span>Token</span>
+            </button>
             <button onclick="switchTab('finance')" id="bottom-tab-finance" class="bottom-nav-btn">
                 <i data-lucide="wallet" class="w-4 h-4 mb-0.5"></i>
                 <span>Tagihan</span>
@@ -794,6 +841,43 @@
     </div>
 
     <!-- ================= MODALS ================= -->
+
+    <!-- Modal Tambah/Edit Rutinitas Belajar (アリ) -->
+    <div id="modalStudyRoutine" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
+            <h3 id="modalStudyRoutineTitle" class="text-base font-bold text-white">Tambah Rutinitas Belajar</h3>
+            <form onsubmit="handleStudyRoutineSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editStudyRoutineId">
+                <input type="text" id="studyRoutineText" placeholder="Aktivitas Belajar (misal: Belajar Kanji N3)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalStudyRoutine')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
+                    <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-sky-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Tambah/Edit Target Belajar (アリ) -->
+    <div id="modalStudyTarget" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
+            <h3 id="modalStudyTargetTitle" class="text-base font-bold text-white">Tambah Target Belajar</h3>
+            <form onsubmit="handleStudyTargetSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editStudyTargetId">
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Materi / Nama Target</label>
+                    <input type="text" id="studyTargetTitleInput" placeholder="Contoh: Hafal 100 Kosakata" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                </div>
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Target Selesai Sampai Tanggal</label>
+                    <input type="date" id="studyTargetDateInput" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                </div>
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalStudyTarget')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
+                    <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Modal Edit Pajak Kendaraan -->
     <div id="modalPajak" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
@@ -961,8 +1045,7 @@
             <form onsubmit="handleHutangSubmit(event)" class="space-y-2.5">
                 <input type="hidden" id="editHutangId">
                 <input type="text" id="hutangTitle" placeholder="Keterangan / Kepada" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="text" id="hutangNominal" placeholder="Nominal Rp" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="date" id="hutangDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="text" id="hutangNominal" placeholder="Nominal Rp / Keterangan" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
                     <button type="button" onclick="closeModal('modalHutang')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
                     <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-amber-600 text-white text-xs font-semibold">Simpan</button>
@@ -1221,6 +1304,12 @@
             hutang: [],
             countdowns: [{ id: "cd-1", title: "Tahun Baru 2027", date: "2027-01-01" }],
             routines: [],
+            studyRoutines: [
+                { id: "sr-1", text: "Belajar Bahasa Jepang 30 Menit", done: false }
+            ],
+            studyTargets: [
+                { id: "st-1", title: "Selesai Bab 1 Kanji", date: "2026-12-31" }
+            ],
             textCopier: [
                 { id: "cop-1", title: "Alamat Rumah", content: "Jl. Sayang No. 12, RT 02/RW 05, Cianjur, Jawa Barat 43211" },
                 { id: "cop-2", title: "Rekening BCA", content: "1234567890 a.n. Aris" }
@@ -1243,6 +1332,8 @@
         if(!state.hutang) state.hutang = [];
         if(!state.countdowns) state.countdowns = [];
         if(!state.routines) state.routines = [];
+        if(!state.studyRoutines) state.studyRoutines = [];
+        if(!state.studyTargets) state.studyTargets = [];
         if(!state.textCopier) state.textCopier = defaultData.textCopier;
         if(!state.bensinLogs) state.bensinLogs = [];
         if(!state.oliLogs) state.oliLogs = [];
@@ -1267,7 +1358,7 @@
         }
 
         function switchTab(tabId) {
-            ['home', 'cashflow', 'job', 'vehicle', 'bca', 'token', 'finance', 'countdown', 'notes_free', 'routines_page', 'copier'].forEach(t => {
+            ['home', 'ari', 'cashflow', 'job', 'vehicle', 'bca', 'token', 'finance', 'countdown', 'notes_free', 'routines_page', 'copier'].forEach(t => {
                 const sec = document.getElementById(`sec-${t}`);
                 const tab = document.getElementById(`tab-${t}`);
                 const bTab = document.getElementById(`bottom-tab-${t}`);
@@ -1355,7 +1446,6 @@
                     document.getElementById('modalHutangTitle').innerText = 'Catat Hutang Pribadi';
                     document.getElementById('hutangTitle').value = '';
                     document.getElementById('hutangNominal').value = '';
-                    document.getElementById('hutangDate').value = new Date().toISOString().split('T')[0];
                 }
             }
             if(modalId === 'modalCountdown') {
@@ -1369,6 +1459,19 @@
                 if (!document.getElementById('editRoutineId').value) {
                     document.getElementById('modalRoutineTitle').innerText = 'Tambah Rutinitas Harian';
                     document.getElementById('routineText').value = '';
+                }
+            }
+            if(modalId === 'modalStudyRoutine') {
+                if (!document.getElementById('editStudyRoutineId').value) {
+                    document.getElementById('modalStudyRoutineTitle').innerText = 'Tambah Rutinitas Belajar';
+                    document.getElementById('studyRoutineText').value = '';
+                }
+            }
+            if(modalId === 'modalStudyTarget') {
+                if (!document.getElementById('editStudyTargetId').value) {
+                    document.getElementById('modalStudyTargetTitle').innerText = 'Tambah Target Belajar';
+                    document.getElementById('studyTargetTitleInput').value = '';
+                    document.getElementById('studyTargetDateInput').value = new Date().toISOString().split('T')[0];
                 }
             }
             if(modalId === 'modalBensin') {
@@ -1423,6 +1526,8 @@
             if (modalId === 'modalHutang') document.getElementById('editHutangId').value = '';
             if (modalId === 'modalCountdown') document.getElementById('editCdId').value = '';
             if (modalId === 'modalRoutine') document.getElementById('editRoutineId').value = '';
+            if (modalId === 'modalStudyRoutine') document.getElementById('editStudyRoutineId').value = '';
+            if (modalId === 'modalStudyTarget') document.getElementById('editStudyTargetId').value = '';
             if (modalId === 'modalBensin') document.getElementById('editBensinId').value = '';
             if (modalId === 'modalOli') document.getElementById('editOliId').value = '';
             if (modalId === 'modalParkir') document.getElementById('editParkirId').value = '';
@@ -1437,6 +1542,7 @@
 
         function renderApp() {
             renderHomeOverview();
+            renderAriSection();
             renderJobs();
             renderVehicleStats();
             renderVehicleLogs();
@@ -1448,6 +1554,127 @@
             renderCashflow();
             renderCopier();
             lucide.createIcons();
+        }
+
+        function renderAriSection() {
+            // Render Rutinitas Belajar
+            const studyRoutineList = document.getElementById('studyRoutineList');
+            if (studyRoutineList) {
+                studyRoutineList.innerHTML = (state.studyRoutines || []).map(sr => `
+                    <div class="flex items-center justify-between p-2.5 rounded-xl bg-gray-900/60 border border-gray-800">
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" ${sr.done ? 'checked' : ''} onchange="toggleStudyRoutine('${sr.id}')" class="rounded border-gray-700 bg-gray-800 text-sky-500 focus:ring-0 cursor-pointer">
+                            <span class="text-xs ${sr.done ? 'line-through text-gray-500' : 'text-gray-200'}">${sr.text}</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button onclick="openEditStudyRoutineModal('${sr.id}')" class="text-gray-400 hover:text-sky-400 p-1" title="Edit Rutinitas Belajar">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <button onclick="deleteLog('studyRoutines', '${sr.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus Rutinitas Belajar">
+                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('') || `<p class="text-xs text-gray-500 italic text-center py-4">Belum ada rutinitas belajar.</p>`;
+            }
+
+            // Render Target Belajar
+            const studyTargetList = document.getElementById('studyTargetList');
+            if (studyTargetList) {
+                const now = new Date();
+                studyTargetList.innerHTML = (state.studyTargets || []).map(st => {
+                    const diff = new Date(st.date + "T00:00:00") - now;
+                    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                    return `
+                        <div class="glass-card rounded-xl p-3 flex justify-between items-center border border-gray-800">
+                            <div>
+                                <h4 class="text-xs font-bold text-white">${st.title}</h4>
+                                <p class="text-[11px] text-indigo-400 font-semibold mt-0.5">
+                                    Target: <span class="font-mono text-gray-300">${formatDateIndo(st.date)}</span> 
+                                    <span class="text-[10px] text-gray-400 block">${days >= 0 ? days + ' Hari lagi' : 'Lewat ' + Math.abs(days) + ' Hari'}</span>
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <button onclick="openEditStudyTargetModal('${st.id}')" class="text-gray-400 hover:text-indigo-400 p-1" title="Edit Target Belajar">
+                                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <button onclick="deleteLog('studyTargets', '${st.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus Target Belajar">
+                                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('') || `<p class="text-xs text-gray-500 italic text-center py-4">Belum ada target belajar.</p>`;
+            }
+        }
+
+        function toggleStudyRoutine(id) {
+            const sr = state.studyRoutines.find(x => x.id === id);
+            if (sr) {
+                sr.done = !sr.done;
+                saveState();
+            }
+        }
+
+        function openEditStudyRoutineModal(id) {
+            const sr = state.studyRoutines.find(x => x.id === id);
+            if (!sr) return;
+            document.getElementById('editStudyRoutineId').value = sr.id;
+            document.getElementById('modalStudyRoutineTitle').innerText = 'Edit Rutinitas Belajar';
+            document.getElementById('studyRoutineText').value = sr.text || '';
+            openModal('modalStudyRoutine');
+        }
+
+        function handleStudyRoutineSubmit(e) {
+            e.preventDefault();
+            const editId = document.getElementById('editStudyRoutineId').value;
+            const text = document.getElementById('studyRoutineText').value;
+
+            if (editId) {
+                const sr = state.studyRoutines.find(x => x.id === editId);
+                if (sr) sr.text = text;
+            } else {
+                state.studyRoutines.unshift({
+                    id: 'sr-' + Date.now(),
+                    text,
+                    done: false
+                });
+            }
+            closeModal('modalStudyRoutine');
+            saveState();
+        }
+
+        function openEditStudyTargetModal(id) {
+            const st = state.studyTargets.find(x => x.id === id);
+            if (!st) return;
+            document.getElementById('editStudyTargetId').value = st.id;
+            document.getElementById('modalStudyTargetTitle').innerText = 'Edit Target Belajar';
+            document.getElementById('studyTargetTitleInput').value = st.title || '';
+            document.getElementById('studyTargetDateInput').value = st.date || '';
+            openModal('modalStudyTarget');
+        }
+
+        function handleStudyTargetSubmit(e) {
+            e.preventDefault();
+            const editId = document.getElementById('editStudyTargetId').value;
+            const title = document.getElementById('studyTargetTitleInput').value;
+            const date = document.getElementById('studyTargetDateInput').value;
+
+            if (editId) {
+                const st = state.studyTargets.find(x => x.id === editId);
+                if (st) {
+                    st.title = title;
+                    st.date = date;
+                }
+            } else {
+                state.studyTargets.unshift({
+                    id: 'st-' + Date.now(),
+                    title,
+                    date
+                });
+            }
+            closeModal('modalStudyTarget');
+            saveState();
         }
 
         function renderCopier() {
@@ -1794,7 +2021,7 @@
                     <div class="glass-card rounded-xl p-3 flex justify-between items-center border border-gray-800">
                         <div>
                             <h4 class="text-xs font-bold text-white">${h.title}</h4>
-                            <p class="text-[11px] text-amber-400 font-semibold">${h.nominal} - <span class="text-gray-400 font-mono">${formatDateIndo(h.date)}</span></p>
+                            <p class="text-[11px] text-amber-400 font-semibold">${h.nominal}</p>
                         </div>
                         <div class="flex items-center gap-1">
                             <button onclick="openEditHutangModal('${h.id}')" class="text-gray-400 hover:text-cyan-400 p-1" title="Edit Hutang">
@@ -1826,7 +2053,6 @@
             document.getElementById('modalHutangTitle').innerText = 'Edit Hutang Pribadi';
             document.getElementById('hutangTitle').value = h.title || '';
             document.getElementById('hutangNominal').value = h.nominal || '';
-            document.getElementById('hutangDate').value = h.date || '';
             openModal('modalHutang');
         }
 
@@ -2377,19 +2603,17 @@
             const editId = document.getElementById('editHutangId').value;
             const title = document.getElementById('hutangTitle').value;
             const nominal = document.getElementById('hutangNominal').value;
-            const date = document.getElementById('hutangDate').value;
 
             if(editId) {
                 const h = state.hutang.find(x => x.id === editId);
                 if(h) {
                     h.title = title;
                     h.nominal = nominal;
-                    h.date = date;
                 }
             } else {
                 state.hutang.unshift({
                     id: 'h-' + Date.now(),
-                    title, nominal, date
+                    title, nominal
                 });
             }
             closeModal('modalHutang');
