@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Workspace</title>
+    <title>arisplrhmn - Personal Workspace</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -34,9 +34,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 0.5rem 0.25rem;
+            padding: 0.4rem 0.2rem;
             color: #9ca3af;
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             font-weight: 600;
             transition: all 0.2s ease-in-out;
             flex: 1;
@@ -100,25 +100,37 @@
         <!-- Navigation Tabs (Top Desktop Navigation) -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2 overflow-x-auto pb-2 hidden md:block" id="navContainer">
             <div class="flex items-center gap-2 min-w-max">
-                <button onclick="switchTab('home')" id="tab-home" class="nav-btn active px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
+                <button onclick="switchTab('home')" id="tab-home" class="nav-btn active px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
                 </button>
-                <button onclick="switchTab('cashflow')" id="tab-cashflow" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
+                <button onclick="switchTab('cashflow')" id="tab-cashflow" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="wallet-cards" class="w-4 h-4"></i> Keuangan
                 </button>
-                <button onclick="switchTab('job')" id="tab-job" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
+                <button onclick="switchTab('job')" id="tab-job" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="briefcase" class="w-4 h-4"></i> Cari Kerja
                 </button>
-                <button onclick="switchTab('vehicle')" id="tab-vehicle" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
+                <button onclick="switchTab('vehicle')" id="tab-vehicle" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="bike" class="w-4 h-4"></i> Kendaraan
                 </button>
-                <button onclick="switchTab('notes_free')" id="tab-notes_free" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
+                <button onclick="switchTab('bca')" id="tab-bca" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
+                    <i data-lucide="landmark" class="w-4 h-4"></i> Admin BCA
+                </button>
+                <button onclick="switchTab('token')" id="tab-token" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
+                    <i data-lucide="zap" class="w-4 h-4"></i> Token Listrik
+                </button>
+                <button onclick="switchTab('finance')" id="tab-finance" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
+                    <i data-lucide="wallet" class="w-4 h-4"></i> Tagihan & Hutang
+                </button>
+                <button onclick="switchTab('countdown')" id="tab-countdown" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
+                    <i data-lucide="timer" class="w-4 h-4"></i> Hitung Mundur
+                </button>
+                <button onclick="switchTab('notes_free')" id="tab-notes_free" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="notebook-pen" class="w-4 h-4"></i> NOTE
                 </button>
-                <button onclick="switchTab('routines_page')" id="tab-routines_page" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
+                <button onclick="switchTab('routines_page')" id="tab-routines_page" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="check-square" class="w-4 h-4"></i> Rutinitas
                 </button>
-                <button onclick="switchTab('copier')" id="tab-copier" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
+                <button onclick="switchTab('copier')" id="tab-copier" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="copy" class="w-4 h-4"></i> Salinan Text
                 </button>
             </div>
@@ -183,7 +195,7 @@
             </div>
         </section>
 
-        <!-- ================= KEUANGAN TAB (PEMASUKAN & PENGELUARAN) ================= -->
+        <!-- ================= KEUANGAN TAB ================= -->
         <section id="sec-cashflow" class="hidden space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
@@ -193,10 +205,10 @@
                     <p class="text-xs text-gray-400">Kelola dompet, bank, bank digital, e-wallet, dan transaksi harian/bulanan</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button onclick="openModal('modalAddIncome')" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-600/20">
+                    <button onclick="openModal('modalAddIncome')" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-600/25">
                         <i data-lucide="plus-circle" class="w-4 h-4"></i> + Pemasukan
                     </button>
-                    <button onclick="openModal('modalAddExpense')" class="px-3.5 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-rose-600/20">
+                    <button onclick="openModal('modalAddExpense')" class="px-3.5 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-rose-600/25">
                         <i data-lucide="minus-circle" class="w-4 h-4"></i> + Pengeluaran
                     </button>
                 </div>
@@ -433,6 +445,67 @@
             </div>
         </section>
 
+        <!-- ================= ADMIN BCA TAB ================= -->
+        <section id="sec-bca" class="hidden space-y-6">
+            <div class="glass-card rounded-2xl p-6 border border-blue-500/20 flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-white">Admin Bank BCA</h2>
+                    <p class="text-xs text-gray-400">Biaya Administrasi Rp 10.000 / bulan</p>
+                    <p class="text-xs text-blue-400 font-semibold mt-1">Total Terpotong: <span id="bcaTotalRp">Rp 0</span></p>
+                </div>
+                <button onclick="addBcaPayment()" class="px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center gap-2">+ Bayar Bulan Ini (+1)</button>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+                <h3 class="text-sm font-bold text-white mb-3">Riwayat Potongan Admin BCA</h3>
+                <div id="bcaLog" class="space-y-2"></div>
+            </div>
+        </section>
+
+        <!-- ================= TOKEN LISTRIK TAB ================= -->
+        <section id="sec-token" class="hidden space-y-6">
+            <div class="glass-card rounded-2xl p-6 border border-yellow-500/20 flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-white">Token Listrik PLN</h2>
+                    <p class="text-xs text-gray-400">Riwayat pengisian stroom/token listrik rumah</p>
+                </div>
+                <button onclick="openModal('modalToken')" class="px-4 py-2.5 rounded-xl bg-yellow-600 text-white font-semibold text-xs">+ Catat Isi Token</button>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+                <h3 class="text-sm font-bold text-white mb-3">Riwayat Isi Token</h3>
+                <div id="tokenLog" class="space-y-2"></div>
+            </div>
+        </section>
+
+        <!-- ================= TAGIHAN & HUTANG TAB ================= -->
+        <section id="sec-finance" class="hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-lg font-bold text-white">Catat Tagihan</h2>
+                        <button onclick="openModal('modalTagihan')" class="px-3 py-1.5 rounded-xl bg-rose-600 text-white font-semibold text-xs">+ Tambah Tagihan</button>
+                    </div>
+                    <div id="tagihanList" class="space-y-3"></div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-lg font-bold text-white">Hutang Pribadi</h2>
+                        <button onclick="openModal('modalHutang')" class="px-3 py-1.5 rounded-xl bg-amber-600 text-white font-semibold text-xs">+ Tambah Hutang</button>
+                    </div>
+                    <div id="hutangList" class="space-y-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= HITUNG MUNDUR TAB ================= -->
+        <section id="sec-countdown" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold text-white">Hitung Mundur Acara</h2>
+                <button onclick="openModal('modalCountdown')" class="px-4 py-2 rounded-xl bg-pink-600 text-white font-semibold text-xs">+ Acara Baru</button>
+            </div>
+            <div id="countdownList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </section>
+
         <!-- ================= NOTE TAB ================= -->
         <section id="sec-notes_free" class="hidden space-y-6">
             <div class="glass-card rounded-2xl p-5 space-y-4">
@@ -486,96 +559,54 @@
             <div id="copierList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
-        <!-- Extra Hidden Tabs (Admin BCA, Token, Finance, Countdown) -->
-        <section id="sec-bca" class="hidden space-y-6">
-            <div class="glass-card rounded-2xl p-6 border border-blue-500/20 flex items-center justify-between">
-                <div>
-                    <h2 class="text-xl font-bold text-white">Admin Bank BCA</h2>
-                    <p class="text-xs text-gray-400">Biaya Administrasi Rp 10.000 / bulan</p>
-                    <p class="text-xs text-blue-400 font-semibold mt-1">Total Terpotong: <span id="bcaTotalRp">Rp 0</span></p>
-                </div>
-                <button onclick="addBcaPayment()" class="px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center gap-2">+ Bayar Bulan Ini (+1)</button>
-            </div>
-            <div class="glass-card rounded-2xl p-5">
-                <h3 class="text-sm font-bold text-white mb-3">Riwayat Potongan Admin BCA</h3>
-                <div id="bcaLog" class="space-y-2"></div>
-            </div>
-        </section>
-
-        <section id="sec-token" class="hidden space-y-6">
-            <div class="glass-card rounded-2xl p-6 border border-yellow-500/20 flex items-center justify-between">
-                <div>
-                    <h2 class="text-xl font-bold text-white">Token Listrik PLN</h2>
-                    <p class="text-xs text-gray-400">Riwayat pengisian stroom/token listrik rumah</p>
-                </div>
-                <button onclick="openModal('modalToken')" class="px-4 py-2.5 rounded-xl bg-yellow-600 text-white font-semibold text-xs">+ Catat Isi Token</button>
-            </div>
-            <div class="glass-card rounded-2xl p-5">
-                <h3 class="text-sm font-bold text-white mb-3">Riwayat Isi Token</h3>
-                <div id="tokenLog" class="space-y-2"></div>
-            </div>
-        </section>
-
-        <section id="sec-finance" class="hidden space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-lg font-bold text-white">Catat Tagihan</h2>
-                        <button onclick="openModal('modalTagihan')" class="px-3 py-1.5 rounded-xl bg-rose-600 text-white font-semibold text-xs">+ Tambah Tagihan</button>
-                    </div>
-                    <div id="tagihanList" class="space-y-3"></div>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-lg font-bold text-white">Hutang Pribadi</h2>
-                        <button onclick="openModal('modalHutang')" class="px-3 py-1.5 rounded-xl bg-amber-600 text-white font-semibold text-xs">+ Tambah Hutang</button>
-                    </div>
-                    <div id="hutangList" class="space-y-3"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="sec-countdown" class="hidden space-y-6">
-            <div class="flex items-center justify-between">
-                <h2 class="text-xl font-bold text-white">Hitung Mundur Acara</h2>
-                <button onclick="openModal('modalCountdown')" class="px-4 py-2 rounded-xl bg-pink-600 text-white font-semibold text-xs">+ Acara Baru</button>
-            </div>
-            <div id="countdownList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-        </section>
-
     </main>
 
     <!-- ================= FIXED BOTTOM NAVIGATION BAR ================= -->
-    <nav class="fixed bottom-0 inset-x-0 z-50 glass-card bg-gray-950/90 border-t border-gray-800/80 backdrop-blur-lg">
-        <div class="max-w-md mx-auto px-1 flex items-center justify-between">
+    <nav class="fixed bottom-0 inset-x-0 z-50 glass-card bg-gray-950/95 border-t border-gray-800/80 backdrop-blur-lg">
+        <div class="max-w-4xl mx-auto px-1 flex items-center justify-between overflow-x-auto">
             <button onclick="switchTab('home')" id="bottom-tab-home" class="bottom-nav-btn active">
-                <i data-lucide="layout-dashboard" class="w-5 h-5 mb-0.5"></i>
-                <span>Dashboard</span>
+                <i data-lucide="layout-dashboard" class="w-4 h-4 mb-0.5"></i>
+                <span>Home</span>
             </button>
             <button onclick="switchTab('cashflow')" id="bottom-tab-cashflow" class="bottom-nav-btn">
-                <i data-lucide="wallet-cards" class="w-5 h-5 mb-0.5"></i>
+                <i data-lucide="wallet-cards" class="w-4 h-4 mb-0.5"></i>
                 <span>Keuangan</span>
             </button>
             <button onclick="switchTab('job')" id="bottom-tab-job" class="bottom-nav-btn">
-                <i data-lucide="briefcase" class="w-5 h-5 mb-0.5"></i>
+                <i data-lucide="briefcase" class="w-4 h-4 mb-0.5"></i>
                 <span>Cari Kerja</span>
             </button>
             <button onclick="switchTab('vehicle')" id="bottom-tab-vehicle" class="bottom-nav-btn">
-                <i data-lucide="bike" class="w-5 h-5 mb-0.5"></i>
+                <i data-lucide="bike" class="w-4 h-4 mb-0.5"></i>
                 <span>Kendaraan</span>
             </button>
+            <button onclick="switchTab('bca')" id="bottom-tab-bca" class="bottom-nav-btn">
+                <i data-lucide="landmark" class="w-4 h-4 mb-0.5"></i>
+                <span>Admin BCA</span>
+            </button>
+            <button onclick="switchTab('token')" id="bottom-tab-token" class="bottom-nav-btn">
+                <i data-lucide="zap" class="w-4 h-4 mb-0.5"></i>
+                <span>Token</span>
+            </button>
+            <button onclick="switchTab('finance')" id="bottom-tab-finance" class="bottom-nav-btn">
+                <i data-lucide="wallet" class="w-4 h-4 mb-0.5"></i>
+                <span>Tagihan</span>
+            </button>
+            <button onclick="switchTab('countdown')" id="bottom-tab-countdown" class="bottom-nav-btn">
+                <i data-lucide="timer" class="w-4 h-4 mb-0.5"></i>
+                <span>Countdown</span>
+            </button>
             <button onclick="switchTab('notes_free')" id="bottom-tab-notes_free" class="bottom-nav-btn">
-                <i data-lucide="notebook-pen" class="w-5 h-5 mb-0.5"></i>
+                <i data-lucide="notebook-pen" class="w-4 h-4 mb-0.5"></i>
                 <span>NOTE</span>
             </button>
             <button onclick="switchTab('routines_page')" id="bottom-tab-routines_page" class="bottom-nav-btn">
-                <i data-lucide="check-square" class="w-5 h-5 mb-0.5"></i>
+                <i data-lucide="check-square" class="w-4 h-4 mb-0.5"></i>
                 <span>Rutinitas</span>
             </button>
             <button onclick="switchTab('copier')" id="bottom-tab-copier" class="bottom-nav-btn">
-                <i data-lucide="copy" class="w-5 h-5 mb-0.5"></i>
-                <span>Salinan Text</span>
+                <i data-lucide="copy" class="w-4 h-4 mb-0.5"></i>
+                <span>Salin Teks</span>
             </button>
         </div>
     </nav>
@@ -929,7 +960,7 @@
         }
 
         function switchTab(tabId) {
-            ['home', 'cashflow', 'job', 'vehicle', 'notes_free', 'routines_page', 'copier', 'bca', 'token', 'finance', 'countdown'].forEach(t => {
+            ['home', 'cashflow', 'job', 'vehicle', 'bca', 'token', 'finance', 'countdown', 'notes_free', 'routines_page', 'copier'].forEach(t => {
                 const sec = document.getElementById(`sec-${t}`);
                 const tab = document.getElementById(`tab-${t}`);
                 const bTab = document.getElementById(`bottom-tab-${t}`);
