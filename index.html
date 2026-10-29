@@ -73,15 +73,10 @@
                         <p class="text-xs text-gray-400">Personal Dashboard & Activity Log</p>
                     </div>
                 </div>
-
-                <!-- Mobile menu toggle -->
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
             </div>
 
             <!-- Export / Import buttons -->
-            <div class="hidden md:flex items-center gap-2">
+            <div class="flex items-center gap-2">
                 <button onclick="exportJSON()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-800 hover:bg-gray-700 text-cyan-400 border border-cyan-500/30 flex items-center gap-1.5 transition">
                     <i data-lucide="download" class="w-3.5 h-3.5"></i> Ekspor projects.json
                 </button>
@@ -92,31 +87,31 @@
             </div>
         </div>
 
-        <!-- Navigation Tabs (Separated Menu) -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2 overflow-x-auto pb-2 scrollbar-none" id="navContainer">
+        <!-- Navigation Tabs -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2 overflow-x-auto pb-2" id="navContainer">
             <div class="flex items-center gap-2 min-w-max">
-                <button onclick="switchTab('home')" id="tab-home" class="nav-btn active px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 hover:border-gray-700 flex items-center gap-2 transition">
+                <button onclick="switchTab('home')" id="tab-home" class="nav-btn active px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
                     <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Home
                 </button>
-                <button onclick="switchTab('job')" id="tab-job" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 hover:border-gray-700 flex items-center gap-2 transition">
+                <button onclick="switchTab('job')" id="tab-job" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
                     <i data-lucide="briefcase" class="w-4 h-4"></i> Cari Kerja
                 </button>
-                <button onclick="switchTab('vehicle')" id="tab-vehicle" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 hover:border-gray-700 flex items-center gap-2 transition">
+                <button onclick="switchTab('vehicle')" id="tab-vehicle" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
                     <i data-lucide="bike" class="w-4 h-4"></i> Kendaraan (Beat)
                 </button>
-                <button onclick="switchTab('bca')" id="tab-bca" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 hover:border-gray-700 flex items-center gap-2 transition">
+                <button onclick="switchTab('bca')" id="tab-bca" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
                     <i data-lucide="landmark" class="w-4 h-4"></i> Admin Bank BCA
                 </button>
-                <button onclick="switchTab('token')" id="tab-token" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 hover:border-gray-700 flex items-center gap-2 transition">
+                <button onclick="switchTab('token')" id="tab-token" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
                     <i data-lucide="zap" class="w-4 h-4"></i> Token Listrik
                 </button>
-                <button onclick="switchTab('finance')" id="tab-finance" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 hover:border-gray-700 flex items-center gap-2 transition">
+                <button onclick="switchTab('finance')" id="tab-finance" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
                     <i data-lucide="wallet" class="w-4 h-4"></i> Hutang & Tagihan
                 </button>
-                <button onclick="switchTab('countdown')" id="tab-countdown" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 hover:border-gray-700 flex items-center gap-2 transition">
+                <button onclick="switchTab('countdown')" id="tab-countdown" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
                     <i data-lucide="timer" class="w-4 h-4"></i> Hitung Mundur
                 </button>
-                <button onclick="switchTab('notes')" id="tab-notes" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 hover:border-gray-700 flex items-center gap-2 transition">
+                <button onclick="switchTab('notes')" id="tab-notes" class="nav-btn px-4 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-2 transition">
                     <i data-lucide="notebook-pen" class="w-4 h-4"></i> Rutinitas & Note
                 </button>
             </div>
@@ -129,12 +124,8 @@
         <!-- ================= HOME TAB ================= -->
         <section id="sec-home" class="space-y-6">
             <div class="glass-card rounded-2xl p-6 border border-cyan-500/20 bg-gradient-to-r from-cyan-950/20 to-purple-950/20">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold text-white mb-1">Selamat Datang, arisplrhmn 👋</h2>
-                        <p class="text-sm text-gray-400">Ringkasan aktivitas, catatan kendaraan, dan kondisi keuangan kamu hari ini.</p>
-                    </div>
-                </div>
+                <h2 class="text-2xl font-bold text-white mb-1">Selamat Datang, arisplrhmn 👋</h2>
+                <p class="text-sm text-gray-400">Ringkasan aktivitas, catatan kendaraan, dan kondisi keuangan kamu hari ini.</p>
             </div>
 
             <!-- Stats Overview Grid -->
@@ -142,9 +133,9 @@
                 <div class="glass-card rounded-xl p-5 border-l-4 border-l-cyan-500">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Cicilan Beat</p>
+                            <p class="text-xs font-semibold text-gray-400 uppercase">Cicilan Beat</p>
                             <h3 class="text-xl font-bold text-white mt-1" id="home-cicilan-status">12 / 33 Bulan</h3>
-                            <p class="text-xs text-cyan-400 mt-1">Rp 838.000 / bln</p>
+                            <p class="text-xs text-cyan-400 mt-1" id="home-cicilan-sisa">Sisa 21 bln | Rp 17.598.000</p>
                         </div>
                         <div class="p-2.5 rounded-lg bg-cyan-500/10 text-cyan-400">
                             <i data-lucide="credit-card" class="w-5 h-5"></i>
@@ -155,7 +146,7 @@
                 <div class="glass-card rounded-xl p-5 border-l-4 border-l-purple-500">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Total Lamaran Kerja</p>
+                            <p class="text-xs font-semibold text-gray-400 uppercase">Total Lamaran Kerja</p>
                             <h3 class="text-xl font-bold text-white mt-1" id="home-jobs-count">0 Perusahaan</h3>
                             <p class="text-xs text-purple-400 mt-1">Status Terdaftar</p>
                         </div>
@@ -168,7 +159,7 @@
                 <div class="glass-card rounded-xl p-5 border-l-4 border-l-blue-500">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Admin BCA Terbayar</p>
+                            <p class="text-xs font-semibold text-gray-400 uppercase">Admin BCA Terbayar</p>
                             <h3 class="text-xl font-bold text-white mt-1" id="home-bca-count">0x</h3>
                             <p class="text-xs text-blue-400 mt-1" id="home-bca-total">Total: Rp 0</p>
                         </div>
@@ -181,7 +172,7 @@
                 <div class="glass-card rounded-xl p-5 border-l-4 border-l-yellow-500">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Token Listrik PLN</p>
+                            <p class="text-xs font-semibold text-gray-400 uppercase">Token Listrik PLN</p>
                             <h3 class="text-xl font-bold text-white mt-1" id="home-token-count">0x Isi</h3>
                             <p class="text-xs text-yellow-400 mt-1">Riwayat Pengisian</p>
                         </div>
@@ -190,34 +181,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Quick Jump Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-                <button onclick="switchTab('job')" class="glass-card glass-card-hover p-4 rounded-xl text-center flex flex-col items-center justify-center gap-2">
-                    <i data-lucide="briefcase" class="w-6 h-6 text-cyan-400"></i>
-                    <span class="text-xs font-semibold text-gray-300">Cari Kerja</span>
-                </button>
-                <button onclick="switchTab('vehicle')" class="glass-card glass-card-hover p-4 rounded-xl text-center flex flex-col items-center justify-center gap-2">
-                    <i data-lucide="bike" class="w-6 h-6 text-purple-400"></i>
-                    <span class="text-xs font-semibold text-gray-300">Kendaraan</span>
-                </button>
-                <button onclick="switchTab('bca')" class="glass-card glass-card-hover p-4 rounded-xl text-center flex flex-col items-center justify-center gap-2">
-                    <i data-lucide="landmark" class="w-6 h-6 text-blue-400"></i>
-                    <span class="text-xs font-semibold text-gray-300">Admin BCA</span>
-                </button>
-                <button onclick="switchTab('token')" class="glass-card glass-card-hover p-4 rounded-xl text-center flex flex-col items-center justify-center gap-2">
-                    <i data-lucide="zap" class="w-6 h-6 text-yellow-400"></i>
-                    <span class="text-xs font-semibold text-gray-300">Token PLN</span>
-                </button>
-                <button onclick="switchTab('finance')" class="glass-card glass-card-hover p-4 rounded-xl text-center flex flex-col items-center justify-center gap-2">
-                    <i data-lucide="wallet" class="w-6 h-6 text-emerald-400"></i>
-                    <span class="text-xs font-semibold text-gray-300">Hutang & Tagihan</span>
-                </button>
-                <button onclick="switchTab('countdown')" class="glass-card glass-card-hover p-4 rounded-xl text-center flex flex-col items-center justify-center gap-2">
-                    <i data-lucide="timer" class="w-6 h-6 text-pink-400"></i>
-                    <span class="text-xs font-semibold text-gray-300">Hitung Mundur</span>
-                </button>
             </div>
         </section>
 
@@ -230,14 +193,12 @@
                     </h2>
                     <p class="text-xs text-gray-400">Daftar riwayat aplikasi lamaran pekerjaan</p>
                 </div>
-                <button onclick="openModal('modalJob')" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs flex items-center gap-2 transition shadow-lg shadow-cyan-600/20">
+                <button onclick="openModal('modalJob')" class="px-4 py-2 rounded-xl bg-cyan-600 text-white font-semibold text-xs flex items-center gap-2">
                     <i data-lucide="plus" class="w-4 h-4"></i> Tambah Lamaran
                 </button>
             </div>
 
-            <div id="jobList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Job Cards Rendered dynamically -->
-            </div>
+            <div id="jobList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
         <!-- ================= KENDARAAN TAB ================= -->
@@ -250,22 +211,39 @@
             </div>
 
             <!-- Cicilan Beat Card -->
-            <div class="glass-card rounded-2xl p-6 border-l-4 border-l-purple-500">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-l-purple-500 space-y-4">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
-                            Cicilan Motor Beat
-                        </span>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                                Cicilan Motor Beat
+                            </span>
+                            <span id="cicilanStatusBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                                Belum Lunas
+                            </span>
+                        </div>
                         <h3 class="text-2xl font-black text-white mt-2">Rp 838.000 <span class="text-sm font-normal text-gray-400">/ Bulan</span></h3>
                         <p class="text-xs text-gray-400 mt-1">Desember 2025 - November 2026 (Angsuran Ke <span id="cicilanCurrent" class="text-purple-400 font-bold">12</span> / 33)</p>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button onclick="changeCicilan(-1)" class="px-3 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold border border-gray-700">
+                        <button onclick="changeCicilan(-1)" class="px-3 py-2 rounded-xl bg-gray-800 text-white text-xs font-semibold border border-gray-700">
                             - Bulan
                         </button>
-                        <button onclick="changeCicilan(1)" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-lg shadow-purple-600/20">
+                        <button onclick="changeCicilan(1)" class="px-4 py-2 rounded-xl bg-purple-600 text-white text-xs font-semibold">
                             + Bayar Bulan Ini
                         </button>
+                    </div>
+                </div>
+
+                <!-- Breakdown Sisa Bulan & Sisa Biaya -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-gray-800">
+                    <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
+                        <span class="text-xs text-gray-400">Sisa Bulan Belum Terbayar:</span>
+                        <span class="text-sm font-bold text-amber-400" id="sisaBulanText">21 Bulan</span>
+                    </div>
+                    <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
+                        <span class="text-xs text-gray-400">Total Sisa Harus Dibayar:</span>
+                        <span class="text-sm font-bold text-rose-400" id="sisaBiayaText">Rp 17.598.000</span>
                     </div>
                 </div>
             </div>
@@ -274,59 +252,95 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 
                 <!-- Bensin -->
-                <div class="glass-card rounded-2xl p-5 border border-gray-800">
-                    <div class="flex justify-between items-center mb-4">
+                <div class="glass-card rounded-2xl p-5 border border-gray-800 space-y-4">
+                    <div class="flex justify-between items-center">
                         <div class="flex items-center gap-2">
-                            <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400">
-                                <i data-lucide="fuel" class="w-5 h-5"></i>
-                            </div>
+                            <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400"><i data-lucide="fuel" class="w-5 h-5"></i></div>
                             <div>
                                 <h3 class="text-sm font-bold text-white">Isi Bensin Pertalite</h3>
                                 <p class="text-xs text-gray-400">Sudah <span id="bensinCount" class="text-amber-400 font-bold">0</span>x isi</p>
                             </div>
                         </div>
-                        <button onclick="openModal('modalBensin')" class="px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-semibold border border-amber-500/30">
-                            + Catat Isi
-                        </button>
+                        <button onclick="openModal('modalBensin')" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 text-xs font-semibold border border-amber-500/30">+ Catat Isi</button>
                     </div>
+
+                    <div class="grid grid-cols-3 gap-2 text-center text-xs bg-gray-900/80 p-2.5 rounded-xl border border-gray-800">
+                        <div>
+                            <span class="text-[10px] text-gray-400 block">Total Semua</span>
+                            <span id="bensinTotalAll" class="font-bold text-amber-400">Rp 0</span>
+                        </div>
+                        <div class="border-x border-gray-800">
+                            <span class="text-[10px] text-gray-400 block">Bulan Ini</span>
+                            <span id="bensinTotalMonth" class="font-bold text-white">Rp 0</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 block">Tahun Ini</span>
+                            <span id="bensinTotalYear" class="font-bold text-white">Rp 0</span>
+                        </div>
+                    </div>
+
                     <div id="bensinLog" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
                 </div>
 
                 <!-- Ganti Oli -->
-                <div class="glass-card rounded-2xl p-5 border border-gray-800">
-                    <div class="flex justify-between items-center mb-4">
+                <div class="glass-card rounded-2xl p-5 border border-gray-800 space-y-4">
+                    <div class="flex justify-between items-center">
                         <div class="flex items-center gap-2">
-                            <div class="p-2 rounded-lg bg-cyan-500/10 text-cyan-400">
-                                <i data-lucide="droplet" class="w-5 h-5"></i>
-                            </div>
+                            <div class="p-2 rounded-lg bg-cyan-500/10 text-cyan-400"><i data-lucide="droplet" class="w-5 h-5"></i></div>
                             <div>
                                 <h3 class="text-sm font-bold text-white">Ganti Oli MPX2 (0.65ML)</h3>
                                 <p class="text-xs text-gray-400">Sudah <span id="oliCount" class="text-cyan-400 font-bold">0</span>x ganti</p>
                             </div>
                         </div>
-                        <button onclick="openModal('modalOli')" class="px-3 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-xs font-semibold border border-cyan-500/30">
-                            + Catat Oli
-                        </button>
+                        <button onclick="openModal('modalOli')" class="px-3 py-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 text-xs font-semibold border border-cyan-500/30">+ Catat Oli</button>
                     </div>
+
+                    <div class="grid grid-cols-3 gap-2 text-center text-xs bg-gray-900/80 p-2.5 rounded-xl border border-gray-800">
+                        <div>
+                            <span class="text-[10px] text-gray-400 block">Total Semua</span>
+                            <span id="oliTotalAll" class="font-bold text-cyan-400">Rp 0</span>
+                        </div>
+                        <div class="border-x border-gray-800">
+                            <span class="text-[10px] text-gray-400 block">Bulan Ini</span>
+                            <span id="oliTotalMonth" class="font-bold text-white">Rp 0</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 block">Tahun Ini</span>
+                            <span id="oliTotalYear" class="font-bold text-white">Rp 0</span>
+                        </div>
+                    </div>
+
                     <div id="oliLog" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
                 </div>
 
                 <!-- Parkir -->
-                <div class="glass-card rounded-2xl p-5 border border-gray-800">
-                    <div class="flex justify-between items-center mb-4">
+                <div class="glass-card rounded-2xl p-5 border border-gray-800 space-y-4">
+                    <div class="flex justify-between items-center">
                         <div class="flex items-center gap-2">
-                            <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
-                                <i data-lucide="parking-square" class="w-5 h-5"></i>
-                            </div>
+                            <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400"><i data-lucide="parking-square" class="w-5 h-5"></i></div>
                             <div>
                                 <h3 class="text-sm font-bold text-white">Bayar Parkir (Rp 2.000)</h3>
                                 <p class="text-xs text-gray-400">Sudah <span id="parkirCount" class="text-emerald-400 font-bold">0</span>x parkir</p>
                             </div>
                         </div>
-                        <button onclick="openModal('modalParkir')" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-xs font-semibold border border-emerald-500/30">
-                            + Catat Parkir
-                        </button>
+                        <button onclick="openModal('modalParkir')" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 text-xs font-semibold border border-emerald-500/30">+ Catat Parkir</button>
                     </div>
+
+                    <div class="grid grid-cols-3 gap-2 text-center text-xs bg-gray-900/80 p-2.5 rounded-xl border border-gray-800">
+                        <div>
+                            <span class="text-[10px] text-gray-400 block">Total Semua</span>
+                            <span id="parkirTotalAll" class="font-bold text-emerald-400">Rp 0</span>
+                        </div>
+                        <div class="border-x border-gray-800">
+                            <span class="text-[10px] text-gray-400 block">Bulan Ini</span>
+                            <span id="parkirTotalMonth" class="font-bold text-white">Rp 0</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 block">Tahun Ini</span>
+                            <span id="parkirTotalYear" class="font-bold text-white">Rp 0</span>
+                        </div>
+                    </div>
+
                     <div id="parkirLog" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
                 </div>
 
@@ -334,17 +348,13 @@
                 <div class="glass-card rounded-2xl p-5 border border-gray-800">
                     <div class="flex justify-between items-center mb-4">
                         <div class="flex items-center gap-2">
-                            <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400">
-                                <i data-lucide="sparkles" class="w-5 h-5"></i>
-                            </div>
+                            <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
                             <div>
                                 <h3 class="text-sm font-bold text-white">Cuci Motor</h3>
                                 <p class="text-xs text-gray-400">Sudah <span id="cuciCount" class="text-blue-400 font-bold">0</span>x cuci</p>
                             </div>
                         </div>
-                        <button onclick="openModal('modalCuci')" class="px-3 py-1.5 rounded-lg bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 text-xs font-semibold border border-blue-500/30">
-                            + Catat Cuci
-                        </button>
+                        <button onclick="openModal('modalCuci')" class="px-3 py-1.5 rounded-lg bg-blue-500/20 text-blue-300 text-xs font-semibold border border-blue-500/30">+ Catat Cuci</button>
                     </div>
                     <div id="cuciLog" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
                 </div>
@@ -354,31 +364,14 @@
 
         <!-- ================= ADMIN BCA TAB ================= -->
         <section id="sec-bca" class="hidden space-y-6">
-            <div class="glass-card rounded-2xl p-6 border border-blue-500/20">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center border border-blue-500/30">
-                            <i data-lucide="landmark" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-xl font-bold text-white">Admin Bank BCA</h2>
-                            <p class="text-xs text-gray-400">Biaya Administrasi Rp 10.000 / bulan</p>
-                            <p class="text-xs text-blue-400 font-semibold mt-1">Total Terpotong: <span id="bcaTotalRp">Rp 0</span></p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="text-right">
-                            <span id="bcaCountText" class="text-2xl font-black text-white">0x</span>
-                            <span class="text-xs text-gray-400 block">Total Pembayaran</span>
-                        </div>
-                        <button onclick="addBcaPayment()" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs flex items-center gap-2 shadow-lg shadow-blue-600/20">
-                            <i data-lucide="plus" class="w-4 h-4"></i> Bayar Bulan Ini (+1)
-                        </button>
-                    </div>
+            <div class="glass-card rounded-2xl p-6 border border-blue-500/20 flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-white">Admin Bank BCA</h2>
+                    <p class="text-xs text-gray-400">Biaya Administrasi Rp 10.000 / bulan</p>
+                    <p class="text-xs text-blue-400 font-semibold mt-1">Total Terpotong: <span id="bcaTotalRp">Rp 0</span></p>
                 </div>
+                <button onclick="addBcaPayment()" class="px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center gap-2">+ Bayar Bulan Ini (+1)</button>
             </div>
-
-            <!-- BCA History Log -->
             <div class="glass-card rounded-2xl p-5">
                 <h3 class="text-sm font-bold text-white mb-3">Riwayat Potongan Admin BCA</h3>
                 <div id="bcaLog" class="space-y-2"></div>
@@ -387,30 +380,13 @@
 
         <!-- ================= TOKEN LISTRIK TAB ================= -->
         <section id="sec-token" class="hidden space-y-6">
-            <div class="glass-card rounded-2xl p-6 border border-yellow-500/20">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-yellow-600/20 text-yellow-400 flex items-center justify-center border border-yellow-500/30">
-                            <i data-lucide="zap" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-xl font-bold text-white">Token Listrik PLN</h2>
-                            <p class="text-xs text-gray-400">Riwayat pengisian stroom/token listrik rumah</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="text-right">
-                            <span id="tokenCountText" class="text-2xl font-black text-white">0x</span>
-                            <span class="text-xs text-gray-400 block">Total Isi</span>
-                        </div>
-                        <button onclick="openModal('modalToken')" class="px-4 py-2.5 rounded-xl bg-yellow-600 hover:bg-yellow-500 text-white font-semibold text-xs flex items-center gap-2 shadow-lg shadow-yellow-600/20">
-                            <i data-lucide="plus" class="w-4 h-4"></i> Catat Isi Token
-                        </button>
-                    </div>
+            <div class="glass-card rounded-2xl p-6 border border-yellow-500/20 flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-white">Token Listrik PLN</h2>
+                    <p class="text-xs text-gray-400">Riwayat pengisian stroom/token listrik rumah</p>
                 </div>
+                <button onclick="openModal('modalToken')" class="px-4 py-2.5 rounded-xl bg-yellow-600 text-white font-semibold text-xs">+ Catat Isi Token</button>
             </div>
-
-            <!-- Token History Log -->
             <div class="glass-card rounded-2xl p-5">
                 <h3 class="text-sm font-bold text-white mb-3">Riwayat Isi Token</h3>
                 <div id="tokenLog" class="space-y-2"></div>
@@ -420,167 +396,87 @@
         <!-- ================= HUTANG & TAGIHAN TAB ================= -->
         <section id="sec-finance" class="hidden space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <!-- Tagihan -->
                 <div class="space-y-4">
                     <div class="flex items-center justify-between">
-                        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-                            <i data-lucide="receipt" class="w-5 h-5 text-rose-400"></i> Catat Tagihan
-                        </h2>
-                        <button onclick="openModal('modalTagihan')" class="px-3 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs flex items-center gap-1.5">
-                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Tambah Tagihan
-                        </button>
+                        <h2 class="text-lg font-bold text-white">Catat Tagihan</h2>
+                        <button onclick="openModal('modalTagihan')" class="px-3 py-1.5 rounded-xl bg-rose-600 text-white font-semibold text-xs">+ Tambah Tagihan</button>
                     </div>
                     <div id="tagihanList" class="space-y-3"></div>
                 </div>
 
-                <!-- Hutang Pribadi -->
                 <div class="space-y-4">
                     <div class="flex items-center justify-between">
-                        <h2 class="text-lg font-bold text-white flex items-center gap-2">
-                            <i data-lucide="hand-coins" class="w-5 h-5 text-amber-400"></i> Hutang Pribadi
-                        </h2>
-                        <button onclick="openModal('modalHutang')" class="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs flex items-center gap-1.5">
-                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Tambah Hutang
-                        </button>
+                        <h2 class="text-lg font-bold text-white">Hutang Pribadi</h2>
+                        <button onclick="openModal('modalHutang')" class="px-3 py-1.5 rounded-xl bg-amber-600 text-white font-semibold text-xs">+ Tambah Hutang</button>
                     </div>
                     <div id="hutangList" class="space-y-3"></div>
                 </div>
-
             </div>
         </section>
 
         <!-- ================= HITUNG MUNDUR TAB ================= -->
         <section id="sec-countdown" class="hidden space-y-6">
             <div class="flex items-center justify-between">
-                <div>
-                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
-                        <i data-lucide="timer" class="w-5 h-5 text-pink-400"></i> Hitung Mundur Tahun / Acara
-                    </h2>
-                    <p class="text-xs text-gray-400">Pengingat waktu tersisa menuju tanggal acara penting</p>
-                </div>
-                <button onclick="openModal('modalCountdown')" class="px-4 py-2 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-semibold text-xs flex items-center gap-2 transition">
-                    <i data-lucide="plus" class="w-4 h-4"></i> Acara Baru
-                </button>
+                <h2 class="text-xl font-bold text-white">Hitung Mundur Acara</h2>
+                <button onclick="openModal('modalCountdown')" class="px-4 py-2 rounded-xl bg-pink-600 text-white font-semibold text-xs">+ Acara Baru</button>
             </div>
-
             <div id="countdownList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
         <!-- ================= RUTINITAS & NOTE TAB ================= -->
         <section id="sec-notes" class="hidden space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                
-                <!-- Daily Routines -->
                 <div class="glass-card rounded-2xl p-5 space-y-4">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-base font-bold text-white flex items-center gap-2">
-                            <i data-lucide="list-checks" class="w-5 h-5 text-purple-400"></i> Rutinitas Sehari-hari
-                        </h3>
-                        <button onclick="openModal('modalRoutine')" class="text-xs text-purple-400 hover:underline flex items-center gap-1">
-                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Tambah
-                        </button>
+                        <h3 class="text-base font-bold text-white">Rutinitas Sehari-hari</h3>
+                        <button onclick="openModal('modalRoutine')" class="text-xs text-purple-400 hover:underline">+ Tambah</button>
                     </div>
                     <div id="routineList" class="space-y-2"></div>
                 </div>
 
-                <!-- Personal Notes -->
                 <div class="glass-card rounded-2xl p-5 space-y-4">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-base font-bold text-white flex items-center gap-2">
-                            <i data-lucide="notebook-pen" class="w-5 h-5 text-cyan-400"></i> Catatan Bebas
-                        </h3>
-                        <button onclick="saveGeneralNotes()" class="px-3 py-1 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold">
-                            Simpan Note
-                        </button>
+                        <h3 class="text-base font-bold text-white">Catatan Bebas</h3>
+                        <button onclick="saveGeneralNotes()" class="px-3 py-1 rounded-lg bg-cyan-600 text-white text-xs font-semibold">Simpan Note</button>
                     </div>
-                    <textarea id="generalNotesInput" rows="10" placeholder="Tulis catatan penting kamu di sini..." class="w-full bg-gray-900/80 border border-gray-800 rounded-xl p-3 text-sm text-gray-200 focus:outline-none focus:border-cyan-500"></textarea>
+                    <textarea id="generalNotesInput" rows="10" placeholder="Tulis catatan penting kamu di sini..." class="w-full bg-gray-900 border border-gray-800 rounded-xl p-3 text-sm text-gray-200 focus:outline-none focus:border-cyan-500"></textarea>
                 </div>
-
             </div>
         </section>
 
     </main>
 
-    <!-- ================= MODALS SECTION (ALWAYS HAS BACK/CANCEL BUTTON) ================= -->
-
-    <!-- Modal Job -->
-    <div id="modalJob" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-md w-full p-6 space-y-4 border border-gray-700">
-            <h3 class="text-lg font-bold text-white">Tambah Catatan Lamaran Kerja</h3>
-            <form onsubmit="handleJobSubmit(event)" class="space-y-3">
-                <input type="text" id="jobCompany" placeholder="Nama Perusahaan (misal: SPPG Sayang 1)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="text" id="jobPos" placeholder="Posisi (misal: Operator Packing)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="grid grid-cols-2 gap-2">
-                    <div>
-                        <label class="text-[10px] text-gray-400 block mb-1">Apply Kerja</label>
-                        <input type="date" id="jobApply" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                    </div>
-                    <div>
-                        <label class="text-[10px] text-gray-400 block mb-1">Ada Kabar?</label>
-                        <select id="jobKabar" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                            <option value="Tidak">Tidak</option>
-                            <option value="Ada">Ada</option>
-                        </select>
-                    </div>
-                </div>
-                <input type="text" id="jobInterview" placeholder="Interview (Tanggal / -)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="text" id="jobDay1" placeholder="Day 1 Kerja (Tanggal / -)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="text" id="jobGaji" placeholder="Gaji Pertama (Keterangan / -)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="text" id="jobResign" placeholder="Resign (Tanggal / -)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalJob')" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold">
-                        Kembali / Tidak Jadi
-                    </button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold">
-                        Simpan
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Bensin -->
+    <!-- Modals (Bensin, Oli, Parkir, dll) -->
     <div id="modalBensin" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
             <h3 class="text-lg font-bold text-white">Catat Isi Bensin Pertalite</h3>
             <form onsubmit="handleBensinSubmit(event)" class="space-y-3">
                 <input type="date" id="bensinDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <input type="text" id="bensinLoc" placeholder="Lokasi SPBU / Pom Bensin" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="number" id="bensinCost" placeholder="Nominal Rp (misal: 25000)" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="number" id="bensinCost" placeholder="Nominal Rp (misal: 25000)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalBensin')" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold">
-                        Kembali / Tidak Jadi
-                    </button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold">
-                        Simpan
-                    </button>
+                    <button type="button" onclick="closeModal('modalBensin')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Kembali / Tidak Jadi</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-amber-600 text-white text-xs font-semibold">Simpan</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal Oli -->
     <div id="modalOli" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
             <h3 class="text-lg font-bold text-white">Catat Ganti Oli MPX2</h3>
             <form onsubmit="handleOliSubmit(event)" class="space-y-3">
                 <input type="date" id="oliDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <input type="text" id="oliKm" placeholder="Kilometer Terakhir (misal: 12.500 KM)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                <input type="number" id="oliCost" placeholder="Biaya Oli Rp (misal: 55000)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalOli')" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold">
-                        Kembali / Tidak Jadi
-                    </button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold">
-                        Simpan
-                    </button>
+                    <button type="button" onclick="closeModal('modalOli')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Kembali / Tidak Jadi</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-cyan-600 text-white text-xs font-semibold">Simpan</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal Parkir -->
     <div id="modalParkir" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
             <h3 class="text-lg font-bold text-white">Catat Bayar Parkir (Rp 2.000)</h3>
@@ -588,191 +484,32 @@
                 <input type="date" id="parkirDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <input type="text" id="parkirLoc" placeholder="Lokasi Parkir" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalParkir')" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold">
-                        Kembali / Tidak Jadi
-                    </button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold">
-                        Simpan
-                    </button>
+                    <button type="button" onclick="closeModal('modalParkir')" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold">Kembali / Tidak Jadi</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold">Simpan</button>
                 </div>
             </form>
         </div>
     </div>
-
-    <!-- Modal Cuci -->
-    <div id="modalCuci" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
-            <h3 class="text-lg font-bold text-white">Catat Cuci Motor</h3>
-            <form onsubmit="handleCuciSubmit(event)" class="space-y-3">
-                <input type="date" id="cuciDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="text" id="cuciLoc" placeholder="Tempat Cuci / Sendiri" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalCuci')" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold">
-                        Kembali / Tidak Jadi
-                    </button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold">
-                        Simpan
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Token -->
-    <div id="modalToken" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
-            <h3 class="text-lg font-bold text-white">Catat Isi Token Listrik</h3>
-            <form onsubmit="handleTokenSubmit(event)" class="space-y-3">
-                <input type="date" id="tokenDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="number" id="tokenNominal" placeholder="Nominal Rp (misal: 50000)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalToken')" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold">
-                        Kembali / Tidak Jadi
-                    </button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-yellow-600 hover:bg-yellow-500 text-white text-xs font-semibold">
-                        Simpan
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Tagihan -->
-    <div id="modalTagihan" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
-            <h3 class="text-lg font-bold text-white">Tambah Catatan Tagihan</h3>
-            <form onsubmit="handleTagihanSubmit(event)" class="space-y-3">
-                <input type="text" id="tagihanTitle" placeholder="Nama Tagihan (misal: Cicilan BRI)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="text" id="tagihanNominal" placeholder="Nominal / Keterangan" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalTagihan')" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold">
-                        Kembali / Tidak Jadi
-                    </button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold">
-                        Simpan
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Hutang -->
-    <div id="modalHutang" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
-            <h3 class="text-lg font-bold text-white">Catat Hutang Pribadi</h3>
-            <form onsubmit="handleHutangSubmit(event)" class="space-y-3">
-                <input type="text" id="hutangTitle" placeholder="Keterangan / Kepada" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="text" id="hutangNominal" placeholder="Nominal Rp" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="date" id="hutangDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalHutang')" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold">
-                        Kembali / Tidak Jadi
-                    </button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold">
-                        Simpan
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Countdown -->
-    <div id="modalCountdown" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
-            <h3 class="text-lg font-bold text-white">Tambah Hitung Mundur Acara</h3>
-            <form onsubmit="handleCountdownSubmit(event)" class="space-y-3">
-                <input type="text" id="cdTitle" placeholder="Nama Acara" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="date" id="cdDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalCountdown')" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold">
-                        Kembali / Tidak Jadi
-                    </button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-pink-600 hover:bg-pink-500 text-white text-xs font-semibold">
-                        Simpan
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Routine -->
-    <div id="modalRoutine" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-sm w-full p-6 space-y-4 border border-gray-700">
-            <h3 class="text-lg font-bold text-white">Tambah Rutinitas Harian</h3>
-            <form onsubmit="handleRoutineSubmit(event)" class="space-y-3">
-                <input type="text" id="routineText" placeholder="Aktivitas Rutinitas" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalRoutine')" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold">
-                        Kembali / Tidak Jadi
-                    </button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold">
-                        Simpan
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
 
     <!-- APP SCRIPT -->
     <script>
-        // Initial Default State
         const defaultData = {
-            cicilanBeat: 12, // 12 / 33
+            cicilanBeat: 12, // Angsuran ke-12 dari total 33
             jobs: [
-                {
-                    id: "job-1",
-                    company: "SPPG Sayang 1 Cianjur",
-                    applyDate: "2026-08-19",
-                    kabar: "Tidak",
-                    interview: "-",
-                    day1: "-",
-                    gaji: "-",
-                    resign: "-"
-                },
-                {
-                    id: "job-2",
-                    company: "ARTIK ICE Cianjur",
-                    applyDate: "2026-09-14",
-                    kabar: "Tidak",
-                    interview: "-",
-                    day1: "-",
-                    gaji: "-",
-                    resign: "-"
-                },
-                {
-                    id: "job-3",
-                    company: "Bilas Wangi Laundry Cianjur [FREELANCE]",
-                    applyDate: "2026-09-27",
-                    kabar: "Ada",
-                    posisi: "Operator Packing Karpet",
-                    interview: "Senin, 28/9/26",
-                    day1: "Senin, 28/9/26",
-                    gaji: "Rabu, 7/10/26 [ 210RB | 1 Hari 70RB ]",
-                    resign: "Kamis, 1/10/26 [3 HARI KERJA]"
-                }
+                { id: "job-1", company: "SPPG Sayang 1 Cianjur", applyDate: "2026-08-19", kabar: "Tidak", interview: "-", day1: "-", gaji: "-", resign: "-" },
+                { id: "job-2", company: "ARTIK ICE Cianjur", applyDate: "2026-09-14", kabar: "Tidak", interview: "-", day1: "-", gaji: "-", resign: "-" },
+                { id: "job-3", company: "Bilas Wangi Laundry Cianjur [FREELANCE]", applyDate: "2026-09-27", kabar: "Ada", posisi: "Operator Packing Karpet", interview: "Senin, 28/9/26", day1: "Senin, 28/9/26", gaji: "Rabu, 7/10/26 [ 210RB | 1 Hari 70RB ]", resign: "Kamis, 1/10/26 [3 HARI KERJA]" }
             ],
             bensinLogs: [],
             oliLogs: [],
             parkirLogs: [],
             cuciLogs: [],
-            bcaLogs: [
-                { id: "bca-1", date: "2026-10-01", nominal: 10000 }
-            ],
+            bcaLogs: [{ id: "bca-1", date: "2026-10-01", nominal: 10000 }],
             tokenLogs: [],
-            tagihan: [
-                { id: "t-1", title: "Cicilan Beat", amount: "Rp 838.000 / bln" },
-                { id: "t-2", title: "Cicilan BRI", amount: "Sesuai Tagihan" }
-            ],
+            tagihan: [{ id: "t-1", title: "Cicilan Beat", amount: "Rp 838.000 / bln" }],
             hutang: [],
-            countdowns: [
-                { id: "cd-1", title: "Tahun Baru 2027", date: "2027-01-01" }
-            ],
-            routines: [
-                { id: "r-1", text: "Bangun Pagi & Rapikan Tempat Tidur", done: false },
-                { id: "r-2", text: "Cek Jadwal & Catatan Harian", done: false },
-                { id: "r-3", text: "Olahraga Ringan / Stretching", done: false }
-            ],
+            countdowns: [{ id: "cd-1", title: "Tahun Baru 2027", date: "2027-01-01" }],
+            routines: [],
             generalNotes: "Catatan Pribadi arisplrhmn."
         };
 
@@ -783,303 +520,91 @@
             renderApp();
         }
 
-        // Tab Navigation
         function switchTab(tabId) {
-            const tabs = ['home', 'job', 'vehicle', 'bca', 'token', 'finance', 'countdown', 'notes'];
-            tabs.forEach(t => {
+            ['home', 'job', 'vehicle', 'bca', 'token', 'finance', 'countdown', 'notes'].forEach(t => {
                 document.getElementById(`sec-${t}`).classList.add('hidden');
                 document.getElementById(`tab-${t}`).classList.remove('active');
             });
-
             document.getElementById(`sec-${tabId}`).classList.remove('hidden');
             document.getElementById(`tab-${tabId}`).classList.add('active');
         }
 
-        // Modals Toggle
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.remove('hidden');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
-        }
-
-        // --- Render Functions ---
+        function openModal(modalId) { document.getElementById(modalId).classList.remove('hidden'); }
+        function closeModal(modalId) { document.getElementById(modalId).classList.add('hidden'); }
 
         function renderApp() {
-            renderHomeStats();
-            renderJobs();
-            renderVehicle();
-            renderBCA();
-            renderToken();
-            renderFinance();
-            renderCountdowns();
-            renderNotes();
+            renderVehicleStats();
+            renderVehicleLogs();
             lucide.createIcons();
         }
 
-        function renderHomeStats() {
-            document.getElementById('home-cicilan-status').innerText = `${state.cicilanBeat || 0} / 33 Bulan`;
-            document.getElementById('home-jobs-count').innerText = `${state.jobs ? state.jobs.length : 0} Perusahaan`;
-            
-            const bcaCount = state.bcaLogs ? state.bcaLogs.length : 0;
-            document.getElementById('home-bca-count').innerText = `${bcaCount}x`;
-            document.getElementById('home-bca-total').innerText = `Total: Rp ${(bcaCount * 10000).toLocaleString('id-ID')}`;
+        function renderVehicleStats() {
+            const current = state.cicilanBeat || 0;
+            const total = 33;
+            const sisaBulan = Math.max(0, total - current);
+            const sisaBiaya = sisaBulan * 838000;
 
-            const tokenCount = state.tokenLogs ? state.tokenLogs.length : 0;
-            document.getElementById('home-token-count').innerText = `${tokenCount}x Isi`;
-        }
+            document.getElementById('cicilanCurrent').innerText = current;
+            document.getElementById('sisaBulanText').innerText = `${sisaBulan} Bulan`;
+            document.getElementById('sisaBiayaText').innerText = `Rp ${sisaBiaya.toLocaleString('id-ID')}`;
+            document.getElementById('home-cicilan-status').innerText = `${current} / 33 Bulan`;
+            document.getElementById('home-cicilan-sisa').innerText = `Sisa ${sisaBulan} bln | Rp ${sisaBiaya.toLocaleString('id-ID')}`;
 
-        function renderJobs() {
-            const container = document.getElementById('jobList');
-            if (!state.jobs || state.jobs.length === 0) {
-                container.innerHTML = `<p class="text-xs text-gray-500 italic col-span-2 text-center py-4">Belum ada catatan lamaran kerja.</p>`;
-                return;
+            const badge = document.getElementById('cicilanStatusBadge');
+            if (current >= 33) {
+                badge.innerText = "Sudah Lunas";
+                badge.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+            } else {
+                badge.innerText = "Belum Lunas";
+                badge.className = "text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30";
             }
-
-            container.innerHTML = state.jobs.map(j => `
-                <div class="glass-card glass-card-hover rounded-2xl p-5 border border-gray-800 space-y-3 relative">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-base font-bold text-white">${j.company}</h3>
-                            <p class="text-xs text-cyan-400 font-medium">Posisi: ${j.posisi || '-'}</p>
-                        </div>
-                        <button onclick="deleteJob('${j.id}')" class="text-gray-500 hover:text-rose-400 p-1">
-                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-y-2 text-xs text-gray-300 border-t border-b border-gray-800/80 py-3">
-                        <div><span class="text-gray-500 block">Apply Kerja:</span> ${j.applyDate || '-'}</div>
-                        <div><span class="text-gray-500 block">Ada Kabar:</span> ${j.kabar || '-'}</div>
-                        <div><span class="text-gray-500 block">Interview:</span> ${j.interview || '-'}</div>
-                        <div><span class="text-gray-500 block">Day 1 Kerja:</span> ${j.day1 || '-'}</div>
-                        <div class="col-span-2"><span class="text-gray-500 block">Gaji Pertama:</span> <span class="text-emerald-400">${j.gaji || '-'}</span></div>
-                        <div class="col-span-2"><span class="text-gray-500 block">Resign:</span> <span class="text-rose-400">${j.resign || '-'}</span></div>
-                    </div>
-                </div>
-            `).join('');
         }
 
-        function renderVehicle() {
-            document.getElementById('cicilanCurrent').innerText = state.cicilanBeat || 0;
-
-            // Bensin
-            document.getElementById('bensinCount').innerText = state.bensinLogs ? state.bensinLogs.length : 0;
-            document.getElementById('bensinLog').innerHTML = (state.bensinLogs || []).map(b => `
-                <div class="flex justify-between items-center text-xs p-2 rounded-lg bg-gray-900/60 border border-gray-800">
-                    <div>
-                        <span class="text-gray-200 font-medium">${b.date}</span>
-                        <span class="text-gray-400 block">${b.loc}</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-amber-400 font-semibold">${b.cost ? 'Rp ' + Number(b.cost).toLocaleString('id-ID') : 'Pertalite'}</span>
-                        <button onclick="deleteLog('bensinLogs', '${b.id}')" class="text-gray-500 hover:text-rose-400">×</button>
-                    </div>
-                </div>
-            `).join('') || `<p class="text-[11px] text-gray-500 italic">Belum ada riwayat.</p>`;
-
-            // Oli
-            document.getElementById('oliCount').innerText = state.oliLogs ? state.oliLogs.length : 0;
-            document.getElementById('oliLog').innerHTML = (state.oliLogs || []).map(o => `
-                <div class="flex justify-between items-center text-xs p-2 rounded-lg bg-gray-900/60 border border-gray-800">
-                    <div>
-                        <span class="text-gray-200 font-medium">${o.date}</span>
-                        <span class="text-cyan-400 block font-semibold">${o.km} KM</span>
-                    </div>
-                    <button onclick="deleteLog('oliLogs', '${o.id}')" class="text-gray-500 hover:text-rose-400">×</button>
-                </div>
-            `).join('') || `<p class="text-[11px] text-gray-500 italic">Belum ada riwayat.</p>`;
-
-            // Parkir
-            document.getElementById('parkirCount').innerText = state.parkirLogs ? state.parkirLogs.length : 0;
-            document.getElementById('parkirLog').innerHTML = (state.parkirLogs || []).map(p => `
-                <div class="flex justify-between items-center text-xs p-2 rounded-lg bg-gray-900/60 border border-gray-800">
-                    <div>
-                        <span class="text-gray-200 font-medium">${p.date}</span>
-                        <span class="text-gray-400 block">${p.loc}</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-emerald-400 font-medium">Rp 2.000</span>
-                        <button onclick="deleteLog('parkirLogs', '${p.id}')" class="text-gray-500 hover:text-rose-400">×</button>
-                    </div>
-                </div>
-            `).join('') || `<p class="text-[11px] text-gray-500 italic">Belum ada riwayat.</p>`;
-
-            // Cuci
-            document.getElementById('cuciCount').innerText = state.cuciLogs ? state.cuciLogs.length : 0;
-            document.getElementById('cuciLog').innerHTML = (state.cuciLogs || []).map(c => `
-                <div class="flex justify-between items-center text-xs p-2 rounded-lg bg-gray-900/60 border border-gray-800">
-                    <div>
-                        <span class="text-gray-200 font-medium">${c.date}</span>
-                        <span class="text-gray-400 block">${c.loc || 'Cuci Motor'}</span>
-                    </div>
-                    <button onclick="deleteLog('cuciLogs', '${c.id}')" class="text-gray-500 hover:text-rose-400">×</button>
-                </div>
-            `).join('') || `<p class="text-[11px] text-gray-500 italic">Belum ada riwayat.</p>`;
+        function filterSum(logs, costField, dateFilter) {
+            const now = new Date();
+            return (logs || []).reduce((acc, log) => {
+                const logDate = new Date(log.date);
+                let valid = true;
+                if (dateFilter === 'month') {
+                    valid = logDate.getMonth() === now.getMonth() && logDate.getFullYear() === now.getFullYear();
+                } else if (dateFilter === 'year') {
+                    valid = logDate.getFullYear() === now.getFullYear();
+                }
+                const cost = Number(log[costField]) || 0;
+                return valid ? acc + cost : acc;
+            }, 0);
         }
 
-        function renderBCA() {
-            const count = state.bcaLogs ? state.bcaLogs.length : 0;
-            document.getElementById('bcaCountText').innerText = `${count}x`;
-            document.getElementById('bcaTotalRp').innerText = `Rp ${(count * 10000).toLocaleString('id-ID')}`;
+        function renderVehicleLogs() {
+            // Filter calculations
+            const bAll = filterSum(state.bensinLogs, 'cost', 'all');
+            const bMonth = filterSum(state.bensinLogs, 'cost', 'month');
+            const bYear = filterSum(state.bensinLogs, 'cost', 'year');
 
-            document.getElementById('bcaLog').innerHTML = (state.bcaLogs || []).map(b => `
-                <div class="flex justify-between items-center text-xs p-3 rounded-xl bg-gray-900/80 border border-gray-800">
-                    <span class="text-gray-300 font-mono">${b.date}</span>
-                    <div class="flex items-center gap-3">
-                        <span class="text-blue-400 font-semibold">Rp ${Number(b.nominal).toLocaleString('id-ID')}</span>
-                        <button onclick="deleteLog('bcaLogs', '${b.id}')" class="text-gray-500 hover:text-rose-400">
-                            <i data-lucide="x" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada riwayat pembayaran admin BCA.</p>`;
+            document.getElementById('bensinTotalAll').innerText = `Rp ${bAll.toLocaleString('id-ID')}`;
+            document.getElementById('bensinTotalMonth').innerText = `Rp ${bMonth.toLocaleString('id-ID')}`;
+            document.getElementById('bensinTotalYear').innerText = `Rp ${bYear.toLocaleString('id-ID')}`;
+
+            const oAll = filterSum(state.oliLogs, 'cost', 'all');
+            const oMonth = filterSum(state.oliLogs, 'cost', 'month');
+            const oYear = filterSum(state.oliLogs, 'cost', 'year');
+
+            document.getElementById('oliTotalAll').innerText = `Rp ${oAll.toLocaleString('id-ID')}`;
+            document.getElementById('oliTotalMonth').innerText = `Rp ${oMonth.toLocaleString('id-ID')}`;
+            document.getElementById('oliTotalYear').innerText = `Rp ${oYear.toLocaleString('id-ID')}`;
+
+            const pCount = state.parkirLogs ? state.parkirLogs.length : 0;
+            const pAll = filterSum(state.parkirLogs, 'cost', 'all');
+            const pMonth = filterSum(state.parkirLogs, 'cost', 'month');
+            const pYear = filterSum(state.parkirLogs, 'cost', 'year');
+
+            document.getElementById('parkirTotalAll').innerText = `Rp ${pAll.toLocaleString('id-ID')}`;
+            document.getElementById('parkirTotalMonth').innerText = `Rp ${pMonth.toLocaleString('id-ID')}`;
+            document.getElementById('parkirTotalYear').innerText = `Rp ${pYear.toLocaleString('id-ID')}`;
         }
-
-        function renderToken() {
-            const count = state.tokenLogs ? state.tokenLogs.length : 0;
-            document.getElementById('tokenCountText').innerText = `${count}x`;
-
-            document.getElementById('tokenLog').innerHTML = (state.tokenLogs || []).map(t => `
-                <div class="flex justify-between items-center text-xs p-3 rounded-xl bg-gray-900/80 border border-gray-800">
-                    <span class="text-gray-300 font-mono">${t.date}</span>
-                    <div class="flex items-center gap-3">
-                        <span class="text-yellow-400 font-semibold">Rp ${Number(t.nominal).toLocaleString('id-ID')}</span>
-                        <button onclick="deleteLog('tokenLogs', '${t.id}')" class="text-gray-500 hover:text-rose-400">
-                            <i data-lucide="x" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada riwayat pengisian token.</p>`;
-        }
-
-        function renderFinance() {
-            // Tagihan
-            document.getElementById('tagihanList').innerHTML = (state.tagihan || []).map(t => `
-                <div class="glass-card rounded-xl p-3.5 flex justify-between items-center border border-gray-800">
-                    <div>
-                        <h4 class="text-xs font-bold text-white">${t.title}</h4>
-                        <p class="text-[11px] text-rose-400">${t.amount}</p>
-                    </div>
-                    <button onclick="deleteLog('tagihan', '${t.id}')" class="text-gray-500 hover:text-rose-400 p-1">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i>
-                    </button>
-                </div>
-            `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada catatan tagihan.</p>`;
-
-            // Hutang
-            document.getElementById('hutangList').innerHTML = (state.hutang || []).map(h => `
-                <div class="glass-card rounded-xl p-3.5 flex justify-between items-center border border-gray-800">
-                    <div>
-                        <h4 class="text-xs font-bold text-white">${h.title}</h4>
-                        <p class="text-[11px] text-amber-400 font-medium">${h.nominal} - <span class="text-gray-400">${h.date}</span></p>
-                    </div>
-                    <button onclick="deleteLog('hutang', '${h.id}')" class="text-gray-500 hover:text-rose-400 p-1">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i>
-                    </button>
-                </div>
-            `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada catatan hutang.</p>`;
-        }
-
-        function renderCountdowns() {
-            const container = document.getElementById('countdownList');
-            if (!state.countdowns || state.countdowns.length === 0) {
-                container.innerHTML = `<p class="text-xs text-gray-500 italic col-span-2">Belum ada hitung mundur acara.</p>`;
-                return;
-            }
-
-            container.innerHTML = state.countdowns.map(cd => {
-                const diff = new Date(cd.date) - new Date();
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-                return `
-                    <div class="glass-card rounded-2xl p-5 border border-pink-500/20 space-y-3">
-                        <div class="flex justify-between items-start">
-                            <h3 class="text-sm font-bold text-white">${cd.title}</h3>
-                            <button onclick="deleteLog('countdowns', '${cd.id}')" class="text-gray-500 hover:text-rose-400">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-3xl font-black text-pink-400">${days >= 0 ? days : 0}</span>
-                            <span class="text-xs text-gray-400">Hari tersisa (${cd.date})</span>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function renderNotes() {
-            document.getElementById('routineList').innerHTML = (state.routines || []).map(r => `
-                <div class="flex items-center justify-between p-3 rounded-xl bg-gray-900/60 border border-gray-800">
-                    <div class="flex items-center gap-2">
-                        <input type="checkbox" ${r.done ? 'checked' : ''} onchange="toggleRoutine('${r.id}')" class="rounded border-gray-700 bg-gray-800 text-purple-600 focus:ring-0">
-                        <span class="text-xs ${r.done ? 'line-through text-gray-500' : 'text-gray-200'}">${r.text}</span>
-                    </div>
-                    <button onclick="deleteLog('routines', '${r.id}')" class="text-gray-500 hover:text-rose-400">×</button>
-                </div>
-            `).join('') || `<p class="text-xs text-gray-500 italic">Belum ada rutinitas.</p>`;
-
-            document.getElementById('generalNotesInput').value = state.generalNotes || '';
-        }
-
-        // --- Action Handlers ---
 
         function changeCicilan(val) {
-            state.cicilanBeat = Math.max(0, (state.cicilanBeat || 0) + val);
-            saveState();
-        }
-
-        function addBcaPayment() {
-            const today = new Date().toISOString().split('T')[0];
-            state.bcaLogs.unshift({
-                id: 'bca-' + Date.now(),
-                date: today,
-                nominal: 10000
-            });
-            saveState();
-        }
-
-        function toggleRoutine(id) {
-            const r = state.routines.find(x => x.id === id);
-            if (r) {
-                r.done = !r.done;
-                saveState();
-            }
-        }
-
-        function saveGeneralNotes() {
-            state.generalNotes = document.getElementById('generalNotesInput').value;
-            saveState();
-            alert('Catatan berhasil disimpan!');
-        }
-
-        function deleteJob(id) {
-            state.jobs = state.jobs.filter(j => j.id !== id);
-            saveState();
-        }
-
-        function deleteLog(key, id) {
-            state[key] = state[key].filter(x => x.id !== id);
-            saveState();
-        }
-
-        // Submit Form Handlers
-        function handleJobSubmit(e) {
-            e.preventDefault();
-            state.jobs.unshift({
-                id: 'job-' + Date.now(),
-                company: document.getElementById('jobCompany').value,
-                posisi: document.getElementById('jobPos').value,
-                applyDate: document.getElementById('jobApply').value,
-                kabar: document.getElementById('jobKabar').value,
-                interview: document.getElementById('jobInterview').value || '-',
-                day1: document.getElementById('jobDay1').value || '-',
-                gaji: document.getElementById('jobGaji').value || '-',
-                resign: document.getElementById('jobResign').value || '-'
-            });
-            closeModal('modalJob');
+            state.cicilanBeat = Math.min(33, Math.max(0, (state.cicilanBeat || 0) + val));
             saveState();
         }
 
@@ -1100,7 +625,8 @@
             state.oliLogs.unshift({
                 id: 'o-' + Date.now(),
                 date: document.getElementById('oliDate').value,
-                km: document.getElementById('oliKm').value
+                km: document.getElementById('oliKm').value,
+                cost: document.getElementById('oliCost').value
             });
             closeModal('modalOli');
             saveState();
@@ -1111,109 +637,14 @@
             state.parkirLogs.unshift({
                 id: 'p-' + Date.now(),
                 date: document.getElementById('parkirDate').value,
-                loc: document.getElementById('parkirLoc').value
+                loc: document.getElementById('parkirLoc').value,
+                cost: 2000
             });
             closeModal('modalParkir');
             saveState();
         }
 
-        function handleCuciSubmit(e) {
-            e.preventDefault();
-            state.cuciLogs.unshift({
-                id: 'c-' + Date.now(),
-                date: document.getElementById('cuciDate').value,
-                loc: document.getElementById('cuciLoc').value
-            });
-            closeModal('modalCuci');
-            saveState();
-        }
-
-        function handleTokenSubmit(e) {
-            e.preventDefault();
-            state.tokenLogs.unshift({
-                id: 't-' + Date.now(),
-                date: document.getElementById('tokenDate').value,
-                nominal: document.getElementById('tokenNominal').value
-            });
-            closeModal('modalToken');
-            saveState();
-        }
-
-        function handleTagihanSubmit(e) {
-            e.preventDefault();
-            state.tagihan.unshift({
-                id: 'tg-' + Date.now(),
-                title: document.getElementById('tagihanTitle').value,
-                amount: document.getElementById('tagihanNominal').value
-            });
-            closeModal('modalTagihan');
-            saveState();
-        }
-
-        function handleHutangSubmit(e) {
-            e.preventDefault();
-            state.hutang.unshift({
-                id: 'h-' + Date.now(),
-                title: document.getElementById('hutangTitle').value,
-                nominal: document.getElementById('hutangNominal').value,
-                date: document.getElementById('hutangDate').value
-            });
-            closeModal('modalHutang');
-            saveState();
-        }
-
-        function handleCountdownSubmit(e) {
-            e.preventDefault();
-            state.countdowns.unshift({
-                id: 'cd-' + Date.now(),
-                title: document.getElementById('cdTitle').value,
-                date: document.getElementById('cdDate').value
-            });
-            closeModal('modalCountdown');
-            saveState();
-        }
-
-        function handleRoutineSubmit(e) {
-            e.preventDefault();
-            state.routines.unshift({
-                id: 'r-' + Date.now(),
-                text: document.getElementById('routineText').value,
-                done: false
-            });
-            closeModal('modalRoutine');
-            saveState();
-        }
-
-        // Export / Import JSON Data
-        function exportJSON() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state, null, 2));
-            const dlAnchor = document.createElement('a');
-            dlAnchor.setAttribute("href", dataStr);
-            dlAnchor.setAttribute("download", "projects.json");
-            document.body.appendChild(dlAnchor);
-            dlAnchor.click();
-            dlAnchor.remove();
-        }
-
-        function importJSON(event) {
-            const fileReader = new FileReader();
-            fileReader.onload = function (e) {
-                try {
-                    const parsed = JSON.parse(e.target.result);
-                    state = parsed;
-                    saveState();
-                    alert("Data projects.json berhasil diimpor!");
-                } catch (err) {
-                    alert("Gagal membaca file JSON!");
-                }
-            };
-            fileReader.readAsText(event.target.files[0]);
-        }
-
-        // Initialize App
-        document.addEventListener("DOMContentLoaded", () => {
-            renderApp();
-        });
+        document.addEventListener("DOMContentLoaded", () => renderApp());
     </script>
 </body>
 </html>
