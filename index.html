@@ -141,6 +141,9 @@
                 <button onclick="switchTab('ari')" id="tab-ari" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="book-open" class="w-4 h-4"></i> アリ
                 </button>
+                <button onclick="switchTab('mediafire')" id="tab-mediafire" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
+                    <i data-lucide="flame" class="w-4 h-4 text-orange-500"></i> MediaFire
+                </button>
                 <button onclick="switchTab('job')" id="tab-job" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="briefcase" class="w-4 h-4"></i> Cari Kerja
                 </button>
@@ -301,6 +304,24 @@
                     <div id="studyTargetList" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
                 </div>
             </div>
+        </section>
+
+        <!-- ================= MEDIAFIRE TAB ================= -->
+        <section id="sec-mediafire" class="hidden space-y-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="flame" class="w-5 h-5 text-orange-500"></i> Tautan MediaFire
+                    </h2>
+                    <p class="text-[11px] sm:text-xs text-gray-400">Simpan dan Kelola Link Berkas / Download MediaFire</p>
+                </div>
+                <button onclick="openModalAddNew('modalMediafire')" class="px-3.5 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-orange-600/20">
+                    <i data-lucide="plus" class="w-4 h-4"></i> Tambah Link
+                </button>
+            </div>
+
+            <!-- Scrollable Link Container -->
+            <div id="mediafireList" class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[70vh] overflow-y-auto pr-1"></div>
         </section>
 
         <!-- ================= CARI KERJA TAB ================= -->
@@ -646,6 +667,10 @@
                 <i data-lucide="book-open"></i>
                 <span>アリ</span>
             </button>
+            <button onclick="switchTab('mediafire')" id="bottom-tab-mediafire" class="bottom-nav-btn">
+                <i data-lucide="flame" class="text-orange-400"></i>
+                <span>MediaFire</span>
+            </button>
             <button onclick="switchTab('job')" id="bottom-tab-job" class="bottom-nav-btn">
                 <i data-lucide="briefcase"></i>
                 <span>Work</span>
@@ -688,6 +713,30 @@
     </div>
 
     <!-- ================= MODALS ================= -->
+
+    <!-- Modal MediaFire (Tambah & Edit) -->
+    <div id="modalMediafire" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
+            <h3 id="modalMediafireTitle" class="text-base font-bold text-white flex items-center gap-2">
+                <i data-lucide="flame" class="w-4 h-4 text-orange-500"></i> Simpan Link MediaFire
+            </h3>
+            <form onsubmit="handleMediafireSubmit(event)" class="space-y-2.5">
+                <input type="hidden" id="editMediafireId">
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Nama File / Berkas</label>
+                    <input type="text" id="mfName" placeholder="Contoh: Mod APK / Dokumen N3" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                </div>
+                <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Link MediaFire</label>
+                    <input type="url" id="mfUrl" placeholder="https://www.mediafire.com/file/..." required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
+                </div>
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('modalMediafire')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
+                    <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-orange-600 text-white text-xs font-semibold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Modal Tambah/Edit Rutinitas Belajar (アリ) -->
     <div id="modalStudyRoutine" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
@@ -1015,6 +1064,7 @@
                 { id: "job-2", company: "ARTIK ICE Cianjur", applyDate: "2026-09-14", kabar: "Tidak", interview: "-", day1: "-", gaji: "-", resign: "-" },
                 { id: "job-3", company: "Bilas Wangi Laundry Cianjur [FREELANCE]", applyDate: "2026-09-27", kabar: "Ada", posisi: "Operator Packing Karpet", interview: "Senin, 28/9/26", day1: "Senin, 28/9/26", gaji: "Rabu, 7/10/26 [ 210RB | 1 Hari 70RB ]", resign: "Kamis, 1/10/26 [3 HARI KERJA]" }
             ],
+            mediafireLinks: [],
             bensinLogs: [],
             oliLogs: [],
             parkirLogs: [],
@@ -1041,6 +1091,7 @@
         let state = JSON.parse(localStorage.getItem('arisplrhmn_projects_db')) || defaultData;
 
         if(!state.jobs) state.jobs = [];
+        if(!state.mediafireLinks) state.mediafireLinks = [];
         if(!state.bcaLogs) state.bcaLogs = [];
         if(!state.tokenLogs) state.tokenLogs = [];
         if(!state.tagihan) state.tagihan = [];
@@ -1072,7 +1123,7 @@
         }
 
         function switchTab(tabId) {
-            ['home', 'ari', 'job', 'vehicle', 'bca', 'token', 'finance', 'countdown', 'notes_free', 'copier'].forEach(t => {
+            ['home', 'ari', 'mediafire', 'job', 'vehicle', 'bca', 'token', 'finance', 'countdown', 'notes_free', 'copier'].forEach(t => {
                 const sec = document.getElementById(`sec-${t}`);
                 const tab = document.getElementById(`tab-${t}`);
                 const bTab = document.getElementById(`bottom-tab-${t}`);
@@ -1092,6 +1143,13 @@
         }
 
         function openModal(modalId) {
+            if(modalId === 'modalMediafire') {
+                if (!document.getElementById('editMediafireId').value) {
+                    document.getElementById('modalMediafireTitle').innerText = 'Simpan Link MediaFire';
+                    document.getElementById('mfName').value = '';
+                    document.getElementById('mfUrl').value = '';
+                }
+            }
             if(modalId === 'modalAddCopier') {
                 if (!document.getElementById('editCopierId').value) {
                     document.getElementById('modalCopierTitle').innerText = 'Tambah Salinan Text Baru';
@@ -1204,6 +1262,7 @@
         }
 
         function openModalAddNew(modalId) {
+            if (modalId === 'modalMediafire') document.getElementById('editMediafireId').value = '';
             if (modalId === 'modalAddCopier') document.getElementById('editCopierId').value = '';
             if (modalId === 'modalJob') document.getElementById('editJobId').value = '';
             if (modalId === 'modalToken') document.getElementById('editTokenId').value = '';
@@ -1228,6 +1287,7 @@
         function renderApp() {
             renderHomeOverview();
             renderAriSection();
+            renderMediafire();
             renderJobs();
             renderVehicleStats();
             renderVehicleLogs();
@@ -1238,6 +1298,105 @@
             renderNotes();
             renderCopier();
             lucide.createIcons();
+        }
+
+        function renderMediafire() {
+            const container = document.getElementById('mediafireList');
+            if(!container) return;
+            if(!state.mediafireLinks || state.mediafireLinks.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-500 italic col-span-2 text-center py-6">Belum ada tautan MediaFire yang disimpan.</p>`;
+                return;
+            }
+
+            container.innerHTML = state.mediafireLinks.map(item => `
+                <div class="glass-card rounded-2xl p-4 border border-orange-500/20 space-y-3 relative flex flex-col justify-between hover:border-orange-500/40 transition">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-2 truncate">
+                                <div class="p-2 rounded-xl bg-orange-500/10 text-orange-400 flex-shrink-0">
+                                    <i data-lucide="flame" class="w-4 h-4"></i>
+                                </div>
+                                <h3 class="text-xs sm:text-sm font-bold text-white truncate" title="${item.name}">${item.name}</h3>
+                            </div>
+                            <div class="flex items-center gap-1 flex-shrink-0">
+                                <button onclick="openEditMediafireModal('${item.id}')" class="text-gray-400 hover:text-orange-400 p-1 transition" title="Edit Link">
+                                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <button onclick="deleteMediafire('${item.id}')" class="text-gray-500 hover:text-rose-400 p-1 transition" title="Hapus Link">
+                                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2.5 text-xs text-orange-300 font-mono truncate select-all">
+                            ${item.url}
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                        <button onclick="copyMediafireUrl('${item.id}')" class="py-1.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-semibold text-xs flex items-center justify-center gap-1 transition">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Link
+                        </button>
+                        <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="py-1.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-semibold text-xs flex items-center justify-center gap-1 transition shadow-lg shadow-orange-600/20">
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Buka Link
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openEditMediafireModal(id) {
+            const m = state.mediafireLinks.find(x => x.id === id);
+            if(!m) return;
+            document.getElementById('editMediafireId').value = m.id;
+            document.getElementById('modalMediafireTitle').innerText = 'Edit Link MediaFire';
+            document.getElementById('mfName').value = m.name || '';
+            document.getElementById('mfUrl').value = m.url || '';
+            openModal('modalMediafire');
+        }
+
+        function handleMediafireSubmit(e) {
+            e.preventDefault();
+            const editId = document.getElementById('editMediafireId').value;
+            const name = document.getElementById('mfName').value;
+            const url = document.getElementById('mfUrl').value;
+
+            if (editId) {
+                const m = state.mediafireLinks.find(x => x.id === editId);
+                if (m) {
+                    m.name = name;
+                    m.url = url;
+                }
+            } else {
+                state.mediafireLinks.unshift({
+                    id: 'mf-' + Date.now(),
+                    name,
+                    url
+                });
+            }
+
+            closeModal('modalMediafire');
+            saveState();
+        }
+
+        function deleteMediafire(id) {
+            state.mediafireLinks = state.mediafireLinks.filter(x => x.id !== id);
+            saveState();
+        }
+
+        function copyMediafireUrl(id) {
+            const item = state.mediafireLinks.find(x => x.id === id);
+            if(!item) return;
+
+            navigator.clipboard.writeText(item.url).then(() => {
+                showToast();
+            }).catch(err => {
+                const textarea = document.createElement('textarea');
+                textarea.value = item.url;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showToast();
+            });
         }
 
         function renderAriSection() {
