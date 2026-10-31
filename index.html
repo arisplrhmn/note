@@ -141,9 +141,6 @@
                 <button onclick="switchTab('ari')" id="tab-ari" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="book-open" class="w-4 h-4"></i> アリ
                 </button>
-                <button onclick="switchTab('cashflow')" id="tab-cashflow" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
-                    <i data-lucide="wallet-cards" class="w-4 h-4"></i> Keuangan
-                </button>
                 <button onclick="switchTab('job')" id="tab-job" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="briefcase" class="w-4 h-4"></i> Cari Kerja
                 </button>
@@ -164,9 +161,6 @@
                 </button>
                 <button onclick="switchTab('notes_free')" id="tab-notes_free" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="notebook-pen" class="w-4 h-4"></i> NOTE
-                </button>
-                <button onclick="switchTab('routines_page')" id="tab-routines_page" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
-                    <i data-lucide="check-square" class="w-4 h-4"></i> Rutinitas
                 </button>
                 <button onclick="switchTab('copier')" id="tab-copier" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-medium border border-gray-800 text-gray-300 flex items-center gap-1.5 transition">
                     <i data-lucide="copy" class="w-4 h-4"></i> Salinan Text
@@ -189,12 +183,6 @@
                 </div>
                 <!-- Tombol Pintas / Quick Actions -->
                 <div class="flex items-center gap-1.5 flex-wrap">
-                    <button onclick="switchTab('cashflow'); openModalAddNew('modalAddIncome');" class="px-2.5 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 border border-emerald-500/30 text-[11px] font-semibold flex items-center gap-1 transition">
-                        <i data-lucide="arrow-down-left" class="w-3 h-3"></i> + Masuk
-                    </button>
-                    <button onclick="switchTab('cashflow'); openModalAddNew('modalAddExpense');" class="px-2.5 py-1.5 rounded-xl bg-rose-500/20 text-rose-400 hover:bg-rose-500/30 border border-rose-500/30 text-[11px] font-semibold flex items-center gap-1 transition">
-                        <i data-lucide="arrow-up-right" class="w-3 h-3"></i> + Keluar
-                    </button>
                     <button onclick="switchTab('copier')" class="px-2.5 py-1.5 rounded-xl bg-sky-500/20 text-sky-400 hover:bg-sky-500/30 border border-sky-500/30 text-[11px] font-semibold flex items-center gap-1 transition">
                         <i data-lucide="copy" class="w-3 h-3"></i> Salin Teks
                     </button>
@@ -215,45 +203,10 @@
                 </div>
             </div>
 
-            <!-- GRID WIDGET KEUANGAN & KENDARAAN -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <!-- GRID WIDGET KENDARAAN & CATATAN -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 
-                <!-- Widget 1: Total Kekayaan / Total Saldo -->
-                <div class="glass-card rounded-2xl p-4 border border-cyan-500/20 bg-gradient-to-br from-cyan-950/20 to-blue-950/20 space-y-2 relative overflow-hidden">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Total Kekayaan</span>
-                        <div class="p-1.5 rounded-lg bg-cyan-500/10 text-cyan-400">
-                            <i data-lucide="wallet-cards" class="w-4 h-4"></i>
-                        </div>
-                    </div>
-                    <div id="homeTotalBalance" class="text-xl sm:text-2xl font-black text-white">Rp 0</div>
-                    <p class="text-[10px] text-gray-400">Gabungan Tunai, Bank & E-Wallet</p>
-                    <button onclick="switchTab('cashflow')" class="text-xs font-semibold text-cyan-400 hover:underline inline-flex items-center gap-1 pt-1">
-                        Kelola Keuangan <i data-lucide="chevron-right" class="w-3 h-3"></i>
-                    </button>
-                </div>
-
-                <!-- Widget 2: Pemasukan vs Pengeluaran Bulan Ini -->
-                <div class="glass-card rounded-2xl p-4 border border-purple-500/20 space-y-2.5">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-gray-300 uppercase tracking-wider">Arus Kas Bulan Ini</span>
-                        <div class="p-1.5 rounded-lg bg-purple-500/10 text-purple-400">
-                            <i data-lucide="trending-up" class="w-4 h-4"></i>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2 text-xs">
-                        <div class="bg-gray-900/60 p-2 rounded-xl border border-gray-800/80">
-                            <span class="text-[10px] text-gray-400 block">Pemasukan</span>
-                            <span id="homeMonthInc" class="font-bold text-emerald-400 text-xs sm:text-sm">Rp 0</span>
-                        </div>
-                        <div class="bg-gray-900/60 p-2 rounded-xl border border-gray-800/80">
-                            <span class="text-[10px] text-gray-400 block">Pengeluaran</span>
-                            <span id="homeMonthExp" class="font-bold text-rose-400 text-xs sm:text-sm">Rp 0</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Widget 3: Status Honda Beat -->
+                <!-- Widget: Status Honda Beat -->
                 <div class="glass-card rounded-2xl p-4 border border-amber-500/20 space-y-2.5">
                     <div class="flex justify-between items-center">
                         <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Cicilan Beat</span>
@@ -271,21 +224,6 @@
                     <button onclick="switchTab('vehicle')" class="text-xs font-semibold text-amber-400 hover:underline inline-flex items-center gap-1">
                         Rincian Kendaraan <i data-lucide="chevron-right" class="w-3 h-3"></i>
                     </button>
-                </div>
-
-            </div>
-
-            <!-- GRID DUA KOLOM: RUTINITAS SEHARI-HARI & CATATAN PENTING -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Mini Rutinitas Harian -->
-                <div class="glass-card rounded-2xl p-4 space-y-2.5 border border-gray-800">
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
-                            <i data-lucide="check-square" class="w-4 h-4 text-purple-400"></i> Rutinitas Hari Ini
-                        </h3>
-                        <button onclick="switchTab('routines_page')" class="text-[11px] text-purple-400 hover:underline">+ Kelola</button>
-                    </div>
-                    <div id="homeRoutineList" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
                 </div>
 
                 <!-- Mini Notes / Pengingat Bebas -->
@@ -307,6 +245,7 @@
                         </button>
                     </div>
                 </div>
+
             </div>
 
         </section>
@@ -347,99 +286,6 @@
                         </button>
                     </div>
                     <div id="studyTargetList" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= KEUANGAN TAB ================= -->
-        <section id="sec-cashflow" class="hidden space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div>
-                    <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
-                        <i data-lucide="wallet-cards" class="w-5 h-5 text-cyan-400"></i> Keuangan
-                    </h2>
-                    <p class="text-[11px] sm:text-xs text-gray-400">Kelola Keuangan</p>
-                </div>
-                <div class="flex items-center gap-1.5">
-                    <button onclick="openModalAddNew('modalAddIncome')" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center gap-1 shadow-lg shadow-emerald-600/25">
-                        <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> Masuk
-                    </button>
-                    <button onclick="openModalAddNew('modalAddExpense')" class="px-3 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs flex items-center gap-1 shadow-lg shadow-rose-600/25">
-                        <i data-lucide="minus-circle" class="w-3.5 h-3.5"></i> Keluar
-                    </button>
-                </div>
-            </div>
-
-            <!-- Sumber Keuangan / Akun Dompet & Bank -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                <div class="glass-card rounded-2xl p-3.5 border border-gray-800 space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-gray-400 uppercase">Tunai</span>
-                        <div class="flex items-center gap-1.5">
-                            <button onclick="openEditSaldoModal('cash', 'Tunai')" class="text-[10px] text-emerald-400 hover:underline flex items-center gap-0.5">
-                                <i data-lucide="edit-3" class="w-3 h-3"></i> Edit
-                            </button>
-                            <i data-lucide="wallet" class="w-4 h-4 text-emerald-400 ml-1"></i>
-                        </div>
-                    </div>
-                    <div class="text-base sm:text-lg font-black text-white" id="balance-cash">Rp 0</div>
-                </div>
-
-                <div class="glass-card rounded-2xl p-3.5 border border-gray-800 space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-gray-400 uppercase">Bank Umum</span>
-                        <button onclick="openModal('modalAddBank')" class="text-[10px] text-cyan-400 hover:underline">+ Tambah</button>
-                    </div>
-                    <div id="bankAccountsList" class="space-y-1"></div>
-                </div>
-
-                <div class="glass-card rounded-2xl p-3.5 border border-gray-800 space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-gray-400 uppercase">Bank Digital</span>
-                        <button onclick="openModal('modalAddDigitalBank')" class="text-[10px] text-purple-400 hover:underline">+ Tambah</button>
-                    </div>
-                    <div id="digitalBanksList" class="space-y-1"></div>
-                </div>
-
-                <div class="glass-card rounded-2xl p-3.5 border border-gray-800 space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-gray-400 uppercase">E-Wallet</span>
-                        <button onclick="openModal('modalAddEwallet')" class="text-[10px] text-yellow-400 hover:underline">+ Tambah</button>
-                    </div>
-                    <div id="ewalletsList" class="space-y-1"></div>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl p-3.5 flex flex-wrap items-center justify-between gap-3 border border-gray-800">
-                <div class="flex items-center gap-2">
-                    <span class="text-xs font-bold text-gray-300">Filter:</span>
-                    <select id="cashflowFilterPeriod" onchange="renderCashflow()" class="bg-gray-900 border border-gray-800 rounded-xl px-2.5 py-1 text-xs text-white">
-                        <option value="harian">Harian</option>
-                        <option value="mingguan">Mingguan</option>
-                        <option value="bulanan" selected>Bulanan</option>
-                        <option value="tahunan">Tahunan</option>
-                        <option value="semua">Semua</option>
-                    </select>
-                </div>
-                <div class="flex items-center gap-3 text-xs">
-                    <div>Masuk: <span id="recapIncome" class="font-bold text-emerald-400">Rp 0</span></div>
-                    <div>Keluar: <span id="recapExpense" class="font-bold text-rose-400">Rp 0</span></div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="glass-card rounded-2xl p-4 space-y-2.5">
-                    <h3 class="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
-                        <i data-lucide="arrow-down-left" class="w-4 h-4 text-emerald-400"></i> Riwayat Pemasukan
-                    </h3>
-                    <div id="incomeLogList" class="space-y-2 max-h-64 overflow-y-auto pr-1"></div>
-                </div>
-
-                <div class="glass-card rounded-2xl p-4 space-y-2.5">
-                    <h3 class="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-rose-400"></i> Riwayat Pengeluaran
-                    </h3>
-                    <div id="expenseLogList" class="space-y-2 max-h-64 overflow-y-auto pr-1"></div>
                 </div>
             </div>
         </section>
@@ -753,24 +599,6 @@
             </div>
         </section>
 
-        <!-- ================= RUTINITAS TAB ================= -->
-        <section id="sec-routines_page" class="hidden space-y-4">
-            <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-3">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                            <i data-lucide="check-square" class="w-4 h-4 text-purple-400"></i> Rutinitas Harian
-                        </h3>
-                        <p class="text-[10px] sm:text-xs text-gray-400">Daftar kegiatan dan kebiasaan harian</p>
-                    </div>
-                    <button onclick="openModalAddNew('modalRoutine')" class="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs flex items-center gap-1 shadow-lg shadow-purple-600/20">
-                        <i data-lucide="plus" class="w-3.5 h-3.5"></i> Tambah
-                    </button>
-                </div>
-                <div id="routineList" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
-            </div>
-        </section>
-
         <!-- ================= SALINAN TEXT TAB (QUICK COPIER) ================= -->
         <section id="sec-copier" class="hidden space-y-4">
             <div class="flex items-center justify-between">
@@ -805,10 +633,6 @@
                 <i data-lucide="book-open"></i>
                 <span>アリ</span>
             </button>
-            <button onclick="switchTab('cashflow')" id="bottom-tab-cashflow" class="bottom-nav-btn">
-                <i data-lucide="wallet-cards"></i>
-                <span>Keuangan</span>
-            </button>
             <button onclick="switchTab('job')" id="bottom-tab-job" class="bottom-nav-btn">
                 <i data-lucide="briefcase"></i>
                 <span>Work</span>
@@ -836,10 +660,6 @@
             <button onclick="switchTab('notes_free')" id="bottom-tab-notes_free" class="bottom-nav-btn">
                 <i data-lucide="notebook-pen"></i>
                 <span>NOTE</span>
-            </button>
-            <button onclick="switchTab('routines_page')" id="bottom-tab-routines_page" class="bottom-nav-btn">
-                <i data-lucide="check-square"></i>
-                <span>Rutinitas</span>
             </button>
             <button onclick="switchTab('copier')" id="bottom-tab-copier" class="bottom-nav-btn">
                 <i data-lucide="copy"></i>
@@ -1084,137 +904,6 @@
         </div>
     </div>
 
-    <!-- Modal Routine -->
-    <div id="modalRoutine" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 id="modalRoutineTitle" class="text-base font-bold text-white">Tambah Rutinitas Harian</h3>
-            <form onsubmit="handleRoutineSubmit(event)" class="space-y-2.5">
-                <input type="hidden" id="editRoutineId">
-                <input type="text" id="routineText" placeholder="Aktivitas Rutinitas" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalRoutine')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
-                    <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-purple-600 text-white text-xs font-semibold">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Pemasukan (Tambah & Edit) -->
-    <div id="modalAddIncome" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 id="modalIncomeTitle" class="text-base font-bold text-white">Tambah Pemasukan</h3>
-            <form onsubmit="handleIncomeSubmit(event)" class="space-y-2.5">
-                <input type="hidden" id="editIncId">
-                <input type="date" id="incDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="number" id="incNominal" placeholder="Nominal Rp" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div>
-                    <label class="text-[10px] text-gray-400 block mb-1">Simpan ke Akun</label>
-                    <select id="incAccount" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white"></select>
-                </div>
-                <input type="text" id="incNote" placeholder="Keterangan / Sumber" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalAddIncome')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
-                    <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-semibold">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Pengeluaran (Tambah & Edit) -->
-    <div id="modalAddExpense" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
-            <h3 id="modalExpenseTitle" class="text-base font-bold text-white">Tambah Pengeluaran</h3>
-            <form onsubmit="handleExpenseSubmit(event)" class="space-y-2.5">
-                <input type="hidden" id="editExpId">
-                <input type="date" id="expDate" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="number" id="expNominal" placeholder="Nominal Rp" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div>
-                    <label class="text-[10px] text-gray-400 block mb-1">Kategori</label>
-                    <select id="expCategory" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                        <option value="Tagihan">Tagihan</option>
-                        <option value="Belanja">Belanja</option>
-                        <option value="Shopee">Shopee</option>
-                        <option value="Tokopedia">Tokopedia</option>
-                        <option value="Bensin">Bensin</option>
-                        <option value="Makan / Minum">Makan / Minum</option>
-                        <option value="Lainnya">Lainnya (Custom)</option>
-                    </select>
-                </div>
-                <input type="text" id="expCustomCat" placeholder="Nama Kategori Baru" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div>
-                    <label class="text-[10px] text-gray-400 block mb-1">Potong dari Akun</label>
-                    <select id="expAccount" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white"></select>
-                </div>
-                <input type="text" id="expNote" placeholder="Keterangan" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-gray-800">
-                    <button type="button" onclick="closeModal('modalAddExpense')" class="px-3.5 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs">Batal</button>
-                    <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-rose-600 text-white text-xs font-semibold">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Edit Saldo -->
-    <div id="modalEditSaldo" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-xs w-full p-4 space-y-3 border border-gray-700">
-            <h3 class="text-xs sm:text-sm font-bold text-white">Edit Saldo - <span id="editSaldoAccountName" class="text-cyan-400"></span></h3>
-            <form onsubmit="handleEditSaldoSubmit(event)" class="space-y-2.5">
-                <input type="hidden" id="editSaldoAccKey">
-                <div>
-                    <label class="text-[10px] text-gray-400 block mb-1">Saldo Baru (Rp)</label>
-                    <input type="number" id="editSaldoAmount" placeholder="Masukkan saldo baru" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                </div>
-                <div class="flex justify-end gap-2 pt-1">
-                    <button type="button" onclick="closeModal('modalEditSaldo')" class="px-3 py-1 bg-gray-800 text-xs rounded-lg text-gray-300">Batal</button>
-                    <button type="submit" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-xs rounded-lg text-white font-semibold">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modals Tambah Akun -->
-    <div id="modalAddBank" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-xs w-full p-4 space-y-3 border border-gray-700">
-            <h3 class="text-xs sm:text-sm font-bold text-white">Tambah Bank Baru</h3>
-            <form onsubmit="handleAccountAdd(event, 'bank')" class="space-y-2.5">
-                <input type="text" id="newBankName" placeholder="Nama Bank" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="number" id="newBankSaldo" placeholder="Saldo Awal Rp" value="0" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex justify-end gap-2">
-                    <button type="button" onclick="closeModal('modalAddBank')" class="px-3 py-1 bg-gray-800 text-xs rounded-lg text-gray-300">Batal</button>
-                    <button type="submit" class="px-3 py-1 bg-cyan-600 text-xs rounded-lg text-white font-semibold">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="modalAddDigitalBank" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-xs w-full p-4 space-y-3 border border-gray-700">
-            <h3 class="text-xs sm:text-sm font-bold text-white">Tambah Bank Digital Baru</h3>
-            <form onsubmit="handleAccountAdd(event, 'digital')" class="space-y-2.5">
-                <input type="text" id="newDigitalName" placeholder="Nama Bank Digital" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="number" id="newDigitalSaldo" placeholder="Saldo Awal Rp" value="0" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex justify-end gap-2">
-                    <button type="button" onclick="closeModal('modalAddDigitalBank')" class="px-3 py-1 bg-gray-800 text-xs rounded-lg text-gray-300">Batal</button>
-                    <button type="submit" class="px-3 py-1 bg-purple-600 text-xs rounded-lg text-white font-semibold">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="modalAddEwallet" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-2xl max-w-xs w-full p-4 space-y-3 border border-gray-700">
-            <h3 class="text-xs sm:text-sm font-bold text-white">Tambah E-Wallet Baru</h3>
-            <form onsubmit="handleAccountAdd(event, 'ewallet')" class="space-y-2.5">
-                <input type="text" id="newEwalletName" placeholder="Nama E-Wallet" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <input type="number" id="newEwalletSaldo" placeholder="Saldo Awal Rp" value="0" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
-                <div class="flex justify-end gap-2">
-                    <button type="button" onclick="closeModal('modalAddEwallet')" class="px-3 py-1 bg-gray-800 text-xs rounded-lg text-gray-300">Batal</button>
-                    <button type="submit" class="px-3 py-1 bg-yellow-600 text-xs rounded-lg text-white font-semibold">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <!-- Modals Kendaraan (Tambah & Edit) -->
     <div id="modalBensin" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-3 border border-gray-700">
@@ -1287,22 +976,6 @@
             cicilanBeat: 12,
             pajakTahunanDate: "2027-01-01",
             pajak5TahunanDate: "2030-01-01",
-            cashBalance: 500000,
-            bankAccounts: [
-                { id: 'b-bca', name: 'BCA', saldo: 1250000 }
-            ],
-            digitalBanks: [
-                { id: 'db-seabanks', name: 'Seabank', saldo: 300000 },
-                { id: 'db-jago', name: 'Bank Jago', saldo: 150000 }
-            ],
-            ewallets: [
-                { id: 'ew-gopay', name: 'Gopay', saldo: 50000 },
-                { id: 'ew-ovo', name: 'OVO', saldo: 25000 },
-                { id: 'ew-dana', name: 'DANA', saldo: 100000 },
-                { id: 'ew-shopeepay', name: 'ShopeePay', saldo: 75000 }
-            ],
-            incomes: [],
-            expenses: [],
             jobs: [
                 { id: "job-1", company: "SPPG Sayang 1 Cianjur", applyDate: "2026-08-19", kabar: "Tidak", interview: "-", day1: "-", gaji: "-", resign: "-" },
                 { id: "job-2", company: "ARTIK ICE Cianjur", applyDate: "2026-09-14", kabar: "Tidak", interview: "-", day1: "-", gaji: "-", resign: "-" },
@@ -1317,7 +990,6 @@
             tagihan: [{ id: "t-1", title: "Cicilan Beat", amount: "Rp 838.000 / bln" }],
             hutang: [],
             countdowns: [{ id: "cd-1", title: "Tahun Baru 2027", date: "2027-01-01" }],
-            routines: [],
             studyRoutines: [
                 { id: "sr-1", text: "Belajar Bahasa Jepang 30 Menit", done: false }
             ],
@@ -1333,19 +1005,12 @@
 
         let state = JSON.parse(localStorage.getItem('arisplrhmn_projects_db')) || defaultData;
 
-        if(state.cashBalance === undefined) state.cashBalance = 0;
-        if(!state.bankAccounts) state.bankAccounts = [{id:'b-bca', name:'BCA', saldo:0}];
-        if(!state.digitalBanks) state.digitalBanks = [{id:'db-seabank', name:'Seabank', saldo:0}, {id:'db-jago', name:'Bank Jago', saldo:0}];
-        if(!state.ewallets) state.ewallets = [{id:'ew-gopay', name:'Gopay', saldo:0}, {id:'ew-ovo', name:'OVO', saldo:0}, {id:'ew-dana', name:'DANA', saldo:0}, {id:'ew-shopeepay', name:'ShopeePay', saldo:0}];
-        if(!state.incomes) state.incomes = [];
-        if(!state.expenses) state.expenses = [];
         if(!state.jobs) state.jobs = [];
         if(!state.bcaLogs) state.bcaLogs = [];
         if(!state.tokenLogs) state.tokenLogs = [];
         if(!state.tagihan) state.tagihan = [];
         if(!state.hutang) state.hutang = [];
         if(!state.countdowns) state.countdowns = [];
-        if(!state.routines) state.routines = [];
         if(!state.studyRoutines) state.studyRoutines = [];
         if(!state.studyTargets) state.studyTargets = [];
         if(!state.textCopier) state.textCopier = defaultData.textCopier;
@@ -1372,7 +1037,7 @@
         }
 
         function switchTab(tabId) {
-            ['home', 'ari', 'cashflow', 'job', 'vehicle', 'bca', 'token', 'finance', 'countdown', 'notes_free', 'routines_page', 'copier'].forEach(t => {
+            ['home', 'ari', 'job', 'vehicle', 'bca', 'token', 'finance', 'countdown', 'notes_free', 'copier'].forEach(t => {
                 const sec = document.getElementById(`sec-${t}`);
                 const tab = document.getElementById(`tab-${t}`);
                 const bTab = document.getElementById(`bottom-tab-${t}`);
@@ -1392,26 +1057,6 @@
         }
 
         function openModal(modalId) {
-            if(modalId === 'modalAddIncome') {
-                if (!document.getElementById('editIncId').value) {
-                    document.getElementById('modalIncomeTitle').innerText = 'Tambah Pemasukan';
-                    document.getElementById('incDate').value = new Date().toISOString().split('T')[0];
-                    document.getElementById('incNominal').value = '';
-                    document.getElementById('incNote').value = '';
-                }
-                populateAccountDropdowns();
-            }
-            if(modalId === 'modalAddExpense') {
-                if (!document.getElementById('editExpId').value) {
-                    document.getElementById('modalExpenseTitle').innerText = 'Tambah Pengeluaran';
-                    document.getElementById('expDate').value = new Date().toISOString().split('T')[0];
-                    document.getElementById('expNominal').value = '';
-                    document.getElementById('expCategory').value = 'Tagihan';
-                    document.getElementById('expCustomCat').value = '';
-                    document.getElementById('expNote').value = '';
-                }
-                populateAccountDropdowns();
-            }
             if(modalId === 'modalAddCopier') {
                 if (!document.getElementById('editCopierId').value) {
                     document.getElementById('modalCopierTitle').innerText = 'Tambah Salinan Text Baru';
@@ -1469,12 +1114,6 @@
                     document.getElementById('cdDate').value = new Date().toISOString().split('T')[0];
                 }
             }
-            if(modalId === 'modalRoutine') {
-                if (!document.getElementById('editRoutineId').value) {
-                    document.getElementById('modalRoutineTitle').innerText = 'Tambah Rutinitas Harian';
-                    document.getElementById('routineText').value = '';
-                }
-            }
             if(modalId === 'modalStudyRoutine') {
                 if (!document.getElementById('editStudyRoutineId').value) {
                     document.getElementById('modalStudyRoutineTitle').innerText = 'Tambah Rutinitas Belajar';
@@ -1530,8 +1169,6 @@
         }
 
         function openModalAddNew(modalId) {
-            if (modalId === 'modalAddIncome') document.getElementById('editIncId').value = '';
-            if (modalId === 'modalAddExpense') document.getElementById('editExpId').value = '';
             if (modalId === 'modalAddCopier') document.getElementById('editCopierId').value = '';
             if (modalId === 'modalJob') document.getElementById('editJobId').value = '';
             if (modalId === 'modalToken') document.getElementById('editTokenId').value = '';
@@ -1539,7 +1176,6 @@
             if (modalId === 'modalTagihan') document.getElementById('editTagihanId').value = '';
             if (modalId === 'modalHutang') document.getElementById('editHutangId').value = '';
             if (modalId === 'modalCountdown') document.getElementById('editCdId').value = '';
-            if (modalId === 'modalRoutine') document.getElementById('editRoutineId').value = '';
             if (modalId === 'modalStudyRoutine') document.getElementById('editStudyRoutineId').value = '';
             if (modalId === 'modalStudyTarget') document.getElementById('editStudyTargetId').value = '';
             if (modalId === 'modalBensin') document.getElementById('editBensinId').value = '';
@@ -1565,7 +1201,6 @@
             renderFinance();
             renderCountdowns();
             renderNotes();
-            renderCashflow();
             renderCopier();
             lucide.createIcons();
         }
@@ -1788,37 +1423,6 @@
         function deleteCopier(id) {
             state.textCopier = state.textCopier.filter(x => x.id !== id);
             saveState();
-        }
-
-        function deleteAccount(type, id) {
-            if(type === 'bank') {
-                state.bankAccounts = state.bankAccounts.filter(b => b.id !== id);
-            } else if(type === 'digital') {
-                state.digitalBanks = state.digitalBanks.filter(db => db.id !== id);
-            } else if(type === 'ewallet') {
-                state.ewallets = state.ewallets.filter(ew => ew.id !== id);
-            }
-            saveState();
-        }
-
-        function populateAccountDropdowns() {
-            const selects = ['incAccount', 'expAccount'];
-            selects.forEach(selId => {
-                const el = document.getElementById(selId);
-                if(!el) return;
-                let html = `<option value="cash">Dompet / Cash (Rp ${Number(state.cashBalance).toLocaleString('id-ID')})</option>`;
-                
-                state.bankAccounts.forEach(b => {
-                    html += `<option value="bank_${b.id}">Bank: ${b.name} (Rp ${Number(b.saldo).toLocaleString('id-ID')})</option>`;
-                });
-                state.digitalBanks.forEach(db => {
-                    html += `<option value="digital_${db.id}">Bank Digital: ${db.name} (Rp ${Number(db.saldo).toLocaleString('id-ID')})</option>`;
-                });
-                state.ewallets.forEach(ew => {
-                    html += `<option value="ewallet_${ew.id}">E-Wallet: ${ew.name} (Rp ${Number(ew.saldo).toLocaleString('id-ID')})</option>`;
-                });
-                el.innerHTML = html;
-            });
         }
 
         function renderJobs() {
@@ -2182,378 +1786,14 @@
         }
 
         function renderNotes() {
-            const routineList = document.getElementById('routineList');
-            if(routineList) {
-                routineList.innerHTML = (state.routines || []).map(r => `
-                    <div class="flex items-center justify-between p-2.5 rounded-xl bg-gray-900/60 border border-gray-800">
-                        <div class="flex items-center gap-2">
-                            <input type="checkbox" ${r.done ? 'checked' : ''} onchange="toggleRoutine('${r.id}')" class="rounded border-gray-700 bg-gray-800 text-purple-600 focus:ring-0">
-                            <span class="text-xs ${r.done ? 'line-through text-gray-500' : 'text-gray-200'}">${r.text}</span>
-                        </div>
-                        <div class="flex items-center gap-1">
-                            <button onclick="openEditRoutineModal('${r.id}')" class="text-gray-400 hover:text-purple-400 p-1" title="Edit Rutinitas">
-                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                            </button>
-                            <button onclick="deleteLog('routines', '${r.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus Rutinitas">
-                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                            </button>
-                        </div>
-                    </div>
-                `).join('') || `<p class="text-xs text-gray-500 italic text-center py-4">Belum ada rutinitas.</p>`;
-            }
-
             const generalNotesInput = document.getElementById('generalNotesInput');
             if(generalNotesInput) generalNotesInput.value = state.generalNotes || '';
         }
 
-        function openEditRoutineModal(id) {
-            const r = state.routines.find(x => x.id === id);
-            if(!r) return;
-            document.getElementById('editRoutineId').value = r.id;
-            document.getElementById('modalRoutineTitle').innerText = 'Edit Rutinitas Harian';
-            document.getElementById('routineText').value = r.text || '';
-            openModal('modalRoutine');
-        }
-
-        function renderCashflow() {
-            const balCash = document.getElementById('balance-cash');
-            if(balCash) balCash.innerText = `Rp ${Number(state.cashBalance).toLocaleString('id-ID')}`;
-            
-            const bankAccountsList = document.getElementById('bankAccountsList');
-            if(bankAccountsList) {
-                bankAccountsList.innerHTML = state.bankAccounts.map(b => `
-                    <div class="flex justify-between items-center text-xs group">
-                        <span class="text-gray-300 truncate pr-1">${b.name}</span>
-                        <div class="flex items-center gap-1 flex-shrink-0">
-                            <span class="font-bold text-cyan-400">Rp ${Number(b.saldo).toLocaleString('id-ID')}</span>
-                            <button onclick="openEditSaldoModal('bank_${b.id}', 'Bank ${b.name}')" class="text-gray-500 hover:text-cyan-300 p-0.5" title="Edit Saldo">
-                                <i data-lucide="edit-2" class="w-3 h-3"></i>
-                            </button>
-                            <button onclick="deleteAccount('bank', '${b.id}')" class="text-gray-500 hover:text-rose-400 p-0.5" title="Hapus">
-                                <i data-lucide="trash-2" class="w-3 h-3"></i>
-                            </button>
-                        </div>
-                    </div>
-                `).join('') || `<p class="text-[10px] text-gray-500 italic">Belum ada</p>`;
-            }
-
-            const digitalBanksList = document.getElementById('digitalBanksList');
-            if(digitalBanksList) {
-                digitalBanksList.innerHTML = state.digitalBanks.map(db => `
-                    <div class="flex justify-between items-center text-xs group">
-                        <span class="text-gray-300 truncate pr-1">${db.name}</span>
-                        <div class="flex items-center gap-1 flex-shrink-0">
-                            <span class="font-bold text-purple-400">Rp ${Number(db.saldo).toLocaleString('id-ID')}</span>
-                            <button onclick="openEditSaldoModal('digital_${db.id}', '${db.name}')" class="text-gray-500 hover:text-purple-300 p-0.5" title="Edit Saldo">
-                                <i data-lucide="edit-2" class="w-3 h-3"></i>
-                            </button>
-                            <button onclick="deleteAccount('digital', '${db.id}')" class="text-gray-500 hover:text-rose-400 p-0.5" title="Hapus">
-                                <i data-lucide="trash-2" class="w-3 h-3"></i>
-                            </button>
-                        </div>
-                    </div>
-                `).join('') || `<p class="text-[10px] text-gray-500 italic">Belum ada</p>`;
-            }
-
-            const ewalletsList = document.getElementById('ewalletsList');
-            if(ewalletsList) {
-                ewalletsList.innerHTML = state.ewallets.map(ew => `
-                    <div class="flex justify-between items-center text-xs group">
-                        <span class="text-gray-300 truncate pr-1">${ew.name}</span>
-                        <div class="flex items-center gap-1 flex-shrink-0">
-                            <span class="font-bold text-yellow-400">Rp ${Number(ew.saldo).toLocaleString('id-ID')}</span>
-                            <button onclick="openEditSaldoModal('ewallet_${ew.id}', '${ew.name}')" class="text-gray-500 hover:text-yellow-300 p-0.5" title="Edit Saldo">
-                                <i data-lucide="edit-2" class="w-3 h-3"></i>
-                            </button>
-                            <button onclick="deleteAccount('ewallet', '${ew.id}')" class="text-gray-500 hover:text-rose-400 p-0.5" title="Hapus">
-                                <i data-lucide="trash-2" class="w-3 h-3"></i>
-                            </button>
-                        </div>
-                    </div>
-                `).join('') || `<p class="text-[10px] text-gray-500 italic">Belum ada</p>`;
-            }
-
-            const cashflowFilterPeriod = document.getElementById('cashflowFilterPeriod');
-            const period = cashflowFilterPeriod ? cashflowFilterPeriod.value : 'bulanan';
-            const filteredIncomes = filterByPeriod(state.incomes, period);
-            const filteredExpenses = filterByPeriod(state.expenses, period);
-
-            const totalInc = filteredIncomes.reduce((a, b) => a + Number(b.nominal), 0);
-            const totalExp = filteredExpenses.reduce((a, b) => a + Number(b.nominal), 0);
-
-            const recapIncome = document.getElementById('recapIncome');
-            if(recapIncome) recapIncome.innerText = `Rp ${totalInc.toLocaleString('id-ID')}`;
-            const recapExpense = document.getElementById('recapExpense');
-            if(recapExpense) recapExpense.innerText = `Rp ${totalExp.toLocaleString('id-ID')}`;
-
-            const incomeLogList = document.getElementById('incomeLogList');
-            if(incomeLogList) {
-                incomeLogList.innerHTML = filteredIncomes.map(inc => `
-                    <div class="flex justify-between items-center text-xs p-2.5 rounded-xl bg-gray-900/60 border border-gray-800">
-                        <div>
-                            <span class="text-emerald-400 font-bold">+ Rp ${Number(inc.nominal).toLocaleString('id-ID')}</span>
-                            <span class="text-gray-200 block">${inc.note} (${getAccountName(inc.account)})</span>
-                            <span class="text-[10px] text-gray-500 font-mono">${formatDateIndo(inc.date)}</span>
-                        </div>
-                        <div class="flex items-center gap-1">
-                            <button onclick="openEditIncomeModal('${inc.id}')" class="text-gray-400 hover:text-emerald-400 p-1" title="Edit Pemasukan">
-                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                            </button>
-                            <button onclick="deleteCashflow('income', '${inc.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus">
-                                <i data-lucide="x" class="w-3.5 h-3.5"></i>
-                            </button>
-                        </div>
-                    </div>
-                `).join('') || `<p class="text-xs text-gray-500 italic text-center py-3">Belum ada pemasukan.</p>`;
-            }
-
-            const expenseLogList = document.getElementById('expenseLogList');
-            if(expenseLogList) {
-                expenseLogList.innerHTML = filteredExpenses.map(exp => `
-                    <div class="flex justify-between items-center text-xs p-2.5 rounded-xl bg-gray-900/60 border border-gray-800">
-                        <div>
-                            <span class="text-rose-400 font-bold">- Rp ${Number(exp.nominal).toLocaleString('id-ID')}</span>
-                            <span class="text-gray-200 block">[${exp.category}] ${exp.note || ''} (${getAccountName(exp.account)})</span>
-                            <span class="text-[10px] text-gray-500 font-mono">${formatDateIndo(exp.date)}</span>
-                        </div>
-                        <div class="flex items-center gap-1">
-                            <button onclick="openEditExpenseModal('${exp.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Edit Pengeluaran">
-                                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                            </button>
-                            <button onclick="deleteCashflow('expense', '${exp.id}')" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus">
-                                <i data-lucide="x" class="w-3.5 h-3.5"></i>
-                            </button>
-                        </div>
-                    </div>
-                `).join('') || `<p class="text-xs text-gray-500 italic text-center py-3">Belum ada pengeluaran.</p>`;
-            }
-        }
-
-        function openEditIncomeModal(id) {
-            const inc = state.incomes.find(x => x.id === id);
-            if(!inc) return;
-            populateAccountDropdowns();
-            document.getElementById('editIncId').value = inc.id;
-            document.getElementById('modalIncomeTitle').innerText = 'Edit Pemasukan';
-            document.getElementById('incDate').value = inc.date;
-            document.getElementById('incNominal').value = inc.nominal;
-            document.getElementById('incAccount').value = inc.account;
-            document.getElementById('incNote').value = inc.note || '';
-            openModal('modalAddIncome');
-        }
-
-        function openEditExpenseModal(id) {
-            const exp = state.expenses.find(x => x.id === id);
-            if(!exp) return;
-            populateAccountDropdowns();
-            document.getElementById('editExpId').value = exp.id;
-            document.getElementById('modalExpenseTitle').innerText = 'Edit Pengeluaran';
-            document.getElementById('expDate').value = exp.date;
-            document.getElementById('expNominal').value = exp.nominal;
-            
-            const stdCats = ['Tagihan', 'Belanja', 'Shopee', 'Tokopedia', 'Bensin', 'Makan / Minum'];
-            if(stdCats.includes(exp.category)) {
-                document.getElementById('expCategory').value = exp.category;
-                document.getElementById('expCustomCat').value = '';
-            } else {
-                document.getElementById('expCategory').value = 'Lainnya';
-                document.getElementById('expCustomCat').value = exp.category;
-            }
-
-            document.getElementById('expAccount').value = exp.account;
-            document.getElementById('expNote').value = exp.note || '';
-            openModal('modalAddExpense');
-        }
-
-        function openEditSaldoModal(accKey, name) {
-            document.getElementById('editSaldoAccKey').value = accKey;
-            document.getElementById('editSaldoAccountName').innerText = name;
-            
-            let currentBalance = 0;
-            if (accKey === 'cash') {
-                currentBalance = state.cashBalance;
-            } else {
-                const [type, id] = accKey.split('_');
-                if (type === 'bank') {
-                    const b = state.bankAccounts.find(x => x.id === id);
-                    if (b) currentBalance = b.saldo;
-                } else if (type === 'digital') {
-                    const db = state.digitalBanks.find(x => x.id === id);
-                    if (db) currentBalance = db.saldo;
-                } else if (type === 'ewallet') {
-                    const ew = state.ewallets.find(x => x.id === id);
-                    if (ew) currentBalance = ew.saldo;
-                }
-            }
-
-            document.getElementById('editSaldoAmount').value = currentBalance;
-            openModal('modalEditSaldo');
-        }
-
-        function handleEditSaldoSubmit(e) {
-            e.preventDefault();
-            const accKey = document.getElementById('editSaldoAccKey').value;
-            const newAmount = Number(document.getElementById('editSaldoAmount').value);
-
-            if (accKey === 'cash') {
-                state.cashBalance = newAmount;
-            } else {
-                const [type, id] = accKey.split('_');
-                if (type === 'bank') {
-                    const b = state.bankAccounts.find(x => x.id === id);
-                    if (b) b.saldo = newAmount;
-                } else if (type === 'digital') {
-                    const db = state.digitalBanks.find(x => x.id === id);
-                    if (db) db.saldo = newAmount;
-                } else if (type === 'ewallet') {
-                    const ew = state.ewallets.find(x => x.id === id);
-                    if (ew) ew.saldo = newAmount;
-                }
-            }
-
-            closeModal('modalEditSaldo');
+        function saveGeneralNotes() {
+            state.generalNotes = document.getElementById('generalNotesInput').value;
             saveState();
-        }
-
-        function filterByPeriod(arr, period) {
-            const now = new Date();
-            return (arr || []).filter(item => {
-                if(period === 'semua') return true;
-                const d = new Date(item.date);
-                if(period === 'harian') {
-                    return d.toDateString() === now.toDateString();
-                } else if(period === 'mingguan') {
-                    const diffTime = Math.abs(now - d);
-                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                    return diffDays <= 7;
-                } else if(period === 'bulanan') {
-                    return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
-                } else if(period === 'tahunan') {
-                    return d.getFullYear() === now.getFullYear();
-                }
-                return true;
-            });
-        }
-
-        function getAccountName(accKey) {
-            if(accKey === 'cash') return 'Dompet / Cash';
-            const [type, id] = accKey.split('_');
-            if(type === 'bank') {
-                const b = state.bankAccounts.find(x => x.id === id);
-                return b ? `Bank ${b.name}` : 'Bank';
-            } else if(type === 'digital') {
-                const db = state.digitalBanks.find(x => x.id === id);
-                return db ? db.name : 'Bank Digital';
-            } else if(type === 'ewallet') {
-                const ew = state.ewallets.find(x => x.id === id);
-                return ew ? ew.name : 'E-Wallet';
-            }
-            return accKey;
-        }
-
-        function updateAccountBalance(accKey, amount, isAdd) {
-            const val = Number(amount);
-            if(accKey === 'cash') {
-                state.cashBalance = isAdd ? state.cashBalance + val : state.cashBalance - val;
-            } else {
-                const [type, id] = accKey.split('_');
-                if(type === 'bank') {
-                    const b = state.bankAccounts.find(x => x.id === id);
-                    if(b) b.saldo = isAdd ? b.saldo + val : b.saldo - val;
-                } else if(type === 'digital') {
-                    const db = state.digitalBanks.find(x => x.id === id);
-                    if(db) db.saldo = isAdd ? db.saldo + val : db.saldo - val;
-                } else if(type === 'ewallet') {
-                    const ew = state.ewallets.find(x => x.id === id);
-                    if(ew) ew.saldo = isAdd ? ew.saldo + val : ew.saldo - val;
-                }
-            }
-        }
-
-        function handleIncomeSubmit(e) {
-            e.preventDefault();
-            const editId = document.getElementById('editIncId').value;
-            const date = document.getElementById('incDate').value;
-            const nominal = document.getElementById('incNominal').value;
-            const account = document.getElementById('incAccount').value;
-            const note = document.getElementById('incNote').value;
-
-            if (editId) {
-                const inc = state.incomes.find(x => x.id === editId);
-                if (inc) {
-                    updateAccountBalance(inc.account, inc.nominal, false);
-                    inc.date = date;
-                    inc.nominal = nominal;
-                    inc.account = account;
-                    inc.note = note;
-                    updateAccountBalance(account, nominal, true);
-                }
-            } else {
-                state.incomes.unshift({
-                    id: 'inc-' + Date.now(),
-                    date, nominal, account, note
-                });
-                updateAccountBalance(account, nominal, true);
-            }
-
-            closeModal('modalAddIncome');
-            saveState();
-        }
-
-        function handleExpenseSubmit(e) {
-            e.preventDefault();
-            const editId = document.getElementById('editExpId').value;
-            const date = document.getElementById('expDate').value;
-            const nominal = document.getElementById('expNominal').value;
-            const account = document.getElementById('expAccount').value;
-            let cat = document.getElementById('expCategory').value;
-            if(cat === 'Lainnya') {
-                cat = document.getElementById('expCustomCat').value || 'Lainnya';
-            }
-            const note = document.getElementById('expNote').value;
-
-            if (editId) {
-                const exp = state.expenses.find(x => x.id === editId);
-                if (exp) {
-                    updateAccountBalance(exp.account, exp.nominal, true);
-                    exp.date = date;
-                    exp.nominal = nominal;
-                    exp.category = cat;
-                    exp.account = account;
-                    exp.note = note;
-                    updateAccountBalance(account, nominal, false);
-                }
-            } else {
-                state.expenses.unshift({
-                    id: 'exp-' + Date.now(),
-                    date, nominal, category: cat, account, note
-                });
-                updateAccountBalance(account, nominal, false);
-            }
-
-            closeModal('modalAddExpense');
-            saveState();
-        }
-
-        function handleAccountAdd(e, type) {
-            e.preventDefault();
-            if(type === 'bank') {
-                const name = document.getElementById('newBankName').value;
-                const saldo = Number(document.getElementById('newBankSaldo').value);
-                state.bankAccounts.push({ id: 'b-' + Date.now(), name, saldo });
-                closeModal('modalAddBank');
-            } else if(type === 'digital') {
-                const name = document.getElementById('newDigitalName').value;
-                const saldo = Number(document.getElementById('newDigitalSaldo').value);
-                state.digitalBanks.push({ id: 'db-' + Date.now(), name, saldo });
-                closeModal('modalAddDigitalBank');
-            } else if(type === 'ewallet') {
-                const name = document.getElementById('newEwalletName').value;
-                const saldo = Number(document.getElementById('newEwalletSaldo').value);
-                state.ewallets.push({ id: 'ew-' + Date.now(), name, saldo });
-                closeModal('modalAddEwallet');
-            }
-            saveState();
+            alert('Catatan berhasil disimpan!');
         }
 
         function handleJobSubmit(e) {
@@ -2656,47 +1896,12 @@
             saveState();
         }
 
-        function handleRoutineSubmit(e) {
-            e.preventDefault();
-            const editId = document.getElementById('editRoutineId').value;
-            const text = document.getElementById('routineText').value;
-
-            if(editId) {
-                const r = state.routines.find(x => x.id === editId);
-                if(r) {
-                    r.text = text;
-                }
-            } else {
-                state.routines.unshift({
-                    id: 'r-' + Date.now(),
-                    text,
-                    done: false
-                });
-            }
-            closeModal('modalRoutine');
-            saveState();
-        }
-
         function handlePajakSubmit(e) {
             e.preventDefault();
             state.pajakTahunanDate = document.getElementById('pajakTahunanInput').value;
             state.pajak5TahunanDate = document.getElementById('pajak5TahunanInput').value;
             closeModal('modalPajak');
             saveState();
-        }
-
-        function toggleRoutine(id) {
-            const r = state.routines.find(x => x.id === id);
-            if (r) {
-                r.done = !r.done;
-                saveState();
-            }
-        }
-
-        function saveGeneralNotes() {
-            state.generalNotes = document.getElementById('generalNotesInput').value;
-            saveState();
-            alert('Catatan berhasil disimpan!');
         }
 
         function deleteJob(id) {
@@ -2709,42 +1914,7 @@
             saveState();
         }
 
-        function deleteCashflow(type, id) {
-            if(type === 'income') {
-                const idx = state.incomes.findIndex(x => x.id === id);
-                if(idx !== -1) {
-                    updateAccountBalance(state.incomes[idx].account, state.incomes[idx].nominal, false);
-                    state.incomes.splice(idx, 1);
-                }
-            } else {
-                const idx = state.expenses.findIndex(x => x.id === id);
-                if(idx !== -1) {
-                    updateAccountBalance(state.expenses[idx].account, state.expenses[idx].nominal, true);
-                    state.expenses.splice(idx, 1);
-                }
-            }
-            saveState();
-        }
-
         function renderHomeOverview() {
-            let total = Number(state.cashBalance || 0);
-            (state.bankAccounts || []).forEach(b => total += Number(b.saldo || 0));
-            (state.digitalBanks || []).forEach(db => total += Number(db.saldo || 0));
-            (state.ewallets || []).forEach(ew => total += Number(ew.saldo || 0));
-
-            const homeTotalBalance = document.getElementById('homeTotalBalance');
-            if(homeTotalBalance) homeTotalBalance.innerText = `Rp ${total.toLocaleString('id-ID')}`;
-
-            const filteredIncomes = filterByPeriod(state.incomes, 'bulanan');
-            const filteredExpenses = filterByPeriod(state.expenses, 'bulanan');
-            const totalInc = filteredIncomes.reduce((a, b) => a + Number(b.nominal), 0);
-            const totalExp = filteredExpenses.reduce((a, b) => a + Number(b.nominal), 0);
-
-            const homeMonthInc = document.getElementById('homeMonthInc');
-            if(homeMonthInc) homeMonthInc.innerText = `Rp ${totalInc.toLocaleString('id-ID')}`;
-            const homeMonthExp = document.getElementById('homeMonthExp');
-            if(homeMonthExp) homeMonthExp.innerText = `Rp ${totalExp.toLocaleString('id-ID')}`;
-
             const currentBeat = state.cicilanBeat || 0;
             const homeBeatProgress = document.getElementById('homeBeatProgress');
             if(homeBeatProgress) homeBeatProgress.innerText = `${currentBeat} / 33 Bulan`;
@@ -2753,22 +1923,6 @@
             if(homeBeatProgressBar) {
                 const pct = Math.min(100, Math.round((currentBeat / 33) * 100));
                 homeBeatProgressBar.style.width = `${pct}%`;
-            }
-
-            const homeRoutineList = document.getElementById('homeRoutineList');
-            if(homeRoutineList) {
-                if(!state.routines || state.routines.length === 0) {
-                    homeRoutineList.innerHTML = `<p class="text-xs text-gray-500 italic py-2">Belum ada rutinitas.</p>`;
-                } else {
-                    homeRoutineList.innerHTML = state.routines.slice(0, 4).map(r => `
-                        <div class="flex items-center justify-between p-2 rounded-xl bg-gray-900/60 border border-gray-800">
-                            <div class="flex items-center gap-2">
-                                <input type="checkbox" ${r.done ? 'checked' : ''} onchange="toggleRoutine('${r.id}')" class="rounded border-gray-700 bg-gray-800 text-purple-600 focus:ring-0 cursor-pointer">
-                                <span class="text-xs ${r.done ? 'line-through text-gray-500' : 'text-gray-200'}">${r.text}</span>
-                            </div>
-                        </div>
-                    `).join('');
-                }
             }
 
             const homeQuickNote = document.getElementById('homeQuickNote');
