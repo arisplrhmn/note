@@ -251,13 +251,26 @@
         </section>
 
         <!-- ================= アリ (ARI / BELAJAR) TAB ================= -->
-        <section id="sec-ari" class="hidden space-y-4">
-            <div class="flex items-center justify-between">
+        <section id="sec-ari" class="hidden space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
-                    <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                    <h2 class="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2">
                         <i data-lucide="book-open" class="w-5 h-5 text-sky-400"></i> アリ - Ruang Belajar
                     </h2>
-                    <p class="text-[11px] sm:text-xs text-gray-400">Rutinitas Belajar & Target Belajar</p>
+                    <p class="text-[11px] sm:text-xs text-gray-400">Rutinitas, Target, & Roadmap Ke Jepang Mandiri</p>
+                </div>
+            </div>
+
+            <!-- Urutan Belajar B. Jepang Mandiri Banner & Detail (Photo Roadmap) -->
+            <div class="bg-white rounded-2xl p-4 sm:p-6 text-gray-900 shadow-xl border border-gray-200 space-y-4">
+                <div class="text-center border-b border-gray-200 pb-3">
+                    <h3 class="text-lg sm:text-2xl font-black text-gray-900 tracking-tight uppercase">URUTAN BELAJAR B. JEPANG MANDIRI</h3>
+                    <p class="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">Roadmap dari dasar sampai siap ke Jepang</p>
+                </div>
+
+                <!-- List Step Roadmap Dari Foto -->
+                <div class="space-y-3 max-h-[500px] overflow-y-auto pr-1" id="japanRoadmapContainer">
+                    <!-- Dynamic Items via JS -->
                 </div>
             </div>
 
@@ -972,6 +985,27 @@
 
     <!-- APP SCRIPT -->
     <script>
+        const initialJapanRoadmap = [
+            { id: 1, title: "HIRAGANA (ひらがな)", detail: "Kuasai 46 karakter hiragana • Baca & tulis", target: "Target: Lancar baca tulisan hiragana", status: "Belum" },
+            { id: 2, title: "KATAKANA (カタカナ)", detail: "Kuasai 46 karakter katakana • Baca & tulis", target: "Target: Lancar baca tulisan katakana", status: "Belum" },
+            { id: 3, title: "KOTOBA (ことば - Kosakata)", detail: "Bangun kosakata dasar • Sekitar 800-1500 kata umum", target: "Materi: Tema sehari-hari (keluarga, sekolah, kerja, makanan, transportasi, dll)", status: "Belum" },
+            { id: 4, title: "BUNPO (文法 - Tata Bahasa)", detail: "Pelajari pola kalimat dasar • Partikel, bentuk masu/te, dll", target: "Materi: Minna no Nihongo 1 atau buku grammar dasar", status: "Belum" },
+            { id: 5, title: "KANJI (漢字)", detail: "Mulai dari kanji dasar • Belajar bertahap via RTK / WaniKani / Anki", target: "Target awal: ±300-500 kanji (N5-N4 level)", status: "Belum" },
+            { id: 6, title: "IKUT UJIAN JLPT (日本語能力試験)", detail: "Ujian resmi kemampuan bahasa Jepang • Mulai dari N5, lanjut N4, N3, dst", target: "Target awal: N5 -> N4 (sesuai levelmu)", status: "Belum" },
+            { id: 7, title: "JFT / JFT-BASIC (技能試験)", detail: "Ujian khusus untuk kerja di Jepang (Specified Skilled Worker / SSW)", target: "Materi: Bahasa + situasi kerja dasar", status: "Belum" },
+            { id: 8, title: "SSW (特定技能)", detail: "Program kerja resmi ke Jepang untuk bidang tertentu", target: "Persyaratan: Lulus JFT, lulus seleksi perusahaan", status: "Belum" },
+            { id: 9, title: "CARI JOB (仕事を探す)", detail: "Cari lowongan kerja di Jepang • Lewat agen, job portal, atau langsung ke perusahaan", target: "Siapkan: CV, dokumen, dan interview bahasa Jepang", status: "Belum" },
+            { id: 10, title: "MANDIRI (PERSIAPAN)", detail: "Siapkan dokumen, mental, keuangan, dan rencana hidup", target: "Dokumen: Paspor, visa kerja, sertifikat, dll", status: "Belum" },
+            { id: 11, title: "MCU (MEDICAL CHECK UP)", detail: "Pemeriksaan kesehatan lengkap sesuai standar Jepang", target: "Dilakukan di klinik / RS yang ditentukan", status: "Belum" },
+            { id: 12, title: "PASPOR", detail: "Buat atau perpanjang paspor • Pastikan masa berlaku cukup", target: "Minimal 1 tahun sebelum keberangkatan", status: "Belum" },
+            { id: 13, title: "TTD KONTRAK", detail: "Tanda tangan kontrak kerja dengan perusahaan Jepang", target: "Isi: Gaji, jobdesk, lokasi, durasi kontrak, dll", status: "Belum" },
+            { id: 14, title: "PENGAJUAN COE (Certificate of Eligibility)", detail: "Perusahaan mengajukan COE ke imigrasi Jepang", target: "COE = izin resmi tinggal & bekerja di Jepang", status: "Belum" },
+            { id: 15, title: "COE TURUN", detail: "COE diterbitkan oleh imigrasi Jepang", target: "Biasanya 1-3 bulan setelah pengajuan", status: "Belum" },
+            { id: 16, title: "EKTLN (Exit Kas Negara)", detail: "Bayar biaya ke kas negara (PNBP) sebagai syarat visa kerja", target: "Dilakukan setelah COE turun", status: "Belum" },
+            { id: 17, title: "VISA", detail: "Ajukan visa kerja ke Kedutaan Jepang di Indonesia", target: "Syarat: Paspor, COE, foto, dokumen pendukung", status: "Belum" },
+            { id: 18, title: "TERBANG KE JEPANG ✈️", detail: "Persiapan akhir & keberangkatan • Mulai hidup & kerja di Jepang!", target: "Siapkan: koper, dokumen, mental & semangat!", status: "Belum" }
+        ];
+
         const defaultData = {
             cicilanBeat: 12,
             pajakTahunanDate: "2027-01-01",
@@ -996,6 +1030,7 @@
             studyTargets: [
                 { id: "st-1", title: "Selesai Bab 1 Kanji", date: "2026-12-31" }
             ],
+            japanRoadmap: initialJapanRoadmap,
             textCopier: [
                 { id: "cop-1", title: "Alamat Rumah", content: "Jl. Sayang No. 12, RT 02/RW 05, Cianjur, Jawa Barat 43211" },
                 { id: "cop-2", title: "Rekening BCA", content: "1234567890 a.n. Aris" }
@@ -1013,6 +1048,7 @@
         if(!state.countdowns) state.countdowns = [];
         if(!state.studyRoutines) state.studyRoutines = [];
         if(!state.studyTargets) state.studyTargets = [];
+        if(!state.japanRoadmap) state.japanRoadmap = initialJapanRoadmap;
         if(!state.textCopier) state.textCopier = defaultData.textCopier;
         if(!state.bensinLogs) state.bensinLogs = [];
         if(!state.oliLogs) state.oliLogs = [];
@@ -1026,7 +1062,6 @@
             renderApp();
         }
 
-        // Helper Format Tanggal Utama: TANGGAL - BULAN - TAHUN (DD - MM - YYYY)
         function formatDateIndo(dateStr) {
             if (!dateStr || dateStr === '-') return "-";
             const parts = dateStr.split('-');
@@ -1206,6 +1241,46 @@
         }
 
         function renderAriSection() {
+            // Render Roadmap Jepang (Dari Photo)
+            const japanRoadmapContainer = document.getElementById('japanRoadmapContainer');
+            if (japanRoadmapContainer) {
+                japanRoadmapContainer.innerHTML = (state.japanRoadmap || initialJapanRoadmap).map(step => {
+                    let badgeColor = "bg-blue-600 text-white";
+                    if(step.id >= 6 && step.id <= 9) badgeColor = "bg-amber-600 text-white";
+                    if(step.id >= 10 && step.id <= 13) badgeColor = "bg-indigo-600 text-white";
+                    if(step.id >= 14 && step.id <= 18) badgeColor = "bg-teal-600 text-white";
+
+                    let statusBadgeClass = "bg-gray-100 text-gray-700 border-gray-300";
+                    if (step.status === "Proses") statusBadgeClass = "bg-amber-100 text-amber-800 border-amber-300";
+                    if (step.status === "Selesai") statusBadgeClass = "bg-emerald-100 text-emerald-800 border-emerald-300";
+
+                    return `
+                        <div class="p-3 sm:p-4 rounded-xl border border-gray-200 bg-gray-50 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 hover:shadow-md transition">
+                            <div class="flex items-start gap-3 flex-1">
+                                <span class="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-lg ${badgeColor} text-xs sm:text-sm font-black flex items-center justify-center shadow-sm">
+                                    ${step.id}
+                                </span>
+                                <div class="space-y-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <h4 class="text-xs sm:text-sm font-extrabold text-gray-900">${step.title}</h4>
+                                    </div>
+                                    <p class="text-[11px] sm:text-xs text-gray-700 font-medium">${step.detail}</p>
+                                    <p class="text-[10px] sm:text-[11px] text-gray-500 font-normal italic">${step.target}</p>
+                                </div>
+                            </div>
+                            <!-- Status Selector -->
+                            <div class="flex items-center gap-1.5 self-end md:self-center">
+                                <select onchange="updateRoadmapStatus(${step.id}, this.value)" class="text-[11px] font-bold px-2 py-1 rounded-lg border ${statusBadgeClass} focus:outline-none cursor-pointer">
+                                    <option value="Belum" ${step.status === 'Belum' ? 'selected' : ''}>⏳ Belum</option>
+                                    <option value="Proses" ${step.status === 'Proses' ? 'selected' : ''}>🔄 Proses</option>
+                                    <option value="Selesai" ${step.status === 'Selesai' ? 'selected' : ''}>✅ Selesai</option>
+                                </select>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
             // Render Rutinitas Belajar
             const studyRoutineList = document.getElementById('studyRoutineList');
             if (studyRoutineList) {
@@ -1254,6 +1329,14 @@
                         </div>
                     `;
                 }).join('') || `<p class="text-xs text-gray-500 italic text-center py-4">Belum ada target belajar.</p>`;
+            }
+        }
+
+        function updateRoadmapStatus(stepId, newStatus) {
+            const step = state.japanRoadmap.find(s => s.id === stepId);
+            if (step) {
+                step.status = newStatus;
+                saveState();
             }
         }
 
@@ -1957,7 +2040,6 @@
                 }
             }
 
-            // Render Informasi Pajak dengan DD - MM - YYYY
             const p1Display = document.getElementById('pajakTahunanDisplay');
             if(p1Display) p1Display.innerText = formatDateIndo(state.pajakTahunanDate);
 
