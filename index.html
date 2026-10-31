@@ -308,16 +308,35 @@
 
         <!-- ================= MEDIAFIRE TAB ================= -->
         <section id="sec-mediafire" class="hidden space-y-4">
-            <div class="flex items-center justify-between">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                     <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
                         <i data-lucide="flame" class="w-5 h-5 text-orange-500"></i> Tautan MediaFire
                     </h2>
-                    <p class="text-[11px] sm:text-xs text-gray-400">Simpan dan Kelola Link Berkas / Download MediaFire</p>
+                    <p class="text-[11px] sm:text-xs text-gray-400">Simpan, Cari, dan Kelola Link Berkas / Download MediaFire</p>
                 </div>
-                <button onclick="openModalAddNew('modalMediafire')" class="px-3.5 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-orange-600/20">
-                    <i data-lucide="plus" class="w-4 h-4"></i> Tambah Link
-                </button>
+                <div class="flex items-center gap-2">
+                    <button onclick="openModalCategoryManager()" class="px-3 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-orange-400 border border-orange-500/30 font-semibold text-xs flex items-center gap-1.5 transition">
+                        <i data-lucide="folder-cog" class="w-4 h-4"></i> Kelola Kategori
+                    </button>
+                    <button onclick="openModalAddNew('modalMediafire')" class="px-3.5 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-orange-600/20">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Tambah Link
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Bar & Filter Kategori -->
+            <div class="glass-card p-3 rounded-2xl border border-gray-800 flex flex-col sm:flex-row gap-2.5 items-center justify-between">
+                <div class="relative w-full sm:w-1/2">
+                    <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                    <input type="text" id="mfSearchInput" oninput="renderMediafire()" placeholder="Cari nama file atau link MediaFire..." class="w-full bg-gray-900 border border-gray-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+                </div>
+                <div class="w-full sm:w-auto flex items-center gap-2">
+                    <span class="text-xs text-gray-400 flex-shrink-0">Filter:</span>
+                    <select id="mfCategoryFilter" onchange="renderMediafire()" class="w-full sm:w-auto bg-gray-900 border border-gray-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+                        <!-- Options generated dynamically -->
+                    </select>
+                </div>
             </div>
 
             <!-- Scrollable Link Container -->
@@ -727,6 +746,12 @@
                     <input type="text" id="mfName" placeholder="Contoh: Mod APK / Dokumen N3" required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 </div>
                 <div>
+                    <label class="text-[10px] text-gray-400 block mb-1">Kategori</label>
+                    <select id="mfCategory" class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-orange-500">
+                        <!-- Options generated dynamically -->
+                    </select>
+                </div>
+                <div>
                     <label class="text-[10px] text-gray-400 block mb-1">Link MediaFire</label>
                     <input type="url" id="mfUrl" placeholder="https://www.mediafire.com/file/..." required class="w-full bg-gray-900 border border-gray-800 rounded-xl p-2.5 text-xs text-white">
                 </div>
@@ -735,6 +760,29 @@
                     <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-orange-600 text-white text-xs font-semibold">Simpan</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal Kelola Kategori MediaFire -->
+    <div id="modalMfCategories" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-sm w-full p-5 space-y-4 border border-gray-700">
+            <div class="flex justify-between items-center">
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    <i data-lucide="folder-cog" class="w-4 h-4 text-orange-400"></i> Kelola Kategori
+                </h3>
+                <button onclick="closeModal('modalMfCategories')" class="text-gray-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+            </div>
+            <!-- Form Tambah Kategori Baru -->
+            <form onsubmit="handleAddCategory(event)" class="flex gap-2">
+                <input type="text" id="newCatName" placeholder="Nama Kategori Baru" required class="flex-grow bg-gray-900 border border-gray-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+                <button type="submit" class="px-3 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-semibold text-xs flex-shrink-0">
+                    + Tambah
+                </button>
+            </form>
+            <!-- Daftar Kategori -->
+            <div class="space-y-2 max-h-56 overflow-y-auto pr-1" id="categoryListContainer">
+                <!-- Dynamic Items -->
+            </div>
         </div>
     </div>
 
@@ -1085,13 +1133,15 @@
                 { id: "cop-1", title: "Alamat Rumah", content: "Jl. Sayang No. 12, RT 02/RW 05, Cianjur, Jawa Barat 43211" },
                 { id: "cop-2", title: "Rekening BCA", content: "1234567890 a.n. Aris" }
             ],
-            generalNotes: "Catatan Pribadi arisplrhmn."
+            generalNotes: "Catatan Pribadi arisplrhmn.",
+            mediafireCategories: ["Umum", "Dokumen", "Aplikasi", "Game", "Video"]
         };
 
         let state = JSON.parse(localStorage.getItem('arisplrhmn_projects_db')) || defaultData;
 
         if(!state.jobs) state.jobs = [];
         if(!state.mediafireLinks) state.mediafireLinks = [];
+        if(!state.mediafireCategories) state.mediafireCategories = ["Umum", "Dokumen", "Aplikasi", "Game", "Video"];
         if(!state.bcaLogs) state.bcaLogs = [];
         if(!state.tokenLogs) state.tokenLogs = [];
         if(!state.tagihan) state.tagihan = [];
@@ -1144,10 +1194,12 @@
 
         function openModal(modalId) {
             if(modalId === 'modalMediafire') {
+                populateCategoryDropdowns();
                 if (!document.getElementById('editMediafireId').value) {
                     document.getElementById('modalMediafireTitle').innerText = 'Simpan Link MediaFire';
                     document.getElementById('mfName').value = '';
                     document.getElementById('mfUrl').value = '';
+                    document.getElementById('mfCategory').value = state.mediafireCategories[0] || 'Umum';
                 }
             }
             if(modalId === 'modalAddCopier') {
@@ -1301,14 +1353,35 @@
         }
 
         function renderMediafire() {
+            populateCategoryDropdowns();
             const container = document.getElementById('mediafireList');
             if(!container) return;
-            if(!state.mediafireLinks || state.mediafireLinks.length === 0) {
-                container.innerHTML = `<p class="text-xs text-gray-500 italic col-span-2 text-center py-6">Belum ada tautan MediaFire yang disimpan.</p>`;
+
+            const searchQuery = (document.getElementById('mfSearchInput')?.value || '').toLowerCase().trim();
+            const selectedCategory = document.getElementById('mfCategoryFilter')?.value || 'Semua';
+
+            let filteredLinks = state.mediafireLinks || [];
+
+            // Filter Kategori
+            if (selectedCategory !== 'Semua') {
+                filteredLinks = filteredLinks.filter(item => (item.category || 'Umum') === selectedCategory);
+            }
+
+            // Filter Pencarian (Search)
+            if (searchQuery !== '') {
+                filteredLinks = filteredLinks.filter(item => 
+                    (item.name || '').toLowerCase().includes(searchQuery) || 
+                    (item.url || '').toLowerCase().includes(searchQuery) ||
+                    (item.category || '').toLowerCase().includes(searchQuery)
+                );
+            }
+
+            if(filteredLinks.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-500 italic col-span-2 text-center py-8">Tidak ada tautan MediaFire yang cocok dengan pencarian / filter.</p>`;
                 return;
             }
 
-            container.innerHTML = state.mediafireLinks.map(item => `
+            container.innerHTML = filteredLinks.map(item => `
                 <div class="glass-card rounded-2xl p-4 border border-orange-500/20 space-y-3 relative flex flex-col justify-between hover:border-orange-500/40 transition">
                     <div class="space-y-2">
                         <div class="flex items-center justify-between gap-2">
@@ -1316,7 +1389,10 @@
                                 <div class="p-2 rounded-xl bg-orange-500/10 text-orange-400 flex-shrink-0">
                                     <i data-lucide="flame" class="w-4 h-4"></i>
                                 </div>
-                                <h3 class="text-xs sm:text-sm font-bold text-white truncate" title="${item.name}">${item.name}</h3>
+                                <div class="truncate">
+                                    <h3 class="text-xs sm:text-sm font-bold text-white truncate" title="${item.name}">${item.name}</h3>
+                                    <span class="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-300 border border-orange-500/20">${item.category || 'Umum'}</span>
+                                </div>
                             </div>
                             <div class="flex items-center gap-1 flex-shrink-0">
                                 <button onclick="openEditMediafireModal('${item.id}')" class="text-gray-400 hover:text-orange-400 p-1 transition" title="Edit Link">
@@ -1341,15 +1417,125 @@
                     </div>
                 </div>
             `).join('');
+            lucide.createIcons();
+        }
+
+        function populateCategoryDropdowns() {
+            const categories = state.mediafireCategories || ["Umum"];
+
+            // Populasikan Dropdown Filter Search (Tab MediaFire)
+            const filterSelect = document.getElementById('mfCategoryFilter');
+            if (filterSelect && filterSelect.options.length <= 1) {
+                const currentFilter = filterSelect.value || 'Semua';
+                filterSelect.innerHTML = `<option value="Semua">Semua Kategori</option>` + categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+                filterSelect.value = currentFilter;
+            }
+
+            // Populasikan Dropdown Input Modal Tambah/Edit
+            const modalSelect = document.getElementById('mfCategory');
+            if (modalSelect) {
+                const currentVal = modalSelect.value;
+                modalSelect.innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+                if (currentVal && categories.includes(currentVal)) {
+                    modalSelect.value = currentVal;
+                }
+            }
+        }
+
+        function openModalCategoryManager() {
+            renderCategoryManager();
+            openModal('modalMfCategories');
+        }
+
+        function renderCategoryManager() {
+            const container = document.getElementById('categoryListContainer');
+            if (!container) return;
+
+            const categories = state.mediafireCategories || [];
+            container.innerHTML = categories.map((cat, index) => `
+                <div class="flex items-center justify-between p-2 rounded-xl bg-gray-900/80 border border-gray-800">
+                    <span class="text-xs text-white font-semibold">${cat}</span>
+                    <div class="flex items-center gap-1">
+                        <button onclick="editCategory(${index})" class="text-gray-400 hover:text-orange-400 p-1" title="Edit Kategori">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <button onclick="deleteCategory(${index})" class="text-gray-400 hover:text-rose-400 p-1" title="Hapus Kategori">
+                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function handleAddCategory(e) {
+            e.preventDefault();
+            const input = document.getElementById('newCatName');
+            const name = input.value.trim();
+            if (!name) return;
+
+            if (state.mediafireCategories.includes(name)) {
+                alert('Kategori sudah ada!');
+                return;
+            }
+
+            state.mediafireCategories.push(name);
+            input.value = '';
+            document.getElementById('mfCategoryFilter').innerHTML = ''; // reset options
+            saveState();
+            renderCategoryManager();
+        }
+
+        function editCategory(index) {
+            const oldName = state.mediafireCategories[index];
+            const newName = prompt('Edit nama kategori:', oldName);
+            if (!newName || newName.trim() === '' || newName === oldName) return;
+
+            const trimmedName = newName.trim();
+            state.mediafireCategories[index] = trimmedName;
+
+            // Update kategori pada item link yang menggunakannya
+            (state.mediafireLinks || []).forEach(link => {
+                if (link.category === oldName) {
+                    link.category = trimmedName;
+                }
+            });
+
+            document.getElementById('mfCategoryFilter').innerHTML = ''; // reset options
+            saveState();
+            renderCategoryManager();
+        }
+
+        function deleteCategory(index) {
+            const catName = state.mediafireCategories[index];
+            if (state.mediafireCategories.length <= 1) {
+                alert('Minimal harus ada 1 kategori!');
+                return;
+            }
+
+            // Ubah link dengan kategori ini ke 'Umum' atau kategori pertama yang tersisa
+            const fallbackCat = state.mediafireCategories.find((_, i) => i !== index) || 'Umum';
+            (state.mediafireLinks || []).forEach(link => {
+                if (link.category === catName) {
+                    link.category = fallbackCat;
+                }
+            });
+
+            state.mediafireCategories.splice(index, 1);
+            document.getElementById('mfCategoryFilter').innerHTML = ''; // reset options
+            saveState();
+            renderCategoryManager();
         }
 
         function openEditMediafireModal(id) {
             const m = state.mediafireLinks.find(x => x.id === id);
             if(!m) return;
+            populateCategoryDropdowns();
             document.getElementById('editMediafireId').value = m.id;
             document.getElementById('modalMediafireTitle').innerText = 'Edit Link MediaFire';
             document.getElementById('mfName').value = m.name || '';
             document.getElementById('mfUrl').value = m.url || '';
+            document.getElementById('mfCategory').value = m.category || 'Umum';
             openModal('modalMediafire');
         }
 
@@ -1358,18 +1544,21 @@
             const editId = document.getElementById('editMediafireId').value;
             const name = document.getElementById('mfName').value;
             const url = document.getElementById('mfUrl').value;
+            const category = document.getElementById('mfCategory').value || 'Umum';
 
             if (editId) {
                 const m = state.mediafireLinks.find(x => x.id === editId);
                 if (m) {
                     m.name = name;
                     m.url = url;
+                    m.category = category;
                 }
             } else {
                 state.mediafireLinks.unshift({
                     id: 'mf-' + Date.now(),
                     name,
-                    url
+                    url,
+                    category
                 });
             }
 
